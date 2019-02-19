@@ -208,12 +208,10 @@ def test():
     m = cmouse()
     scene = cwindow()
     yys1 = WindowHandle()
-    #findwindow(scene, yys1, "海外实施部_田明银")  # 注意空格
     findwindow(scene, yys1, "[#] [yys1] 阴阳师-网易游戏 [#]")  # 注意空格
     if yys1.Handle != 0:
         m.sendEsc(yys1.Handle)
 
 print("开始")
-#--------------------
 Douji()
 print("结束")
