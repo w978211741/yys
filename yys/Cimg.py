@@ -1,46 +1,42 @@
 import aircv as ac
 import cv2
 import numpy as np
-from Cdisdigit import cdisdigit
+from Cdistinguish import Distinguish
 
 
-class cimg:
-    def FindALLImgInImg(self,srcimg,targetimg,jingdu):
-        srcimg = cv2.imdecode(np.fromfile(srcimg,dtype=np.uint8),-1)
-        targetimg = cv2.imdecode(np.fromfile(targetimg, dtype=np.uint8), -1)
-        #srcimg = ac.imread(srcimg)
-        #targetimg = ac.imread(targetimg)
-        pos = ac.find_all_template(srcimg, targetimg,jingdu)
-        if pos == None :
+class Img:
+
+    # 返回找到的图的数量
+    @staticmethod
+    def find_all_img_in_img(src_img_path, target_img_path, accuracy):
+        src_img = cv2.imdecode(np.fromfile(src_img_path,dtype=np.uint8), -1)
+        target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
+        pos = ac.find_all_template(src_img, target_img, accuracy)
+        if pos is None:
             return -1
-        #circle_center_pos = pos['result']
         return len(pos)
 
-    def FindImgInImg(self,srcimg,targetimg,jingdu = 0.5):
-        srcimg = cv2.imdecode(np.fromfile(srcimg,dtype=np.uint8),-1)
-        targetimg = cv2.imdecode(np.fromfile(targetimg, dtype=np.uint8), -1)
-        #srcimg = ac.imread(srcimg)
-        #targetimg = ac.imread(targetimg)
-        pos = ac.find_template(srcimg, targetimg,jingdu)
-        if pos == None :
-            return -1,-1,-1
+    @staticmethod
+    def find_img_in_img(src_img_path,target_img_path, accuracy=0.5):
+        src_img = cv2.imdecode(np.fromfile(src_img_path,dtype=np.uint8), -1)
+        target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
+        pos = ac.find_template(src_img, target_img, accuracy)
+        if pos is None:
+            return -1
         circle_center_pos = pos['result']
         return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
 
-    #x1 = 60  # 左右偏移量
-    #y1 = 1  # 上下偏移量
-    #width = 70  # 目标宽度
-    #heigh = 30  # 目标高度
-    def FindStrInImg(self,srcimgpath,tagimgpath,x1,y1,width,heigh):
-        re, x, y = self.FindImgInImg(srcimgpath, tagimgpath)
+    @staticmethod
+    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height):
+        re, x, y = Img.find_img_in_img(src_img_path, target_img_path)
         if re != 0:
             return "-1"
-        srcimg = cv2.imread(srcimgpath)
-        se = srcimg.shape
-        Maxheight = se[0]
-        Maxwidth = se[1]
-        point1 = [int(x - width / 2) + x1, int(y - heigh / 2) + y1]  # 左上角
-        point2 = [int(x + width / 2) + x1, int(y + heigh / 2) + y1]  # 右下角
+        src_img = cv2.imread(src_img_path)
+        se = src_img.shape
+        max_height = se[0]
+        max_width = se[1]
+        point1 = [int(x - width / 2) + x1, int(y - height / 2) + y1]  # 左上角
+        point2 = [int(x + width / 2) + x1, int(y + height / 2) + y1]  # 右下角
         if point1[0] < 0:
             point1[0] = 0
         if point1[1] < 0:
@@ -49,37 +45,40 @@ class cimg:
             point2[0] = 0
         if point2[1] < 0:
             point2[1] = 0
-        if point2[0] > Maxwidth:
-            point2[0] = Maxwidth
-        if point2[1] > Maxheight:
-            point2[1] = Maxheight
-        if point1[0] >  point2[0] or point1[1] > point2[1]:
-            return -2;
-        tagimg = self.CutImg(srcimg, point1, point2)
-        grayimg = cv2.cvtColor(tagimg, cv2.COLOR_BGR2GRAY)
-        img_info = tagimg.shape
+        if point2[0] > max_width:
+            point2[0] = max_width
+        if point2[1] > max_height:
+            point2[1] = max_height
+        if point1[0] > point2[0] or point1[1] > point2[1]:
+            return "-2"
+        tag_img = Img.cut_img(src_img, point1, point2)
+        gray_img = cv2.cvtColor(tag_img, cv2.COLOR_BGR2GRAY)
+        img_info = gray_img.shape
         image_height = img_info[0]
         image_weight = img_info[1]
         dst = np.zeros((image_height, image_weight, 1), np.uint8)
         for i in range(image_height):
             for j in range(image_weight):
-                grayPixel = grayimg[i][j]
-                dst[i][j] = 255 - grayPixel
-        tempPath = "temp/findStrInImg.bmp"
-        cv2.imwrite(tempPath, dst)
-        img2str = cdisdigit()  # 文字识别对象
-        text = img2str.imgPathtostring(tempPath)
+                gray_pixel = gray_img[i][j]
+                dst[i][j] = 255 - gray_pixel
+        temp_path = "temp/findStrInImg.bmp"
+        cv2.imwrite(temp_path, dst)
+        # 文字识别
+        text = Distinguish.img_path2string(temp_path)
         return text
 
-        # 裁剪
-    def CutImg(self,srcimg,pointfrom,pointto):
-        tagimg = srcimg[pointfrom[1]:pointto[1], pointfrom[0]:pointto[0]]
-        return tagimg
+    # 裁剪
+    @staticmethod
+    def cut_img(src_img, point_from, point_to):
+        tag_img = src_img[point_from[1]:point_to[1], point_from[0]:point_to[0]]
+        return tag_img
 
-    def CutImgPath(self,srcimgPath,pointfrom,pointto):
-        srcimg = cv2.imread(srcimgPath)
-        tagimg = srcimg[pointfrom[1]:pointto[1], pointfrom[0]:pointto[0]]
-        return tagimg
+    @staticmethod
+    def cut_img_path(src_img_Path, point_from, point_to):
+        src_img = cv2.imread(src_img_Path)
+        tag_img = src_img[point_from[1]:point_to[1], point_from[0]:point_to[0]]
+        return tag_img
 
-    def save(self,name,img):
-        cv2.imwrite(name,img)
+    @staticmethod
+    def save(name, img):
+        cv2.imwrite(name, img)
