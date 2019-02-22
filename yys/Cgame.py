@@ -151,6 +151,7 @@ class Game:
             return 0
         return -1
 
+    # 双击指定图片
     def double_click_img(self, img_path, handle, accuracy=0.9):
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
@@ -160,6 +161,7 @@ class Game:
             return 0
         return -1
 
+    # 决策打结界还是探索
     def jie_jie_or_tang_suo(self, handle):
         # 获取体力结界券
         tu_po_juan = self.get_tu_po_juan(handle)
@@ -175,6 +177,7 @@ class Game:
             else:
                 return "结界突破"
 
+    # 结界数量（打过、没打过、打不过）
     def jie_jie_number(self, handle):
         # 获得游戏界面截图
         tu = self.window.jie_tu(handle)
@@ -185,6 +188,7 @@ class Game:
         print("打过了" + str(re1) + ";打不过:" + str(re2) + ";没打过:" + str(re3))
         return re1, re2, re3
 
+    # 逐个结界块进行找图，找到第一个没打过的返回
     def jie_chu_tu_po_block(self, handle):
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
@@ -207,6 +211,7 @@ class Game:
                 return 0, x + handle.left + point[0], y + handle.top + point[1]
         return -1, 0, 0
 
+    # 开始打某个结界
     def da_tu_po(self, handle):
         re1, re2, re3 = self.jie_jie_number(handle)
         if re1 >= 3:
@@ -242,6 +247,7 @@ class Game:
                 print("打过" + str(re1) + "但是找不到没打过的")
                 return -1, 0, 0
 
+    # 从探索进入探索界面
     def jin_ru_tang_suo(self, handle):
         if self.click_img(self.window, "yys/第三章.bmp", handle) == 0:
             time.sleep(1)
@@ -254,6 +260,7 @@ class Game:
             print("第十一章找不到")
         print("进入探索")
 
+    # 在探索中界面打探索怪
     def da_tang_suo(self, handle):
         # 获取体力数量
         ti_li = self.get_ti_li(handle)
