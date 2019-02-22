@@ -2,15 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="4db9f66d-8b1c-4325-a6a5-4a71b8828187" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/Cdistinguish.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Chandle.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cdisdigit.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/CcutBG.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/Cgame.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cgame.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cimg.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cimg.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cmouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Mouse.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Cwindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cwindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Cluping.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Mouse.py" beforeDir="false" afterPath="$PROJECT_DIR$/Cmouse.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,25 +57,25 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="8" />
+          <entry key="py" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="8" />
+          <entry key="Python" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="dummy" value="13" />
-          <entry key="py" value="1485" />
+          <entry key="dummy" value="15" />
+          <entry key="py" value="1598" />
           <entry key="txt" value="22" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="35" />
-          <entry key="Python" value="1485" />
+          <entry key="PLAIN_TEXT" value="37" />
+          <entry key="Python" value="1598" />
         </counts>
       </usages-collector>
     </session>
@@ -89,15 +85,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Cgame.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="209">
-              <caret line="304" column="8" selection-start-line="304" selection-start-column="8" selection-end-line="304" selection-end-column="8" />
+            <state relative-caret-position="980">
+              <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
               <folding>
                 <element signature="e#0#20#0" expanded="true" />
                 <element signature="e#308#374#0" />
+                <element signature="e#436#1832#0" />
                 <element signature="e#489#1022#0" />
                 <element signature="e#1079#1721#0" />
                 <element signature="e#1854#2482#0" />
                 <element signature="e#2523#2601#0" />
+                <element signature="e#2655#4048#0" />
                 <element signature="e#5424#5604#0" />
                 <element signature="e#5678#5881#0" />
                 <element signature="e#5962#6437#0" />
@@ -110,23 +108,23 @@
                 <element signature="e#10945#11141#0" />
                 <element signature="e#11189#11521#0" />
                 <element signature="e#11566#11630#0" />
+                <element signature="e#11675#11815#0" />
+                <element signature="e#11871#12245#0" />
                 <element signature="e#12294#12628#0" />
                 <element signature="e#12675#12872#0" />
                 <element signature="e#10778#11128#0" />
                 <element signature="e#13427#13839#0" />
+                <element signature="e#13273#13543#0" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1260">
-              <caret line="45" column="21" lean-forward="true" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-              <folding>
-                <element signature="e#17#48#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="28">
+              <caret line="1" column="31" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -134,43 +132,17 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Chandle.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret column="12" selection-start-column="6" selection-end-column="12" />
+            <state relative-caret-position="168">
+              <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cimg.py">
+        <entry file="file://$PROJECT_DIR$/Cmouse.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="728">
-              <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Cluping.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/CcutBG.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="69">
-              <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Mouse.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="293">
-              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="168">
+              <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -178,14 +150,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cwindow.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-490">
-              <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+            <state relative-caret-position="-71">
+              <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
               <folding>
                 <element signature="e#0#25#0" expanded="true" />
+                <element signature="e#210#599#0" />
+                <element signature="e#669#1288#0" />
                 <element signature="e#1363#1636#0" />
+                <element signature="e#1366#1481#0" />
+                <element signature="e#1537#1586#0" />
               </folding>
             </state>
           </provider>
@@ -204,6 +180,7 @@
     <findStrings>
       <find>click_img</find>
       <find>handle.handle</find>
+      <find>click</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -223,16 +200,17 @@
         <option value="$PROJECT_DIR$/main2.py" />
         <option value="$PROJECT_DIR$/Cdisdigit.py" />
         <option value="$PROJECT_DIR$/CHandle.py" />
-        <option value="$PROJECT_DIR$/Chandle.py" />
         <option value="$PROJECT_DIR$/Cimg.py" />
         <option value="$PROJECT_DIR$/Cwindow.py" />
         <option value="$PROJECT_DIR$/Mouse.py" />
-        <option value="$PROJECT_DIR$/Cgame.py" />
         <option value="$PROJECT_DIR$/main.py" />
+        <option value="$PROJECT_DIR$/Chandle.py" />
+        <option value="$PROJECT_DIR$/Cgame.py" />
+        <option value="$PROJECT_DIR$/Cluping.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="95" />
     <option name="y" value="705" />
     <option name="width" value="1690" />
@@ -313,12 +291,21 @@
       <option name="presentableId" value="Default" />
       <updated>1550451948195</updated>
     </task>
+    <task id="LOCAL-00001" summary="优化调整，清除了能清除的波浪线">
+      <created>1550824891768</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1550824891768</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14002642" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14002642" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -391,7 +378,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cimg.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="728">
+        <state relative-caret-position="-1036">
           <caret line="26" column="70" lean-forward="true" selection-start-line="26" selection-start-column="70" selection-end-line="26" selection-end-column="70" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -399,24 +386,57 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/CcutBG.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="69">
+          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cluping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="644">
+          <caret line="25" column="10" selection-start-line="25" selection-start-column="10" selection-end-line="25" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cmouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="6" column="12" selection-start-line="6" selection-start-column="12" selection-end-line="6" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Chandle.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="12" selection-start-column="6" selection-end-column="12" />
+        <state relative-caret-position="168">
+          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="31" lean-forward="true" selection-start-line="1" selection-start-column="31" selection-end-line="1" selection-end-column="31" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cgame.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="304" column="8" selection-start-line="304" selection-start-column="8" selection-end-line="304" selection-end-column="8" />
+        <state relative-caret-position="980">
+          <caret line="144" column="12" selection-start-line="144" selection-start-column="12" selection-end-line="144" selection-end-column="12" />
           <folding>
             <element signature="e#0#20#0" expanded="true" />
             <element signature="e#308#374#0" />
+            <element signature="e#436#1832#0" />
             <element signature="e#489#1022#0" />
             <element signature="e#1079#1721#0" />
             <element signature="e#1854#2482#0" />
             <element signature="e#2523#2601#0" />
+            <element signature="e#2655#4048#0" />
             <element signature="e#5424#5604#0" />
             <element signature="e#5678#5881#0" />
             <element signature="e#5962#6437#0" />
@@ -429,51 +449,28 @@
             <element signature="e#10945#11141#0" />
             <element signature="e#11189#11521#0" />
             <element signature="e#11566#11630#0" />
+            <element signature="e#11675#11815#0" />
+            <element signature="e#11871#12245#0" />
             <element signature="e#12294#12628#0" />
             <element signature="e#12675#12872#0" />
             <element signature="e#10778#11128#0" />
             <element signature="e#13427#13839#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Mouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="293">
-          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#13273#13543#0" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Cwindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-490">
-          <caret line="12" column="27" lean-forward="true" selection-start-line="12" selection-start-column="27" selection-end-line="12" selection-end-column="27" />
+        <state relative-caret-position="-71">
+          <caret line="6" column="13" selection-start-line="6" selection-start-column="13" selection-end-line="6" selection-end-column="13" />
           <folding>
             <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#210#599#0" />
+            <element signature="e#669#1288#0" />
             <element signature="e#1363#1636#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cluping.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/CcutBG.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="10" column="14" selection-start-line="10" selection-start-column="14" selection-end-line="10" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1260">
-          <caret line="45" column="21" lean-forward="true" selection-start-line="45" selection-start-column="21" selection-end-line="45" selection-end-column="21" />
-          <folding>
-            <element signature="e#17#48#0" expanded="true" />
+            <element signature="e#1366#1481#0" />
+            <element signature="e#1537#1586#0" />
           </folding>
         </state>
       </provider>

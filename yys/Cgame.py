@@ -1,6 +1,6 @@
 from Cimg import Img
 from enum import Enum, unique
-from Mouse import Mouse
+from Cmouse import Mouse
 from Cwindow import Window
 import sys
 import time
@@ -20,7 +20,7 @@ class Game:
     def set_window(self, handle, window_name, x, y, cy):
         class_name = None
         handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-            self.window.get_window(class_name, window_name)
+            self.window.get_window(handle, class_name, window_name)
         if handle.hwnd == 0:
             return -1
         else:
@@ -47,7 +47,7 @@ class Game:
 
     # 在探索界面获取突破卷数量
     def get_tu_po_juan(self, handle):
-        tu = self.window.jie_tu(handle.left, handle.top + 50, handle.right, handle.top + 80)
+        tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
         tag_img_path = "yys/突破卷数量.bmp"
         x1 = 60  # 左右偏移量
@@ -63,9 +63,10 @@ class Game:
             return int(tu_po_number)
         return -1
 
+    # 在结界突破界面获取突破卷数量
     def get_tu_po_juan2(self, handle):
         # 获得游戏界面截图
-        tu = self.window.jietu(handle.left, handle.bottom - 130, handle.right, handle.bottom - 75)
+        tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
         tag_img_path = "yys/突破卷数量2.bmp"
         x1 = 54  # 左右偏移量
@@ -81,16 +82,17 @@ class Game:
             return int(tu_po_number)
         return -1
 
+    # 在探索界面获取体力数量
     def get_ti_li(self, handle):
         # 获得游戏界面截图
-        tu = self.window.jietu(handle.left, handle.top + 50, handle.right, handle.top + 80)
+        tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
         target_img_path = "yys/体力数量.bmp"
         x1 = 65  # 左右偏移量
         y1 = 1  # 上下偏移量
         width = 95  # 目标宽度
         height = 30  # 目标高度
-        power_number_str = Img.FindStrInImg(self.src_img_path, target_img_path, x1, y1, width, height)
+        power_number_str = Img.find_str_in_img(self.src_img_path, target_img_path, x1, y1, width, height)
         if power_number_str != "-1":
             power_number_str = power_number_str.split('/')
             power_number = power_number_str[0]
@@ -99,13 +101,15 @@ class Game:
             return int(power_number)
         return power_number_str
 
+    # 查找图片是否在temp图片中是否存在
     @staticmethod
     def if_exist(path):
         re, x, y = Img.find_img_in_img('temp/temp.bmp', path, 0.90)
         return re
 
+    # 判断当前所在是哪个场景
     def get_scene(self, handle):
-        window_img = self.window.jietu((handle.left, handle.top, handle.right, handle.bottom))
+        window_img = self.window.jie_tu((handle.left, handle.top, handle.right, handle.bottom))
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
         if Game.if_exist(path + "庭院界面.bmp") == 0:
@@ -138,11 +142,12 @@ class Game:
             return SceneKey.DOU_JI_ZHUN_BEI
         return SceneKey.NUKOWN
 
+    # 单击指定图片
     def click_img(self, img_path, handle, accuracy=0.9):
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.Click(x, y)
+            mouse.click(x, y)
             return 0
         return -1
 
@@ -150,8 +155,8 @@ class Game:
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.Click(x, y)
-            mouse.Click(x, y)
+            mouse.click(x, y)
+            mouse.click(x, y)
             return 0
         return -1
 
@@ -174,9 +179,9 @@ class Game:
         # 获得游戏界面截图
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
-        re1 = Img.find_all_img_in_img('temp/temp.bmp', self.daguolePath, 0.8)
-        re2 = Img.find_all_img_in_img('temp/temp.bmp', self.dabuguoPath, 0.96)  # 匹配精度0.96
-        re3 = Img.find_all_img_in_img('temp/temp.bmp', self.meidaguoPath, 0.90)
+        re1 = Img.find_all_img_in_img('temp/temp.bmp', self.da_guo_le_path, 0.8)
+        re2 = Img.find_all_img_in_img('temp/temp.bmp', self.da_bu_guo_path, 0.96)  # 匹配精度0.96
+        re3 = Img.find_all_img_in_img('temp/temp.bmp', self.mei_da_guo_path, 0.90)
         print("打过了" + str(re1) + ";打不过:" + str(re2) + ";没打过:" + str(re3))
         return re1, re2, re3
 
@@ -195,9 +200,9 @@ class Game:
             h = 120-5
             point2 = [point[0] + w, point[1] + h]
             print(str(i) + str(point))
-            src_img = Img.CutImgPath('temp/temp.bmp', point, point2)
+            src_img = Img.cut_img_path('temp/temp.bmp', point, point2)
             Img.save('temp/temp'+str(i)+'.bmp', src_img)
-            re, x, y = Img.FindImgInImg('temp/temp'+str(i)+'.bmp', self.meidaguoPath)
+            re, x, y = Img.find_img_in_img('temp/temp'+str(i)+'.bmp', self.mei_da_guo_path)
             if re == 0:
                 return 0, x + handle.left + point[0], y + handle.top + point[1]
         return -1, 0, 0
@@ -222,7 +227,7 @@ class Game:
                     print("打过"+str(re1)+"没在刷新冷却中但是找不到刷新按钮")
                     return -1, 0, 0
         elif re3 == 0:
-            re, x, y = self.window.Findimg(handle, "yys/结界刷新按钮.bmp")
+            re, x, y = self.window.find_img(handle, "yys/结界刷新按钮.bmp")
             if re == 0:
                 return 1, x, y
             else:
@@ -265,7 +270,7 @@ class Game:
                 re, x, y = self.window.find_img(handle, "yys/获得奖励.bmp")
                 if re == 0:
                     mouse = Mouse()
-                    mouse.Click(x, y - 100)
+                    mouse.click(x, y - 100)
                 else:
                     self.click_img("yys/探索向右走.bmp", handle)
         elif ti_li == -1:
