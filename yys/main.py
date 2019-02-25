@@ -1,6 +1,9 @@
 # encoding=utf-8
 from Cgame import Game,SceneKey
 from Chandle import Handle
+from splinter import Browser
+
+from selenium import webdriver
 import time
 
 
@@ -49,6 +52,9 @@ def hun_shi_main():
         # 将判断后的结果场景代码传入，根据不同场景调用不同函数
         game.hun_shi_team(scene,yys2)
         time.sleep(3)
+
+
+
 
 
 if __name__ == '__main__':

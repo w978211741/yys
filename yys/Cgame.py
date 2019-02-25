@@ -17,32 +17,44 @@ class Game:
         self.window = Window()
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
-    def set_window(self, handle, window_name, x, y, cy):
+    def set_window(self, handle, window_name, x, y, cy, index, position=True):
         class_name = None
         handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
             self.window.get_window(handle, class_name, window_name)
         if handle.hwnd == 0:
             return -1
-        else:
-            height = handle.bottom - handle.top
-            weigh = handle.right - handle.left
-            if x != handle.left or y != handle.top:
+        if position:
+            if index == 1:
+                left = 10
+                top = 10
+            elif index == 2:
+                left = 1050
+                top = 10
+            elif index == 3:
+                left = 10
+                top = 530
+            elif index == 4:
+                left = 1050
+                top = 530
+            if left != handle.left or top != handle.top:
                 handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                    self.window.set_window(handle, x, y, weigh, height)
-            while height > cy:
-                height = height - 20
-                if height < cy:
-                    height = cy
-                    handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                        self.window.set_window(handle.hwnd, handle.left, handle.top, handle.right - handle.left, height)
-                time.sleep(1)
-            while height < cy:
-                height = height + 20
-                if height > cy:
-                    height = cy
-                    handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                        self.window.set_window(handle.hwnd, handle.left, handle.top, handle.right - handle.left, height)
-                time.sleep(1)
+                    self.window.set_window(handle.hwnd, left, top, handle.right - handle.left,
+                                           handle.bottom - handle.top)
+        target_height = 520
+        dx = handle.bottom - handle.top - target_height
+        i_depth = 30
+        if dx != 0:
+            temp_times = int(dx/i_depth)
+            temp_i = 1
+            while temp_i <= temp_times:
+                temp_i = temp_i + 1
+                handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
+                    self.window.set_window(handle.hwnd, left, top, handle.right - handle.left,
+                                           handle.bottom - handle.top - i_depth * temp_i)
+                time.sleep(0.8)
+            handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
+                self.window.set_window(handle.hwnd, left, top, handle.right - handle.left, target_height)
+
         return 0
 
     # 在探索界面获取突破卷数量
