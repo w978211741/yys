@@ -9,7 +9,7 @@ class Img:
     # 返回找到的图的数量
     @staticmethod
     def find_all_img_in_img(src_img_path, target_img_path, accuracy):
-        src_img = cv2.imdecode(np.fromfile(src_img_path,dtype=np.uint8), -1)
+        src_img = cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
         target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
         pos = ac.find_all_template(src_img, target_img, accuracy)
         if pos is None:
@@ -18,11 +18,11 @@ class Img:
 
     @staticmethod
     def find_img_in_img(src_img_path,target_img_path, accuracy=0.5):
-        src_img = cv2.imdecode(np.fromfile(src_img_path,dtype=np.uint8), -1)
+        src_img = cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
         target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
         pos = ac.find_template(src_img, target_img, accuracy)
         if pos is None:
-            return -1
+            return -1, -1, -1
         circle_center_pos = pos['result']
         return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
 
@@ -74,8 +74,8 @@ class Img:
         return tag_img
 
     @staticmethod
-    def cut_img_path(src_img_Path, point_from, point_to):
-        src_img = cv2.imread(src_img_Path)
+    def cut_img_path(src_img_path, point_from, point_to):
+        src_img = cv2.imread(src_img_path)
         tag_img = src_img[point_from[1]:point_to[1], point_from[0]:point_to[0]]
         return tag_img
 

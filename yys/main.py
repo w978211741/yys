@@ -1,75 +1,14 @@
 #encoding=utf-8
 from Cwindow import Window
-from Cgame import Game,SceneKey
+from Cgame import Game, SceneKey
 from Cmouse import Mouse
-from Cimg import Img
+from Chandle import Handle
 from pymouse import PyMouse
 import cv2
 import  os
 import string
-from Cluping import cluping
-from CcutBG import ccutBG
+
 import time
-class WindowHandle:
-    Handle = 0
-    left = 0
-    top = 0
-    right = 0
-    bottom = 0
-
-Handle = 0
-left = 0
-top = 0
-right = 0
-bottom = 0
-
-
-def findwindow(window,WindowHandle,name):
-
-    clasename = None
-
-    WindowHandle.Handle,WindowHandle.left,WindowHandle.top,WindowHandle.right,WindowHandle.bottom \
-        = window.GetWindow(clasename,name)
-    gao = WindowHandle.bottom - WindowHandle.top
-    while gao > 520:
-        gao = gao - 20
-        if gao < 520:
-            gao = 520
-        WindowHandle.Handle, WindowHandle.left, WindowHandle.top, WindowHandle.right, WindowHandle.bottom \
-            = window.SetWindow(WindowHandle.Handle, WindowHandle.left,WindowHandle.top, WindowHandle.right - WindowHandle.left, gao)
-        time.sleep(1)
-
-    if WindowHandle.Handle == 0:
-        print("找不到窗口")
-        return -1
-    else:
-        print("窗口句柄：%s" % (WindowHandle.Handle))
-        return 0
-
-def Douji():
-    findedwindow = False
-    errornumber = 1
-    sceneF = -1  # -1 未确定场景 0：庭院 ；1 ： 探索 ；2 ： 町中 ;3 : 结界突破;4 : 战斗中；
-    scene = Window()
-    sceneerror = 0
-    game = Game()
-    mou = Mouse()
-    yys1 = WindowHandle()
-    findwindow(scene, yys1, "[#] [yys1] 阴阳师-网易游戏 [#]")  # 注意空格
-    print(yys1.Handle, yys1.left, yys1.top, yys1.right, yys1.bottom)
-    if yys1.Handle == 0 :
-        print("不能找全窗口")
-        return 0
-    while 1:
-        # 确定自己在哪个场景
-        sceneF = game.Getscene(scene, yys1.left, yys1.top, yys1.right, yys1.bottom, errornumber)
-        errornumber = errornumber + 1
-        print("1" + str(sceneF))
-        # 将判断后的结果场景代码传入，根据不同场景调用不同函数
-        game.douji(sceneF, scene, yys1)
-        time.sleep(3)
-
-
 
 def HunShiMain():
     findedwindow = False
@@ -79,11 +18,11 @@ def HunShiMain():
     sceneerror = 0
     game = Game()
     mou = Mouse()
-    yys1 = WindowHandle()
-    findwindow(scene,yys1,"[#] [yys2] 阴阳师-网易游戏 [#]")#注意空格
+    yys1 = Handle()
+    set_yys(2, game, yys1)
     print(yys1.Handle, yys1.left, yys1.top, yys1.right, yys1.bottom)
-    yys2 = WindowHandle()
-    findwindow(scene,yys2,"[#] [yys4] 阴阳师-网易游戏 [#]")#注意空格
+    yys2 = Handle()
+    set_yys(2, game, yys2)
     print(yys2.Handle, yys2.left, yys2.top, yys2.right, yys2.bottom)
     if yys1.Handle == 0 or yys2.Handle == 0:
         print("不能找全窗口")
@@ -107,10 +46,10 @@ def main():
     findedwindow = False
     errornumber = 1
     sceneF = -1#-1 未确定场景 0：庭院 ；1 ： 探索 ；2 ： 町中 ;3 : 结界突破;4 : 战斗中；
-    scene = cwindow()
+    scene = Window()
     sceneerror = 0
-    game = cgame()
-    mou = cmouse()
+    game = Game()
+    mou = Mouse()
     while(1):
         #找虚拟机窗口，找不到退出
         if findedwindow == False:
@@ -204,21 +143,41 @@ def main():
         time.sleep(3)
 
 
-def test():
-    m = cmouse()
-    scene = cwindow()
-    yys1 = WindowHandle()
-    findwindow(scene, yys1, "[#] [yys1] 阴阳师-网易游戏 [#]")  # 注意空格
-    if yys1.Handle != 0:
-        def gun_lun(self, n, m):
-            self.m.scroll(n, m)
+def set_yys(index, game, handle):
+    game.set_window(handle, "[#] [yys" + str(index) + "] 阴阳师-网易游戏 [#]", index, True)
+    print(handle.hwnd, handle.left, handle.top, handle.right, handle.bottom)
+    pass
 
-        def vertical_tuo(self, x, y, n):
-            self.m.press(x, y, 1)
-            self.m.move(x, y - n)
-            self.m.release(x, y, 1)
-        m.sendEsc(yys1.Handle)
+
+def set_windows():
+    game = Game()
+    yys1 = Handle()
+    yys2 = Handle()
+    yys3 = Handle()
+    yys4 = Handle()
+    set_yys(1, game, yys1)
+    set_yys(2, game, yys2)
+    set_yys(3, game, yys3)
+    set_yys(4, game, yys4)
+    pass
+
+
+def testt():
+    game = Game()
+    yys1 = Handle()
+    yys2 = Handle()
+    set_yys(1, game, yys1)
+    set_yys(2, game, yys2)
+    while 1:
+        scene = game.get_scene(yys1)
+        print(scene)
+        game.lia_ren_da(scene, yys1)
+        time.sleep(1)
+        scene = game.get_scene(yys2)
+        game.lia_ren_da(scene, yys2)
+        time.sleep(1)
+
 
 print("开始")
-Douji()
+testt()
 print("结束")

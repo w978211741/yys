@@ -29,8 +29,8 @@ class Window:
             handle.bottom = 0
             return -1
         try:
-            win32gui.SetWindowPos(handle, win32con.HWND_TOPMOST, x, y, cx, cy, win32con.SWP_DEFERERASE)
-            handle.left, handle.top, handle.right, handle.bottom = win32gui.GetWindowRect(handle)
+            win32gui.SetWindowPos(handle.hwnd, win32con.HWND_TOPMOST, x, y, cx, cy, win32con.SWP_DEFERERASE)
+            handle.left, handle.top, handle.right, handle.bottom = win32gui.GetWindowRect(handle.hwnd)
         except Exception as e:
             print("Exception:" + e.__str__())
             handle.hwnd = 0

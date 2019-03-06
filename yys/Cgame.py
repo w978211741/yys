@@ -17,12 +17,12 @@ class Game:
         self.window = Window()
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
-    def set_window(self, handle, window_name, x, y, cy, index, position=True):
+    def set_window(self, handle, window_name, index, position=True):
         class_name = None
-        handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-            self.window.get_window(handle, class_name, window_name)
-        if handle.hwnd == 0:
+        if self.window.get_window(handle, class_name, window_name) == -1:
             return -1
+        left = 10
+        top = 10
         if position:
             if index == 1:
                 left = 10
@@ -32,14 +32,13 @@ class Game:
                 top = 10
             elif index == 3:
                 left = 10
-                top = 530
+                top = 520
             elif index == 4:
                 left = 1050
-                top = 530
+                top = 520
             if left != handle.left or top != handle.top:
-                handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                    self.window.set_window(handle.hwnd, left, top, handle.right - handle.left,
-                                           handle.bottom - handle.top)
+                self.window.set_window(handle, left, top, handle.right - handle.left, handle.bottom - handle.top)
+
         target_height = 520
         dx = handle.bottom - handle.top - target_height
         i_depth = 30
@@ -48,12 +47,10 @@ class Game:
             temp_i = 1
             while temp_i <= temp_times:
                 temp_i = temp_i + 1
-                handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                    self.window.set_window(handle.hwnd, left, top, handle.right - handle.left,
-                                           handle.bottom - handle.top - i_depth * temp_i)
+                self.window.set_window(handle, left, top, handle.right - handle.left,
+                                       handle.bottom - handle.top - i_depth * temp_i)
                 time.sleep(0.8)
-            handle.hwnd, handle.left, handle.top, handle.right, handle.bottom = \
-                self.window.set_window(handle.hwnd, left, top, handle.right - handle.left, target_height)
+            self.window.set_window(handle, left, top, handle.right - handle.left, target_height)
 
         return 0
 
@@ -121,7 +118,7 @@ class Game:
 
     # 判断当前所在是哪个场景
     def get_scene(self, handle):
-        window_img = self.window.jie_tu((handle.left, handle.top, handle.right, handle.bottom))
+        window_img = self.window.jie_tu(handle)
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
         if Game.if_exist(path + "庭院界面.bmp") == 0:
@@ -136,22 +133,20 @@ class Game:
             return SceneKey.ZHANG_DOU_JIANG_LI
         if Game.if_exist(path + "斗技中界面.bmp") == 0:
             return SceneKey.DOU_JI_ZHONG
-        if Game.if_exist(path + "战斗中界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_ZHONG
         if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
             return SceneKey.ZHANG_DOU_SHENG_LI
         if Game.if_exist(path + "战斗失败界面.bmp") == 0:
             return SceneKey.ZHANG_DOU_SHI_BAI
-        if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_SHENG_LI
         if Game.if_exist(path + "探索中界面.bmp") == 0:
             return SceneKey.TANG_SUO_ZHONG
         if Game.if_exist(path + "协战队伍界面.bmp") == 0:
             return SceneKey.XIE_ZHAN_DUI_WU
         if Game.if_exist(path + "斗技界面.bmp") == 0:
             return SceneKey.DOU_JI
-        if Game.if_exist(path + "斗技准备界面.bmp") == 0:
-            return SceneKey.DOU_JI_ZHUN_BEI
+        if Game.if_exist(path + "战斗中界面.bmp") == 0:
+            return SceneKey.ZHANG_DOU_ZHONG
+        # if Game.if_exist(path + "斗技准备界面.bmp") == 0:
+        #   return SceneKey.DOU_JI_ZHUN_BEI
         return SceneKey.NUKOWN
 
     # 单击指定图片
@@ -159,7 +154,7 @@ class Game:
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.click(x, y)
+            mouse.Click(x, y)
             return 0
         return -1
 
@@ -168,8 +163,8 @@ class Game:
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.click(x, y)
-            mouse.click(x, y)
+            mouse.Click(x, y)
+            mouse.Click(x, y)
             return 0
         return -1
 
@@ -289,7 +284,7 @@ class Game:
                 re, x, y = self.window.find_img(handle, "yys/获得奖励.bmp")
                 if re == 0:
                     mouse = Mouse()
-                    mouse.click(x, y - 100)
+                    mouse.Click(x, y - 100)
                 else:
                     self.click_img("yys/探索向右走.bmp", handle)
         elif ti_li == -1:
@@ -323,7 +318,7 @@ class Game:
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
         self.qu_bo_lang_xian()
         mouse = Mouse()
-        mouse.click(handle.left + 100, handle.top + 100)
+        mouse.Click(handle.left + 100, handle.top + 100)
         pass
 
     def hun_shi_team(self, argument, handle):
@@ -348,7 +343,7 @@ class Game:
             print("确认退出斗技按钮")
         pass
 
-    def start_fight(self, handle):
+    def start_dj_fight(self, handle):
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
         if self.click_img("yys/开始斗技按钮.bmp", handle, 0.98) == 0:
             print("开始斗技按钮")
@@ -364,6 +359,10 @@ class Game:
                 print("退出战斗按钮")
         pass
 
+    def waiting(self, handle):
+        time.sleep(1)
+        pass
+
     def dou_ji(self, argument, handle):
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
@@ -371,13 +370,30 @@ class Game:
             SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
             SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
             SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
-            SceneKey.DOU_JI_ZHUN_BEI: self.start_fight,
+            SceneKey.DOU_JI_ZHUN_BEI: self.start_dj_fight,
             SceneKey.DOU_JI_ZHONG: self.exit_fighting
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(handle)
         # Execute the function
         return func
+
+    def lia_ren_da(self, argument, handle):
+        switcher = {
+            SceneKey.NUKOWN: self.error_scene,
+            SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
+            SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
+            SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
+            SceneKey.XIE_ZHAN_DUI_WU: self.teaming,
+            SceneKey.ZHANG_DOU_ZHONG: self.waiting
+        }
+        # Get the function from switcher dictionary
+        func = switcher.get(argument, self.error_scene)(handle)
+        # Execute the function
+        return func
+
+
+
 
 
 @unique
