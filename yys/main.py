@@ -1,8 +1,8 @@
 #encoding=utf-8
-from Cwindow import cwindow
-from Cgame import cgame,SceneKey
-from Cmouse import cmouse
-from Cimg import cimg
+from Cwindow import Window
+from Cgame import Game,SceneKey
+from Cmouse import Mouse
+from Cimg import Img
 from pymouse import PyMouse
 import cv2
 import  os
@@ -50,10 +50,10 @@ def Douji():
     findedwindow = False
     errornumber = 1
     sceneF = -1  # -1 未确定场景 0：庭院 ；1 ： 探索 ；2 ： 町中 ;3 : 结界突破;4 : 战斗中；
-    scene = cwindow()
+    scene = Window()
     sceneerror = 0
-    game = cgame()
-    mou = cmouse()
+    game = Game()
+    mou = Mouse()
     yys1 = WindowHandle()
     findwindow(scene, yys1, "[#] [yys1] 阴阳师-网易游戏 [#]")  # 注意空格
     print(yys1.Handle, yys1.left, yys1.top, yys1.right, yys1.bottom)
@@ -75,10 +75,10 @@ def HunShiMain():
     findedwindow = False
     errornumber = 1
     sceneF = -1  # -1 未确定场景 0：庭院 ；1 ： 探索 ；2 ： 町中 ;3 : 结界突破;4 : 战斗中；
-    scene = cwindow()
+    scene = Window()
     sceneerror = 0
-    game = cgame()
-    mou = cmouse()
+    game = Game()
+    mou = Mouse()
     yys1 = WindowHandle()
     findwindow(scene,yys1,"[#] [yys2] 阴阳师-网易游戏 [#]")#注意空格
     print(yys1.Handle, yys1.left, yys1.top, yys1.right, yys1.bottom)

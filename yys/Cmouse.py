@@ -1,7 +1,7 @@
 from pymouse import PyMouse
 import win32api
 import win32con
-class cmouse:
+class Mouse:
     m = None
     def __init__(self):
         self.m = PyMouse()
