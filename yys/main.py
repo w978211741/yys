@@ -210,6 +210,13 @@ def test():
     yys1 = WindowHandle()
     findwindow(scene, yys1, "[#] [yys1] 阴阳师-网易游戏 [#]")  # 注意空格
     if yys1.Handle != 0:
+        def gun_lun(self, n, m):
+            self.m.scroll(n, m)
+
+        def vertical_tuo(self, x, y, n):
+            self.m.press(x, y, 1)
+            self.m.move(x, y - n)
+            self.m.release(x, y, 1)
         m.sendEsc(yys1.Handle)
 
 print("开始")
