@@ -145,6 +145,11 @@ class Game:
             return SceneKey.DOU_JI
         if Game.if_exist(path + "战斗中界面.bmp") == 0:
             return SceneKey.ZHANG_DOU_ZHONG
+        if Game.if_exist(path + "购买体力界面.bmp") == 0:
+            return SceneKey.GOU_MAI_TI_LI
+        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
+            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
+
         # if Game.if_exist(path + "斗技准备界面.bmp") == 0:
         #   return SceneKey.DOU_JI_ZHUN_BEI
         return SceneKey.NUKOWN
@@ -199,16 +204,16 @@ class Game:
     def jie_chu_tu_po_block(self, handle):
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
-        x = 100 + 2 * 10 + 5
-        y = 100 + 2 * 10
+        x = 100 - 2 * 10 + 15
+        y = 100 - 2 * 10 + 12
+        w = 300 - 80
+        h = 120 - 35
         point0 = [x, y]
         for i in range(9):
             if i == 0:
                 point = point0
             else:
-                point = [int(point0[0] + int(i % 3) * 305), int(point0[1] + int(i / 3) * 120)]
-            w = 300-5
-            h = 120-5
+                point = [int(point0[0] + int(i % 3) * 230), int(point0[1] + int(i / 3) * 91)]
             point2 = [point[0] + w, point[1] + h]
             print(str(i) + str(point))
             src_img = Img.cut_img_path('temp/temp.bmp', point, point2)
@@ -363,6 +368,46 @@ class Game:
         time.sleep(1)
         pass
 
+    def enter_jie_jie(self, handle):
+        if self.click_img("yys/进入突破按钮.bmp", handle, 0.98) == 0:
+            print("进入突破按钮")
+
+    # 刷新结界突破
+    def refresh_jie_jie(self, handle):
+        if self.click_img("yys/结界刷新冷却中.bmp", handle, 0.98) == 0:
+            print("结界刷新冷却中")
+            time.sleep(10)
+        else:
+            if self.click_img("yys/结界刷新按钮.bmp", handle, 0.98) == 0:
+                print("结界刷新按钮")
+                time.sleep(1)
+                if self.click_img("yys/结界刷新确定按钮.bmp", handle, 0.98) == 0:
+                    print("结界刷新确定按钮")
+
+    # 查看结界突破剩余数量，判断是否打，还是刷新
+    def select_fight_jie_jie(self, handle):
+        # 先点一下，设置焦点为结界突破界面，而不是点到某个结界的焦点
+        # if self.click_img("yys/scene/结界突破界面.bmp", handle, 0.98) == 0:
+        #    print("结界突破界面")
+        da_guo, da_bug_uo, mei_da_guo = self.jie_jie_number(handle)
+        if da_guo >= 3 or mei_da_guo == 0:
+            self.refresh_jie_jie(handle)
+            return
+        re, x, y = self.jie_chu_tu_po_block(handle)
+        if re != 0:
+            return
+        mouse = Mouse()
+        mouse.Click(x, y)
+        self.waiting(handle)
+        if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
+            print("进攻结界按钮")
+
+    def hon_cha_exit(self, handle):
+        if self.click_img("yys/细红叉按钮.bmp", handle, 0.90) == 0:
+            print("细红叉按钮")
+        if self.click_img("yys/粗红叉按钮.bmp", handle, 0.90) == 0:
+            print("粗红叉按钮")
+
     def dou_ji(self, argument, handle):
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
@@ -385,14 +430,30 @@ class Game:
             SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
             SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
             SceneKey.XIE_ZHAN_DUI_WU: self.teaming,
-            SceneKey.ZHANG_DOU_ZHONG: self.waiting
+            SceneKey.ZHANG_DOU_ZHONG: self.waiting,
+            SceneKey.GOU_MAI_TI_LI: self.hon_cha_exit,
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(handle)
         # Execute the function
         return func
 
-
+    def da_jie_jie(self, argument, handle):
+        switcher = {
+            SceneKey.NUKOWN: self.error_scene,
+            SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
+            SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
+            SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
+            SceneKey.JIE_JIE_TU_PO: self.select_fight_jie_jie,
+            SceneKey.TANG_SUO: self.enter_jie_jie,
+            SceneKey.ZHANG_DOU_ZHONG: self.waiting,
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
+        }
+        # Get the function from switcher dictionary
+        func = switcher.get(argument, self.error_scene)(handle)
+        # Execute the function
+        return func
 
 
 
@@ -411,5 +472,7 @@ class SceneKey(Enum):
     DOU_JI = 10
     DOU_JI_ZHUN_BEI =11
     DOU_JI_ZHONG = 12
-
+    GOU_MAI_TI_LI = 13
+    XUAN_SHANG_FENG_YING_YAO_QING = 14
+    TANG_SUO_ZHONG = 15
 
