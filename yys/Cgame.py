@@ -121,6 +121,15 @@ class Game:
         window_img = self.window.jie_tu(handle)
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
+        if self.click_img("yys/自动加入队伍按钮.bmp", handle, 0.90) == 0:
+            print("自动加入队伍按钮")
+            return SceneKey.NUKOWN
+        if Game.if_exist(path + "购买体力界面.bmp") == 0:
+            return SceneKey.GOU_MAI_TI_LI
+        if Game.if_exist(path + "默认邀请队友界面.bmp") == 0:
+            return SceneKey.MO_REN_YAOQ_QING_DUI_YOU
+        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
+            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
         if Game.if_exist(path + "庭院界面.bmp") == 0:
             return SceneKey.TING_YUAN
         if Game.if_exist(path + "探索界面.bmp") == 0:
@@ -145,10 +154,7 @@ class Game:
             return SceneKey.DOU_JI
         if Game.if_exist(path + "战斗中界面.bmp") == 0:
             return SceneKey.ZHANG_DOU_ZHONG
-        if Game.if_exist(path + "购买体力界面.bmp") == 0:
-            return SceneKey.GOU_MAI_TI_LI
-        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
-            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
+
 
         # if Game.if_exist(path + "斗技准备界面.bmp") == 0:
         #   return SceneKey.DOU_JI_ZHUN_BEI
@@ -408,6 +414,16 @@ class Game:
         if self.click_img("yys/粗红叉按钮.bmp", handle, 0.90) == 0:
             print("粗红叉按钮")
 
+    def mo_ren_yao_qing_dui_you(self, handle):
+        if self.click_img("yys/默认邀请队友按钮灰.bmp", handle, 0.90) == 0:
+            print("默认邀请队友按钮灰")
+            time.sleep(1)
+        window_img = self.window.jie_tu(handle)
+        window_img.save('temp/temp.bmp')
+        if self.if_exist("yys/默认邀请队友按钮.bmp") == 0:
+            if self.click_img("yys/确认邀请队友按钮.bmp", handle, 0.90) == 0:
+                print("确认邀请队友按钮")
+
     def dou_ji(self, argument, handle):
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
@@ -432,7 +448,8 @@ class Game:
             SceneKey.XIE_ZHAN_DUI_WU: self.teaming,
             SceneKey.ZHANG_DOU_ZHONG: self.waiting,
             SceneKey.GOU_MAI_TI_LI: self.hon_cha_exit,
-            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit,
+            SceneKey.MO_REN_YAOQ_QING_DUI_YOU:self.mo_ren_yao_qing_dui_you
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(handle)
@@ -455,6 +472,21 @@ class Game:
         # Execute the function
         return func
 
+    def da_liao_jie_jie(self, argument, handle):
+        switcher = {
+            SceneKey.NUKOWN: self.error_scene,
+            SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
+            SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
+            SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
+            SceneKey.JIE_JIE_TU_PO: self.select_fight_jie_jie,
+            SceneKey.TANG_SUO: self.enter_jie_jie,
+            SceneKey.ZHANG_DOU_ZHONG: self.waiting,
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
+        }
+        # Get the function from switcher dictionary
+        func = switcher.get(argument, self.error_scene)(handle)
+        # Execute the function
+        return func
 
 
 @unique
@@ -475,4 +507,6 @@ class SceneKey(Enum):
     GOU_MAI_TI_LI = 13
     XUAN_SHANG_FENG_YING_YAO_QING = 14
     TANG_SUO_ZHONG = 15
+    MO_REN_YAOQ_QING_DUI_YOU = 16
+
 
