@@ -164,6 +164,8 @@ class Game:
             return SceneKey.DOU_JI
         if Game.if_exist(path + "战斗中界面.bmp") == 0:
             return SceneKey.ZHANG_DOU_ZHONG
+        if Game.if_exist(path + "探索章节界面.bmp") == 0:
+            return SceneKey.TANG_SUO_ZHANG_JIE
 
 
         # if Game.if_exist(path + "斗技准备界面.bmp") == 0:
@@ -258,15 +260,10 @@ class Game:
             elif self.click_img("yys/打小怪2.bmp", handle) == 0:
                 print("打小怪2")
             else:
-                re, x, y = self.window.find_img(handle, "yys/获得奖励.bmp")
-                if re == 0:
-                    mouse = Mouse()
-                    mouse.click(x, y - 100)
-                else:
-                    self.click_img("yys/探索向右走.bmp", handle)
+                self.click_img("yys/探索向右走.bmp", handle)
         elif ti_li == -1:
             print("体力获取失败")
-        print("打探索")
+        return 0
 
     # 用于去除未使用对象成员变量的函数参数使用了self而出现的波浪线
     def qu_bo_lang_xian(self):
@@ -478,5 +475,6 @@ class SceneKey(Enum):
     XUAN_SHANG_FENG_YING_YAO_QING = 14
     TANG_SUO_ZHONG = 15
     MO_REN_YAOQ_QING_DUI_YOU = 16
+    TANG_SUO_ZHANG_JIE = 17
 
 

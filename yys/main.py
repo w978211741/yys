@@ -3,6 +3,7 @@ from Cgame import Game, SceneKey
 from Chandle import Handle
 import time
 from yys.game.Cliaojiejie import Liaojiejie
+from yys.game.Cteam_kun_25 import Team_kun_25
 
 
 def set_yys(index, game, handle):
@@ -104,21 +105,21 @@ def da_liao_jie_jie():
 def jie_jie2():
     game = Game()
     yys1 = Handle()
-    set_yys(1, game, yys1)
     yys2 = Handle()
+    set_yys(1, game, yys1)
     set_yys(2, game, yys2)
     index = 1
     while 1:
-        index = index + 1
-        if index > 5500:
+        if index > 2500:
             return
+        index = index + 1
         scene = game.get_scene(yys1)
         print(scene)
-        game.da_jie_jie(scene, yys1)
+        game.lia_ren_da(scene, yys1)
         time.sleep(1)
         scene = game.get_scene(yys2)
+        game.lia_ren_da(scene, yys2)
         print(scene)
-        game.da_jie_jie(scene, yys2)
         time.sleep(1)
 
 
@@ -150,9 +151,18 @@ def jie_jie4():
         game.da_jie_jie(scene, yys4)
         time.sleep(1)
 
+def team_kun_25():
+    game = Team_kun_25()
+    yys1 = Handle()
+    set_yys(1, game, yys1)
+    while 1:
+        scene = game.get_scene(yys1)
+        print(scene)
+        game.do_work(scene, yys1)
+        time.sleep(1)
 
-
-
+def tt():
+    team_kun_25()
 
 if __name__ == "__main1__":
     print("开始")
@@ -164,7 +174,7 @@ if __name__ == "__main1__":
     jie_jie2()
     print("结束")
 
-if __name__ == "__main__":
+if __name__ == "__main1__":
     print("开始")
     hun_shi()
     print("结束")
@@ -173,4 +183,16 @@ if __name__ == "__main1__":
     print("开始")
     da_liao_jie_jie()
     print("结束")
+
+if __name__ == "__main1__":
+    print("开始")
+    # 组队打困25
+    team_kun_25()
+    print("结束")
+
+if __name__ == "__main__":
+    print("开始")
+    tt()
+    print("结束")
+
 

@@ -1,6 +1,7 @@
 from pymouse import PyMouse
 import win32api
 import win32con
+import time
 
 
 class Mouse:
@@ -31,4 +32,14 @@ class Mouse:
         self.m.move(x, y - n)
         self.m.release(x, y, 1)
 
-
+    def absolute(self, x, y, dx, dy):
+        SW = 1920
+        SH = 1080
+        self.mouse_to(x, y)  # 鼠标移动到
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 左键按下
+        time.sleep(0.2)
+        mw = int((dx + x) * 65535 / SW)
+        mh = int((dy + y) * 65535 / SH)
+        win32api.mouse_event(win32con.MOUSEEVENTF_ABSOLUTE + win32con.MOUSEEVENTF_MOVE, mw, mh, 0, 0)
+        time.sleep(0.2)
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
