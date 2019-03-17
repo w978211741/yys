@@ -4,7 +4,7 @@ from Cmouse import Mouse
 from Cwindow import Window
 import sys
 import time
-
+from abc import ABCMeta, abstractmethod
 
 class Game:
     da_guo_le_path = 'yys/打过了.bmp'
@@ -15,6 +15,10 @@ class Game:
     def __init__(self):
         self.src_img_path = 'temp/temp.bmp'
         self.window = Window()
+
+    @abstractmethod
+    def do_work(self, argument, handle):
+        pass
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
     def set_window(self, handle, window_name, index, position=True):
@@ -41,7 +45,7 @@ class Game:
 
         target_height = 520
         dx = handle.bottom - handle.top - target_height
-        i_depth = 30
+        i_depth = 20
         if dx != 0:
             temp_times = int(dx/i_depth)
             temp_i = 1
@@ -116,6 +120,12 @@ class Game:
         re, x, y = Img.find_img_in_img('temp/temp.bmp', path, 0.90)
         return re
 
+    def jie_tu_if_exist(self, handle, path):
+        window_img = self.window.jie_tu(handle)
+        window_img.save('temp/temp.bmp')
+        re = Game.if_exist(path)
+        return re
+
     # 判断当前所在是哪个场景
     def get_scene(self, handle):
         window_img = self.window.jie_tu(handle)
@@ -165,7 +175,7 @@ class Game:
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.Click(x, y)
+            mouse.click(x, y)
             return 0
         return -1
 
@@ -174,8 +184,8 @@ class Game:
         re, x, y = self.window.find_img(handle, img_path, accuracy)
         if re == 0:
             mouse = Mouse()
-            mouse.Click(x, y)
-            mouse.Click(x, y)
+            mouse.click(x, y)
+            mouse.click(x, y)
             return 0
         return -1
 
@@ -195,7 +205,7 @@ class Game:
             else:
                 return "结界突破"
 
-    # 结界数量（打过、没打过、打不过）
+    # 结界数量（打过了、打不过、没打过）
     def jie_jie_number(self, handle):
         # 获得游戏界面截图
         tu = self.window.jie_tu(handle)
@@ -229,54 +239,10 @@ class Game:
                 return 0, x + handle.left + point[0], y + handle.top + point[1]
         return -1, 0, 0
 
-    # 开始打某个结界
-    def da_tu_po(self, handle):
-        re1, re2, re3 = self.jie_jie_number(handle)
-        if re1 >= 3:
-            re, x, y = self.window.find_img(handle, "yys/结界刷新冷却中.bmp")
-            if re == 0:
-                re = self.click_img("yys/关闭按钮.bmp", handle)
-                if re == 0:
-                    print("关闭按钮")
-                    return -1, 0, 0
-                else:
-                    print("打过" + str(re1) + "但是找不到关闭按钮")
-                    return -1, 0, 0
-            else:
-                re, x, y = self.window.find_img(handle, "yys/结界刷新按钮.bmp")
-                if re == 0:
-                    return 1, x, y
-                else:
-                    print("打过"+str(re1)+"没在刷新冷却中但是找不到刷新按钮")
-                    return -1, 0, 0
-        elif re3 == 0:
-            re, x, y = self.window.find_img(handle, "yys/结界刷新按钮.bmp")
-            if re == 0:
-                return 1, x, y
-            else:
-                print("打过" + str(re1) + "没在刷新冷却中但是找不到刷新按钮")
-                return -1, 0, 0
-        else:
-            re, x, y = self.jie_chu_tu_po_block(handle)
-            if re == 0:
-                print("打他！")
-                return 0, x, y
-            else:
-                print("打过" + str(re1) + "但是找不到没打过的")
-                return -1, 0, 0
-
     # 从探索进入探索界面
     def jin_ru_tang_suo(self, handle):
-        if self.click_img(self.window, "yys/第三章.bmp", handle) == 0:
-            time.sleep(1)
-            if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
-                print("探索")
-                time.sleep(1)
-            else:
-                print("探索按钮找不到")
-        else:
-            print("第十一章找不到")
-        print("进入探索")
+        if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
+            print("探索按钮")
 
     # 在探索中界面打探索怪
     def da_tang_suo(self, handle):
@@ -295,7 +261,7 @@ class Game:
                 re, x, y = self.window.find_img(handle, "yys/获得奖励.bmp")
                 if re == 0:
                     mouse = Mouse()
-                    mouse.Click(x, y - 100)
+                    mouse.click(x, y - 100)
                 else:
                     self.click_img("yys/探索向右走.bmp", handle)
         elif ti_li == -1:
@@ -307,10 +273,11 @@ class Game:
         window = self.window
 
     def teaming(self, handle):
+        print("teaming")
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
         if self.click_img("yys/开始战斗按钮.bmp", handle, 0.98) == 0:
             print("开始战斗按钮")
-        pass
+        return 0
 
     def error_scene(self, handle):
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
@@ -318,19 +285,19 @@ class Game:
             print("退出斗技按钮")
         if self.click_img("yys/确认退出斗技按钮.bmp", handle, 0.98) == 0:
             print("确认退出斗技按钮")
-        pass
+        return 0
 
     def fighting(self, handle):
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
         self.qu_bo_lang_xian()
-        pass
+        return 0
 
     def fight_end(self, handle):
         print(sys._getframe().f_code.co_name)  # 当前位置所在的函数名
         self.qu_bo_lang_xian()
         mouse = Mouse()
-        mouse.Click(handle.left + 100, handle.top + 100)
-        pass
+        mouse.click(handle.left + 100, handle.top + 100)
+        return 0
 
     def hun_shi_team(self, argument, handle):
         switcher = {
@@ -372,57 +339,73 @@ class Game:
 
     def waiting(self, handle):
         time.sleep(1)
-        pass
+        return 0
 
     def enter_jie_jie(self, handle):
         if self.click_img("yys/进入突破按钮.bmp", handle, 0.98) == 0:
             print("进入突破按钮")
+        return 0
 
     # 刷新结界突破
     def refresh_jie_jie(self, handle):
         if self.click_img("yys/结界刷新冷却中.bmp", handle, 0.98) == 0:
             print("结界刷新冷却中")
-            time.sleep(10)
+            return 1
         else:
             if self.click_img("yys/结界刷新按钮.bmp", handle, 0.98) == 0:
                 print("结界刷新按钮")
                 time.sleep(1)
                 if self.click_img("yys/结界刷新确定按钮.bmp", handle, 0.98) == 0:
                     print("结界刷新确定按钮")
+        return 0
 
     # 查看结界突破剩余数量，判断是否打，还是刷新
     def select_fight_jie_jie(self, handle):
-        # 先点一下，设置焦点为结界突破界面，而不是点到某个结界的焦点
-        # if self.click_img("yys/scene/结界突破界面.bmp", handle, 0.98) == 0:
-        #    print("结界突破界面")
+        na = self.ge_ren_or_liao(handle)
+        if na == -1:
+            return 1
+        if na == 1:
+            if self.click_img("yys/个人结界灰.bmp", handle, 0.98) == 0:
+                print("个人结界灰")
+            return 0
         da_guo, da_bug_uo, mei_da_guo = self.jie_jie_number(handle)
         if da_guo >= 3 or mei_da_guo == 0:
-            self.refresh_jie_jie(handle)
-            return
+            return self.refresh_jie_jie(handle)
         re, x, y = self.jie_chu_tu_po_block(handle)
         if re != 0:
-            return
+            return 2
         mouse = Mouse()
-        mouse.Click(x, y)
+        mouse.click(x, y)
         self.waiting(handle)
         if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
             print("进攻结界按钮")
+        return 0
 
     def hon_cha_exit(self, handle):
         if self.click_img("yys/细红叉按钮.bmp", handle, 0.90) == 0:
             print("细红叉按钮")
         if self.click_img("yys/粗红叉按钮.bmp", handle, 0.90) == 0:
             print("粗红叉按钮")
+        return 0
 
     def mo_ren_yao_qing_dui_you(self, handle):
         if self.click_img("yys/默认邀请队友按钮灰.bmp", handle, 0.90) == 0:
             print("默认邀请队友按钮灰")
             time.sleep(1)
-        window_img = self.window.jie_tu(handle)
-        window_img.save('temp/temp.bmp')
-        if self.if_exist("yys/默认邀请队友按钮.bmp") == 0:
+        if self.jie_tu_if_exist(handle, "yys/默认邀请队友按钮.bmp") == 0:
             if self.click_img("yys/确认邀请队友按钮.bmp", handle, 0.90) == 0:
                 print("确认邀请队友按钮")
+
+    # 判断是在个人结界还是在寮结界 -1 错误；0 个人结界； 1 寮结界
+    def ge_ren_or_liao(self, handle):
+        if self.jie_tu_if_exist(handle, "yys/个人结界.bmp") == 0 and self.jie_tu_if_exist(handle, "yys/寮结界灰.bmp") == 0:
+            print("个人结界")
+            return 0
+        if self.jie_tu_if_exist(handle, "yys/个人结界灰.bmp") == 0 and self.jie_tu_if_exist(handle, "yys/寮结界.bmp") == 0:
+            print("寮结界")
+            return 1
+        return -1
+
 
     def dou_ji(self, argument, handle):
         switcher = {
@@ -440,6 +423,7 @@ class Game:
         return func
 
     def lia_ren_da(self, argument, handle):
+        print(argument)
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
             SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
@@ -449,7 +433,7 @@ class Game:
             SceneKey.ZHANG_DOU_ZHONG: self.waiting,
             SceneKey.GOU_MAI_TI_LI: self.hon_cha_exit,
             SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit,
-            SceneKey.MO_REN_YAOQ_QING_DUI_YOU:self.mo_ren_yao_qing_dui_you
+            SceneKey.MO_REN_YAOQ_QING_DUI_YOU: self.mo_ren_yao_qing_dui_you
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(handle)
@@ -472,21 +456,7 @@ class Game:
         # Execute the function
         return func
 
-    def da_liao_jie_jie(self, argument, handle):
-        switcher = {
-            SceneKey.NUKOWN: self.error_scene,
-            SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
-            SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
-            SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
-            SceneKey.JIE_JIE_TU_PO: self.select_fight_jie_jie,
-            SceneKey.TANG_SUO: self.enter_jie_jie,
-            SceneKey.ZHANG_DOU_ZHONG: self.waiting,
-            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
-        }
-        # Get the function from switcher dictionary
-        func = switcher.get(argument, self.error_scene)(handle)
-        # Execute the function
-        return func
+
 
 
 @unique

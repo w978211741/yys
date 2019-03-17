@@ -1,24 +1,25 @@
 from pymouse import PyMouse
 import win32api
 import win32con
+
+
 class Mouse:
     m = None
+
     def __init__(self):
         self.m = PyMouse()
 
-    def Mouseto(self,x,y):
+    def mouse_to(self, x, y):
         self.m.move(x,y)
 
-    def Click(self,x,y):
-        #self.m.click(x,y,1,1)
+    def click(self, x, y):
         self.m.click(x, y, 1, 1)
 
-    def DoubleClick(self,x,y):
-        #self.m.click(x,y,1,1)
+    def double_click(self, x, y):
         self.m.click(x, y, 1, 2)
 
     # 发送esc退出事件
-    def sendEsc(self,hwnd):
+    def send_esc(self, hwnd):
         win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_ESCAPE, 0)
         win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_ESCAPE, 0)
 

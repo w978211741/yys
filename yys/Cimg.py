@@ -27,7 +27,7 @@ class Img:
         return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
 
     @staticmethod
-    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height):
+    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height, fang = True):
         re, x, y = Img.find_img_in_img(src_img_path, target_img_path)
         if re != 0:
             return "-1"
@@ -53,17 +53,20 @@ class Img:
             return "-2"
         tag_img = Img.cut_img(src_img, point1, point2)
         gray_img = cv2.cvtColor(tag_img, cv2.COLOR_BGR2GRAY)
-        img_info = gray_img.shape
-        image_height = img_info[0]
-        image_weight = img_info[1]
-        dst = np.zeros((image_height, image_weight, 1), np.uint8)
-        for i in range(image_height):
-            for j in range(image_weight):
-                gray_pixel = gray_img[i][j]
-                dst[i][j] = 255 - gray_pixel
         temp_path = "temp/findStrInImg.bmp"
-        cv2.imwrite(temp_path, dst)
-        # 文字识别
+        if fang:
+            img_info = gray_img.shape
+            image_height = img_info[0]
+            image_weight = img_info[1]
+            dst = np.zeros((image_height, image_weight, 1), np.uint8)
+            for i in range(image_height):
+                for j in range(image_weight):
+                    gray_pixel = gray_img[i][j]
+                    dst[i][j] = 255 - gray_pixel
+            cv2.imwrite(temp_path, dst)
+        else:
+            cv2.imwrite(temp_path, gray_img)
+        # 文字识别 要求白底黑字，否则将识别为别的
         text = Distinguish.img_path2string(temp_path)
         return text
 
