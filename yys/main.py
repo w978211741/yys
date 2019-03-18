@@ -25,12 +25,12 @@ def set_windows():
     pass
 
 
-def hun_shi():
+def hun_shi(y1, y2):
     game = Game()
     yys1 = Handle()
     yys2 = Handle()
-    set_yys(1, game, yys1)
-    set_yys(2, game, yys2)
+    set_yys(y1, game, yys1)
+    set_yys(y2, game, yys2)
     index = 1
     while 1:
         if index > 2500:
@@ -102,12 +102,12 @@ def da_liao_jie_jie():
 
 
 
-def jie_jie2():
+def jie_jie2(y1, y2):
     game = Game()
     yys1 = Handle()
     yys2 = Handle()
-    set_yys(1, game, yys1)
-    set_yys(2, game, yys2)
+    set_yys(y1, game, yys1)
+    set_yys(y2, game, yys2)
     index = 1
     while 1:
         if index > 2500:
@@ -115,10 +115,10 @@ def jie_jie2():
         index = index + 1
         scene = game.get_scene(yys1)
         print(scene)
-        game.lia_ren_da(scene, yys1)
+        game.da_jie_jie(scene, yys1)
         time.sleep(1)
         scene = game.get_scene(yys2)
-        game.lia_ren_da(scene, yys2)
+        game.da_jie_jie(scene, yys2)
         print(scene)
         time.sleep(1)
 
@@ -169,14 +169,14 @@ if __name__ == "__main1__":
     set_windows()
     print("结束")
 
-if __name__ == "__main1__":
+if __name__ == "__main__":
     print("开始")
-    jie_jie2()
+    jie_jie2(2, 1)
     print("结束")
 
 if __name__ == "__main1__":
     print("开始")
-    hun_shi()
+    hun_shi(1, 2)
     print("结束")
 
 if __name__ == "__main1__":
@@ -190,7 +190,7 @@ if __name__ == "__main1__":
     team_kun_25()
     print("结束")
 
-if __name__ == "__main__":
+if __name__ == "__main1__":
     print("开始")
     tt()
     print("结束")

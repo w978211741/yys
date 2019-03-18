@@ -20,7 +20,8 @@ class Team_kun_25(Game):
             SceneKey.ZHANG_DOU_ZHONG: self.waiting,
             SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit,
             SceneKey.TANG_SUO_ZHANG_JIE: self.team_kun_25_main,
-            SceneKey.TANG_SUO_ZHONG: self.da_tang_suo
+            SceneKey.TANG_SUO_ZHONG: self.da_tang_suo,
+            SceneKey.MO_REN_YAOQ_QING_DUI_YOU: self.mo_ren_yao_qing_dui_you
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(handle)
@@ -40,7 +41,7 @@ class Team_kun_25(Game):
 
 
     def team_kun_25_main(self,handle):
-        if self.if_exist("yys/第十五章阴界裂缝.bmp") == 0:
+        if self.if_exist("yys/第二十五章祭品巫女后编.bmp") == 0:
             if self.click_img("yys/探索困难按钮.bmp", handle, 0.90) == 0:
                 print("探索困难按钮")
                 return 0
