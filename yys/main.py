@@ -169,12 +169,12 @@ if __name__ == "__main1__":
     set_windows()
     print("结束")
 
-if __name__ == "__main__":
+if __name__ == "__main1__":
     print("开始")
     jie_jie2(2, 1)
     print("结束")
 
-if __name__ == "__main1__":
+if __name__ == "__main__":
     print("开始")
     hun_shi(1, 2)
     print("结束")
