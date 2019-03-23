@@ -3,7 +3,10 @@ from Cgame import Game, SceneKey
 from Chandle import Handle
 import time
 from yys.game.Cliaojiejie import Liaojiejie
-from yys.game.Cteam_kun_25 import Team_kun_25
+from yys.game.Cteam_kun_25_captain import Team_kun_25_captain
+from yys.game.Cteam_kun_25_teammate import Team_kun_25_teammate
+from yys.game.Cpersonal_jiejie import Personal_jiejie
+from yys.game.Cteam_hun_10 import Team_hun_10
 
 
 def set_yys(index, game, handle):
@@ -26,29 +29,24 @@ def set_windows():
 
 
 def hun_shi(y1, y2):
-    game = Game()
+    game = Team_hun_10()
     yys1 = Handle()
     yys2 = Handle()
     set_yys(y1, game, yys1)
     set_yys(y2, game, yys2)
-    index = 1
     while 1:
-        if index > 2500:
-            return
-        # print(index)
-        index = index + 1
         scene = game.get_scene(yys1)
         print(scene)
-        game.lia_ren_da(scene, yys1)
+        game.do_work(scene, yys1)
         if scene == SceneKey.GOU_MAI_TI_LI:
             return
-        time.sleep(1)
+        time.sleep(0.6)
         scene = game.get_scene(yys2)
-        game.lia_ren_da(scene, yys2)
+        game.do_work(scene, yys2)
         print(scene)
         if scene == SceneKey.GOU_MAI_TI_LI:
             return
-        time.sleep(1)
+        time.sleep(0.6)
 
 
 def da_liao_jie_jie():
@@ -88,7 +86,7 @@ def da_liao_jie_jie():
         else:
             scene = game.get_scene(yys1)
             print(scene)
-            re = game.da_jie_jie(scene, yys1)
+            re = game.do_work(scene, yys1)
             if re == 0:
                 print("0：完成")
                 time.sleep(1)
@@ -101,26 +99,46 @@ def da_liao_jie_jie():
             time.sleep(1)
 
 
-
 def jie_jie2(y1, y2):
-    game = Game()
+    game = Personal_jiejie()
     yys1 = Handle()
     yys2 = Handle()
     set_yys(y1, game, yys1)
     set_yys(y2, game, yys2)
-    index = 1
+    finish1 = False
+    wait1 = 0
+    finish2 = False
+    wait2 = 0
     while 1:
-        if index > 2500:
-            return
-        index = index + 1
-        scene = game.get_scene(yys1)
-        print(scene)
-        game.da_jie_jie(scene, yys1)
-        time.sleep(1)
-        scene = game.get_scene(yys2)
-        game.da_jie_jie(scene, yys2)
-        print(scene)
-        time.sleep(1)
+        if finish1 is False:
+            if wait1 == 0:
+                scene = game.get_scene(yys1)
+                print(scene)
+                re = game.do_work(scene, yys1)
+                if re == -3:
+                    finish1 = True
+                elif re > 0:
+                    wait1 = re
+            else:
+                wait1 = wait1 - 1
+            if int(wait1) < 0:
+                wait1 = 0
+            time.sleep(1)
+        if finish2 is False:
+            if wait2 == 0:
+                scene = game.get_scene(yys2)
+                re = game.do_work(scene, yys2)
+                if re == -3:
+                    finish2 = True
+                print(scene)
+            else:
+                wait2 = wait2 - 1
+            if int(wait2) < 0:
+                wait2 = 0
+            time.sleep(1)
+        if finish1 and finish2:
+            break
+    return 0
 
 
 def jie_jie4():
@@ -136,47 +154,60 @@ def jie_jie4():
     while 1:
         scene = game.get_scene(yys1)
         print(scene)
-        game.da_jie_jie(scene, yys1)
+        game.do_work(scene, yys1)
         time.sleep(1)
         scene = game.get_scene(yys2)
         print(scene)
-        game.da_jie_jie(scene, yys2)
+        game.do_work(scene, yys2)
         time.sleep(1)
         scene = game.get_scene(yys3)
         print(scene)
-        game.da_jie_jie(scene, yys3)
+        game.do_work(scene, yys3)
         time.sleep(1)
         scene = game.get_scene(yys4)
         print(scene)
-        game.da_jie_jie(scene, yys4)
+        game.do_work(scene, yys4)
         time.sleep(1)
 
-def team_kun_25():
-    game = Team_kun_25()
+
+def team_kun_25(captain, teammate):
+    # team_kun_25()
+    captain_wait = 0
+    game = Team_kun_25_captain()
     yys1 = Handle()
-    set_yys(1, game, yys1)
+    set_yys(captain, game, yys1)
+    game2 = Team_kun_25_teammate()
+    yys2 = Handle()
+    set_yys(teammate, game, yys2)
     while 1:
-        scene = game.get_scene(yys1)
+        if captain_wait == 0:
+            scene = game.get_scene(yys1)
+            print(scene)
+            captain_wait = game.do_work(scene, yys1)
+            time.sleep(0.5)
+        else:
+            captain_wait = captain_wait - 1
+        if int(captain_wait) < 0:
+            captain_wait = 0
+        scene = game2.get_scene(yys2)
         print(scene)
-        game.do_work(scene, yys1)
-        time.sleep(1)
+        game2.do_work(scene, yys2)
+        time.sleep(0.5)
 
-def tt():
-    team_kun_25()
 
 if __name__ == "__main1__":
     print("开始")
     set_windows()
     print("结束")
 
-if __name__ == "__main1__":
-    print("开始")
-    jie_jie2(2, 1)
-    print("结束")
-
 if __name__ == "__main__":
     print("开始")
-    hun_shi(1, 2)
+    jie_jie2(1, 2)
+    print("结束")
+
+if __name__ == "__main1__":
+    print("开始")
+    hun_shi(3, 2)
     print("结束")
 
 if __name__ == "__main1__":
@@ -187,12 +218,8 @@ if __name__ == "__main1__":
 if __name__ == "__main1__":
     print("开始")
     # 组队打困25
-    team_kun_25()
+    team_kun_25(1, 2)
     print("结束")
 
-if __name__ == "__main1__":
-    print("开始")
-    tt()
-    print("结束")
 
 

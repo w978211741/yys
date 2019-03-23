@@ -17,7 +17,7 @@ class Img:
         return len(pos)
 
     @staticmethod
-    def find_img_in_img(src_img_path,target_img_path, accuracy=0.5):
+    def find_img_in_img(src_img_path, target_img_path, accuracy=0.5):
         src_img = cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
         target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
         pos = ac.find_template(src_img, target_img, accuracy)
@@ -27,7 +27,7 @@ class Img:
         return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
 
     @staticmethod
-    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height, fang = True):
+    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height, fang=True):
         re, x, y = Img.find_img_in_img(src_img_path, target_img_path)
         if re != 0:
             return "-1"
@@ -54,18 +54,32 @@ class Img:
         tag_img = Img.cut_img(src_img, point1, point2)
         gray_img = cv2.cvtColor(tag_img, cv2.COLOR_BGR2GRAY)
         temp_path = "temp/findStrInImg.bmp"
-        if fang:
-            img_info = gray_img.shape
-            image_height = img_info[0]
-            image_weight = img_info[1]
-            dst = np.zeros((image_height, image_weight, 1), np.uint8)
-            for i in range(image_height):
-                for j in range(image_weight):
-                    gray_pixel = gray_img[i][j]
-                    dst[i][j] = 255 - gray_pixel
-            cv2.imwrite(temp_path, dst)
-        else:
-            cv2.imwrite(temp_path, gray_img)
+        img_info = gray_img.shape
+        image_height = img_info[0]
+        image_weight = img_info[1]
+        dst = np.zeros((image_height, image_weight, 1), np.uint8)
+        max = 0
+        min = 255
+        for i in range(image_height):
+            for j in range(image_weight):
+                if max < gray_img[i][j]:
+                    max = gray_img[i][j]
+                if min > gray_img[i][j]:
+                    min = gray_img[i][j]
+        for i in range(image_height):
+            for j in range(image_weight):
+                gray_pixel = gray_img[i][j]
+                if gray_pixel > int((max - min) / 5 * 4):
+                    if fang:
+                        dst[i][j] = 0
+                    else:
+                        dst[i][j] = 255
+                else:
+                    if fang:
+                        dst[i][j] = 255
+                    else:
+                        dst[i][j] = 0
+        cv2.imwrite(temp_path, dst)
         # 文字识别 要求白底黑字，否则将识别为别的
         text = Distinguish.img_path2string(temp_path)
         return text
