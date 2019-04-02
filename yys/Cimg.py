@@ -27,7 +27,7 @@ class Img:
         return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
 
     @staticmethod
-    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height, fang=True):
+    def find_str_in_img(src_img_path, target_img_path, x1, y1, width, height, fang=True, xi_shu=0.8):
         re, x, y = Img.find_img_in_img(src_img_path, target_img_path)
         if re != 0:
             return "-1"
@@ -69,7 +69,7 @@ class Img:
         for i in range(image_height):
             for j in range(image_weight):
                 gray_pixel = gray_img[i][j]
-                if gray_pixel > int((max - min) / 5 * 4):
+                if gray_pixel > int((max - min) * xi_shu):
                     if fang:
                         dst[i][j] = 0
                     else:

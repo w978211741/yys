@@ -14,7 +14,8 @@ class Team_kun_25_captain(Team_kun_25):
             SceneKey.TANG_SUO_ZHANG_JIE: self.team_kun_25_captain_main,
             SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU: self.xuan_ze_dui_you,
             SceneKey.TANG_SUO_ZHONG: self.this_da_tang_suo,
-            SceneKey.SHI_FOU_YAO_QING_JI_XU: self.this_yao_qing_dui_you_ji_xu
+            SceneKey.SHI_FOU_YAO_QING_JI_XU: self.this_yao_qing_dui_you_ji_xu,
+            SceneKey.SHOU_DAO_YAO_QING: self.shou_dao_yai_qing
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.father)(argument, handle)
@@ -27,12 +28,13 @@ class Team_kun_25_captain(Team_kun_25):
         return 0
 
     def this_yao_qing_dui_you_ji_xu(self, argument, handle):
-        self.yao_qing_dui_you_ji_xu(handle)
+        ti_li = self.get_ti_li(handle)
+        print(ti_li)
+        self.yao_qing_dui_you_ji_xu(argument, handle)
         return 5
 
     def father(self, argument, handle):
-        Team_kun_25.do_work(self, argument, handle)
-        return 0
+        return Team_kun_25.do_work(self, argument, handle)
 
     def team_kun_25_captain_main(self, argument, handle):
         if self.if_exist("yys/第二十五章祭品巫女后编.bmp") == 0:
@@ -63,4 +65,9 @@ class Team_kun_25_captain(Team_kun_25):
             mouse = Mouse()
             mouse.absolute(x, y + 200, 0, -100)
             return 0
+        return 0
+
+    def shou_dao_yai_qing(self, argument, handle):
+        if self.click_img("yys/粗红叉按钮2.bmp", handle, 0.90) == 0:
+            print("粗红叉按钮2")
         return 0

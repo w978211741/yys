@@ -20,9 +20,13 @@ class Liaojiejie (Game):
             SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
         }
         # Get the function from switcher dictionary
-        func = switcher.get(argument, self.error_scene)(handle)
+        func = switcher.get(argument, self.father)(handle)
         # Execute the function
         return func
+
+    def father(self, argument, handle):
+        Game.do_work(self, argument, handle)
+        return 0
 
     def enter_liao_jie_jie(self, handle):
         if self.click_img("yys/寮结界灰.bmp", handle, 0.90) == 0:

@@ -130,6 +130,8 @@ def jie_jie2(y1, y2):
                 re = game.do_work(scene, yys2)
                 if re == -3:
                     finish2 = True
+                elif re > 0:
+                    wait2 = re
                 print(scene)
             else:
                 wait2 = wait2 - 1
@@ -140,6 +142,67 @@ def jie_jie2(y1, y2):
             break
     return 0
 
+
+def jie_jie3(y1, y2, y3):
+    game = Personal_jiejie()
+    yys1 = Handle()
+    yys2 = Handle()
+    yys3 = Handle()
+    set_yys(y1, game, yys1)
+    set_yys(y2, game, yys2)
+    set_yys(y3, game, yys3)
+    finish1 = False
+    wait1 = 0
+    finish2 = False
+    wait2 = 0
+    finish3 = False
+    wait3 = 0
+    while 1:
+        if finish1 is False:
+            if wait1 == 0:
+                scene = game.get_scene(yys1)
+                print(scene)
+                re = game.do_work(scene, yys1)
+                if re == -3:
+                    finish1 = True
+                elif re > 0:
+                    wait1 = re
+            else:
+                wait1 = wait1 - 1
+            if int(wait1) < 0:
+                wait1 = 0
+            time.sleep(1)
+        if finish2 is False:
+            if wait2 == 0:
+                scene = game.get_scene(yys2)
+                re = game.do_work(scene, yys2)
+                if re == -3:
+                    finish2 = True
+                elif re > 0:
+                    wait2 = re
+                print(scene)
+            else:
+                wait2 = wait2 - 1
+            if int(wait2) < 0:
+                wait2 = 0
+            time.sleep(1)
+        if finish3 is False:
+            if wait3 == 0:
+                scene = game.get_scene(yys3)
+                re = game.do_work(scene, yys3)
+                if re == -3:
+                    finish3 = True
+                elif re > 0:
+                    wait3 = re
+                print(scene)
+            else:
+                wait3 = wait3 - 1
+            if int(wait3) < 0:
+                wait3 = 0
+            time.sleep(1)
+        if finish1 and finish2 and finish3:
+            break
+    return 0
 
 def jie_jie4():
     game = Game()
@@ -185,14 +248,18 @@ def team_kun_25(captain, teammate):
             print(scene)
             captain_wait = game.do_work(scene, yys1)
             time.sleep(0.5)
+            if captain_wait == -3:
+                return 0
         else:
             captain_wait = captain_wait - 1
         if int(captain_wait) < 0:
             captain_wait = 0
         scene = game2.get_scene(yys2)
         print(scene)
-        game2.do_work(scene, yys2)
+        re = game2.do_work(scene, yys2)
         time.sleep(0.5)
+        if re == -3:
+            return 0
 
 
 if __name__ == "__main1__":
@@ -202,7 +269,12 @@ if __name__ == "__main1__":
 
 if __name__ == "__main__":
     print("开始")
-    jie_jie2(1, 2)
+    jie_jie3(1, 2, 3)
+    print("结束")
+
+if __name__ == "__main1__":
+    print("开始")
+    jie_jie2(3, 2)
     print("结束")
 
 if __name__ == "__main1__":
@@ -218,7 +290,7 @@ if __name__ == "__main1__":
 if __name__ == "__main1__":
     print("开始")
     # 组队打困25
-    team_kun_25(1, 2)
+    team_kun_25(3, 2)
     print("结束")
 
 

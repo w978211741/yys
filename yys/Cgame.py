@@ -25,6 +25,7 @@ class Game:
             SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
             SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
             SceneKey.GOU_MAI_TI_LI: self.hon_cha_exit,
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(argument, handle)
@@ -42,6 +43,11 @@ class Game:
             print("确认退出斗技按钮")
         return 0
 
+    def enter_jie_jie(self, argument, handle):
+        if self.click_img("yys/进入突破按钮.bmp", handle, 0.98) == 0:
+            print("进入突破按钮")
+        return 0
+
     def fight_end(self, argument, handle):
         self.qu_bo_lang_xian()
         mouse = Mouse()
@@ -53,6 +59,8 @@ class Game:
         class_name = None
         if self.window.get_window(handle, class_name, window_name) == -1:
             return -1
+        if handle.bottom - handle.top < 100:
+            return 0
         left = 10
         top = 10
         if position:
@@ -130,11 +138,11 @@ class Game:
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
         target_img_path = "yys/体力数量.bmp"
-        x1 = 65  # 左右偏移量
+        x1 = 58  # 左右偏移量
         y1 = 1  # 上下偏移量
-        width = 95  # 目标宽度
-        height = 30  # 目标高度
-        power_number_str = Img.find_str_in_img(self.src_img_path, target_img_path, x1, y1, width, height)
+        width = 80  # 目标宽度
+        height = 24  # 目标高度
+        power_number_str = Img.find_str_in_img(self.src_img_path, target_img_path, x1, y1, width, height, True, 0.6)
         if power_number_str != "-1":
             power_number_str = power_number_str.split('/')
             power_number = power_number_str[0]
@@ -160,12 +168,8 @@ class Game:
         window_img = self.window.jie_tu(handle)
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
-        if self.click_img("yys/自动加入队伍按钮.bmp", handle, 0.90) == 0:
-            print("自动加入队伍按钮")
-            return SceneKey.NUKOWN
-        if self.click_img("yys/接受邀请按钮.bmp", handle, 0.90) == 0:
-            print("接受邀请按钮")
-            return SceneKey.NUKOWN
+        if Game.if_exist("yys/接受邀请按钮.bmp") == 0:
+            return SceneKey.SHOU_DAO_YAO_QING
         if Game.if_exist(path + "购买体力界面.bmp") == 0:
             return SceneKey.GOU_MAI_TI_LI
         if Game.if_exist(path + "默认邀请队友界面.bmp") == 0:
@@ -253,6 +257,7 @@ class Game:
         if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
             print("探索按钮")
 
+    # 在探索中界面打探索怪
     def da_tang_suo_gui(self, handle):
         if self.click_img("yys/打小怪.bmp", handle) == 0:
             print("打小怪")
@@ -265,27 +270,21 @@ class Game:
         else:
             self.click_img("yys/探索向右走.bmp", handle)
 
-    # 在探索中界面打探索怪
+    # 在探索中界面打探索
     def da_tang_suo(self, handle):
-        # 获取体力数量
         if self.click_img("yys/探索奖励.bmp", handle) == 0:
             return 0
         if self.click_img("yys/获得奖励.bmp", handle) == 0:
             if self.click_img("yys/scene/探索中界面.bmp", handle) == 0:
                 return 0
             return 0
-        ti_li = self.get_ti_li(handle)
-        if ti_li == -1 or ti_li < 20:
-            print("体力获取失败或者不足")
-            return -1
-
         return 0
 
     # 用于去除未使用对象成员变量的函数参数使用了self而出现的波浪线
     def qu_bo_lang_xian(self):
         window = self.window
 
-    def teaming(self, handle):
+    def teaming(self, argument, handle):
         if self.click_img("yys/开始战斗按钮.bmp", handle, 0.98) == 0:
             print("开始战斗按钮")
         return 0
@@ -326,6 +325,7 @@ class Game:
         if self.jie_tu_if_exist(handle, "yys/默认邀请队友按钮.bmp") == 0:
             if self.click_img("yys/确定按钮.bmp", handle, 0.90) == 0:
                 print("确定按钮")
+        return 0
 
     # 判断是在个人结界还是在寮结界 -1 错误；0 个人结界； 1 寮结界
     def ge_ren_or_liao(self, handle):
@@ -383,4 +383,5 @@ class SceneKey(Enum):
     TANG_SUO_ZHANG_JIE = 17
     SHI_FOU_YAO_QING_JI_XU = 18
     ZU_DUI_XUAN_ZE_DUI_YOU = 19
+    SHOU_DAO_YAO_QING = 20
 

@@ -11,7 +11,8 @@ class Personal_jiejie(Game):
     def do_work(self, argument, handle):
         switcher = {
             SceneKey.JIE_JIE_TU_PO: self.personal_jiejie_main,
-            SceneKey.TANG_SUO: self.enter_jie_jie
+            SceneKey.TANG_SUO: self.enter_jie_jie,
+            SceneKey.SHOU_DAO_YAO_QING: self.shou_dao_yai_qing
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.father)(argument, handle)
@@ -20,11 +21,6 @@ class Personal_jiejie(Game):
 
     def father(self, argument, handle):
         Game.do_work(self, argument, handle)
-        return 0
-
-    def enter_jie_jie(self, argument, handle):
-        if self.click_img("yys/进入突破按钮.bmp", handle, 0.98) == 0:
-            print("进入突破按钮")
         return 0
 
     # 查看结界突破剩余数量，判断是否打，还是刷新
@@ -98,3 +94,8 @@ class Personal_jiejie(Game):
         re3 = Img.find_all_img_in_img('temp/temp.bmp', self.mei_da_guo_path, 0.90)
         print("打过了" + str(re1) + ";打不过:" + str(re2) + ";没打过:" + str(re3))
         return re1, re2, re3
+
+    def shou_dao_yai_qing(self, argument, handle):
+        if self.click_img("yys/粗红叉按钮2.bmp", handle, 0.90) == 0:
+            print("粗红叉按钮2")
+        return 0
