@@ -7,6 +7,9 @@ from yys.game.Cteam_kun_25_captain import Team_kun_25_captain
 from yys.game.Cteam_kun_25_teammate import Team_kun_25_teammate
 from yys.game.Cpersonal_jiejie import Personal_jiejie
 from yys.game.Cteam_hun_10 import Team_hun_10
+from MainWindow import My_MainWindow
+from PyQt5 import QtWidgets
+import sys
 
 
 def set_yys(index, game, handle):
@@ -267,15 +270,17 @@ if __name__ == "__main1__":
     set_windows()
     print("结束")
 
-if __name__ == "__main__":
-    print("开始")
-    jie_jie3(1, 2, 3)
-    print("结束")
-
 if __name__ == "__main1__":
     print("开始")
     jie_jie2(3, 2)
     print("结束")
+
+if __name__ == "__main1__":
+    print("开始")
+    jie_jie3(1, 2, 3)
+    print("结束")
+
+
 
 if __name__ == "__main1__":
     print("开始")
@@ -295,3 +300,11 @@ if __name__ == "__main1__":
 
 
 
+if __name__ == "__main__":
+    print("开始")
+    # main()
+    app = QtWidgets.QApplication(sys.argv)
+    my_pyqt_form = My_MainWindow()
+    my_pyqt_form.show()
+    sys.exit(app.exec_())
+    print("结束")
