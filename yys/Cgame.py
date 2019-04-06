@@ -133,22 +133,27 @@ class Game:
         return -1
 
     # 在探索界面获取体力数量
-    def get_ti_li(self, handle):
+    def get_ti_li(self, handle, xishu=0.6):
         # 获得游戏界面截图
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
         target_img_path = "yys/体力数量.bmp"
-        x1 = 58  # 左右偏移量
+        x1 = 55  # 左右偏移量
         y1 = 1  # 上下偏移量
         width = 80  # 目标宽度
         height = 24  # 目标高度
-        power_number_str = Img.find_str_in_img(self.src_img_path, target_img_path, x1, y1, width, height, True, 0.6)
+        power_number_str = Img.find_str_in_img(self.src_img_path, target_img_path, x1, y1, width, height, True, xishu)
         if power_number_str != "-1":
             power_number_str = power_number_str.split('/')
             power_number = power_number_str[0]
             if power_number == '':
                 return -1
-            return int(power_number)
+            try:
+                int_tili = int(power_number)
+            except Exception as e:
+                print(e)
+                return -1
+            return int(int_tili)
         return power_number_str
 
     # 查找图片是否在temp图片中是否存在

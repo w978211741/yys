@@ -10,6 +10,7 @@ from yys.game.Cteam_hun_10 import Team_hun_10
 from MainWindow import My_MainWindow
 from PyQt5 import QtWidgets
 import sys
+from yys.game.Cdashitou import dashitou
 
 
 def set_yys(index, game, handle):
@@ -207,6 +208,7 @@ def jie_jie3(y1, y2, y3):
             break
     return 0
 
+
 def jie_jie4():
     game = Game()
     yys1 = Handle()
@@ -270,17 +272,15 @@ if __name__ == "__main1__":
     set_windows()
     print("结束")
 
-if __name__ == "__main1__":
-    print("开始")
-    jie_jie2(3, 2)
-    print("结束")
-
-if __name__ == "__main1__":
+if __name__ == "__main__":
     print("开始")
     jie_jie3(1, 2, 3)
     print("结束")
 
-
+if __name__ == "__main1__":
+    print("开始")
+    jie_jie2(3, 2)
+    print("结束")
 
 if __name__ == "__main1__":
     print("开始")
@@ -296,6 +296,12 @@ if __name__ == "__main1__":
     print("开始")
     # 组队打困25
     team_kun_25(3, 2)
+    print("结束")
+
+if __name__ == "__main1__":
+    print("开始")
+    # 组队打困25
+    da_shi_tou(2)
     print("结束")
 
 
