@@ -9,7 +9,7 @@ from yys.game.Cpersonal_jiejie import Personal_jiejie
 from yys.game.Cteam_hun_10 import Team_hun_10
 import time
 from abc import abstractmethod
-
+from yys.game.Cdashitou import dashitou
 
 
 class Fuben():
@@ -19,18 +19,20 @@ class Fuben():
         self.str_log = ""
         self.bool_run = False
 
-
     @abstractmethod
     def showlog(self):
         self.log_queue.put(self.str_log.__str__())
         pass
     
     def set_yys(self, index, game, handle):
-        game.set_window(handle, "[#] [yys" + index + "] 阴阳师-网易游戏 [#]", index, True)
-        self.str_log ="阴阳师 yys[" + index + "] " + "窗口句柄：" + str(handle.hwnd)
-        self.showlog()
-        # print(handle.hwnd, handle.left, handle.top, handle.right, handle.bottom)
-        pass
+        re = game.set_window(handle, "[#] [yys" + index + "] 阴阳师-网易游戏 [#]", index, True)
+        if re != 0:
+            self.str_log ="阴阳师窗口不对 yys[" + index + "] " + "窗口句柄：" + str(handle.hwnd) + "\r\n"
+            self.showlog()
+        else:
+            self.str_log = "阴阳师 yys[" + index + "] " + "窗口句柄：" + str(handle.hwnd) + "\r\n"
+            self.showlog()
+        return re
 
     def set_windows(self, yys):
         if yys == "" or yys == " ":
@@ -39,17 +41,37 @@ class Fuben():
             return -1
         game = Game()
         yys1 = Handle()
-        print("set_windows")
         self.set_yys(yys, game, yys1)
-        self.showlog()
-        index11 = 1
+        return 0
+
+    def jie_jie1(self, y1):
+        if y1 == "" or y1 == " ":
+            return -1
+        game = Personal_jiejie()
+        yys1 = Handle()
+        self.set_yys(y1, game, yys1)
+        finish1 = False
+        wait1 = 0
         while 1:
-            self.str_log ="测试log" + str(index11) + "。。。\r\n"
-            index11 = index11 + 1
             self.showlog()
-            time.sleep(1)
-            # if self.bool_run is False:
-            #    break
+            if self.bool_run is False:
+                return 0
+            if finish1 is False:
+                if wait1 == 0:
+                    scene = game.get_scene(yys1)
+                    self.str_log =scene.__str__()
+                    re = game.do_work(scene, yys1)
+                    if re == -3:
+                        finish1 = True
+                    elif re > 0:
+                        wait1 = re
+                else:
+                    wait1 = wait1 - 1
+                if int(wait1) < 0:
+                    wait1 = 0
+                time.sleep(1)
+            if finish1:
+                break
         return 0
 
     def jie_jie2(self, y1, y2):
@@ -99,32 +121,6 @@ class Fuben():
             if finish1 and finish2:
                 break
         return 0
-
-    def hun_shi(self, y1, y2):
-        if y1 == "" or y1 == " " or y2 == "" or y2 == " ":
-            return -1
-        game = Team_hun_10()
-        yys1 = Handle()
-        yys2 = Handle()
-        self.set_yys(y1, game, yys1)
-        self.set_yys(y2, game, yys2)
-        while 1:
-            self.showlog()
-            self.showlog()
-            if self.bool_run is False:
-                return 0
-            scene = game.get_scene(yys1)
-            self.str_log =scene.__str__()
-            game.do_work(scene, yys1)
-            if scene == SceneKey.GOU_MAI_TI_LI:
-                return
-            time.sleep(0.6)
-            scene = game.get_scene(yys2)
-            game.do_work(scene, yys2)
-            self.str_log =scene.__str__()
-            if scene == SceneKey.GOU_MAI_TI_LI:
-                return
-            time.sleep(0.6)
 
     def jie_jie3(self, y1, y2, y3):
         if y1 == "" or y1 == " " or y2 == "" or y2 == " " or y3 == "" or y3 == " ":
@@ -273,6 +269,70 @@ class Fuben():
                     wait4 = 0
                 time.sleep(1)
             if finish1 and finish2 and finish3 and finish4:
+                break
+        return 0
+
+    def hun_shi(self, y1, y2):
+        if y1 == "" or y1 == " " or y2 == "" or y2 == " ":
+            return -1
+        game = Team_hun_10()
+        yys1 = Handle()
+        yys2 = Handle()
+        self.set_yys(y1, game, yys1)
+        self.set_yys(y2, game, yys2)
+        while 1:
+            self.showlog()
+            self.showlog()
+            if self.bool_run is False:
+                return 0
+            scene = game.get_scene(yys1)
+            self.str_log =scene.__str__()
+            game.do_work(scene, yys1)
+            if scene == SceneKey.GOU_MAI_TI_LI:
+                return
+            time.sleep(0.6)
+            scene = game.get_scene(yys2)
+            game.do_work(scene, yys2)
+            self.str_log =scene.__str__()
+            if scene == SceneKey.GOU_MAI_TI_LI:
+                return
+            time.sleep(0.6)
+
+    def shua_xue_yue(self, y1, ju_shu_max):
+        if y1 == "" or y1 == " ":
+            return -1
+        game = dashitou()
+        yys1 = Handle()
+        self.set_yys(y1, game, yys1)
+        finish1 = False
+        wait1 = 0
+        ju_shu= 0
+        while 1:
+            self.showlog()
+            if self.bool_run is False:
+                return 0
+            if finish1 is False:
+                if wait1 == 0:
+                    scene = game.get_scene(yys1)
+                    self.str_log =scene.__str__()
+                    re = game.do_work(scene, yys1)
+                    if re == -3:
+                        finish1 = True
+                    elif re > 0:
+                        wait1 = re
+                    elif re == -2:
+                        ju_shu = ju_shu + 1
+                        try:
+                            if ju_shu >= int(ju_shu_max):
+                                return 0
+                        except Exception as e:
+                            print("ju_shu >= int(ju_shu_max) Exception:" + e.__str__())
+                else:
+                    wait1 = wait1 - 1
+                if int(wait1) < 0:
+                    wait1 = 0
+                time.sleep(1)
+            if finish1:
                 break
         return 0
 

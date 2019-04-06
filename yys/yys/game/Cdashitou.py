@@ -32,6 +32,7 @@ class dashitou(Game):
     def zhunbei(self, argument, handle):
         if self.click_img("yys/战斗中准备按钮.bmp", handle, 0.90) == 0:
             print("战斗中准备按钮")
+            return -2# 局数计数用
         time.sleep(2)
         return 0
 
@@ -45,7 +46,6 @@ class dashitou(Game):
                 #    print("挑战石头按钮")
                 if self.click_img("yys/挑战石头按钮.bmp", handle, 0.90) == 0:
                     print("挑战石头按钮")
-                    return -2
                 pass
             else:
                 return -3

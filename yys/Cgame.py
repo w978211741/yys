@@ -59,8 +59,8 @@ class Game:
         class_name = None
         if self.window.get_window(handle, class_name, window_name) == -1:
             return -1
-        if handle.bottom - handle.top < 100:
-            return 0
+        if handle.bottom - handle.top < 100 or handle.top < 0:
+            return -1
         left = 10
         top = 10
         if position:
