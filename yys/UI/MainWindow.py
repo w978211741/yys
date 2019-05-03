@@ -1,14 +1,6 @@
 from yysUI import Ui_MainWindow
 from PyQt5 import QtWidgets
-from Cgame import Game, SceneKey
-from Chandle import Handle
 from Cwindow import Window
-from yys.game.Cliaojiejie import Liaojiejie
-from yys.game.Cteam_kun_25_captain import Team_kun_25_captain
-from yys.game.Cteam_kun_25_teammate import Team_kun_25_teammate
-from yys.game.Cpersonal_jiejie import Personal_jiejie
-from yys.game.Cteam_hun_10 import Team_hun_10
-import time
 import multiprocessing
 from multiprocessing import Queue
 from Cfuben import Fuben
@@ -24,7 +16,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.comboBox_2.setEnabled(False)
         self.comboBox_3.setEnabled(False)
         self.comboBox_4.setEnabled(False)
-        self.lineEdit_times.setEnabled(False)
+        self.lineEdit_times.setEnabled(True)
         self.lineEdit_times.setPlaceholderText("次数")
         self.lineEdit_qqname.setEnabled(True)
         self.lineEdit_qqname.setPlaceholderText("qq昵称或备注")
@@ -105,6 +97,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     self.main_process.start()
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
+                pass
             elif self.mod == -3:# 打结界
                 self.add_in_text_browser("启动 打结界\r\n")
                 inum = int(self.comboBox_jienum.currentText())
@@ -264,12 +257,13 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.qq_name = self.lineEdit_qqname.text()
         if self.qq_name != '':
             handle = Window.check_window(self.qq_name)
-            if handle == 0:
+            if handle != 0:
                 self.add_in_text_browser("qq设置成功\r\n")
             else:
                 self.add_in_text_browser("qq聊天窗口不存在，qq设置失败\r\n")
                 self.lineEdit_qqname.setText('')
         return 0
+
 
 def my_set_windows_process(log_queue, qq_name, yys1, yys2, yys3, yys4):
     fuben = Fuben(log_queue, qq_name)

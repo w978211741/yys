@@ -134,11 +134,11 @@ class Fuben():
                     if waitlist[i] == 0:
                         scene = game.get_scene(yyslist[i])
                         self.add_log(scene.__str__() + "\r\n")
-                        re = game.do_work(scene, yys1)
+                        re = game.do_work(scene, yyslist[i])
                         if re == -3:
-                            finish1 = True
+                            finishlist[i] = True
                         elif re > 0:
-                            wait1 = re
+                            waitlist[i] = re
                         elif re == -2:
                             ji_shulist[i] = ji_shulist[i] + 1
                             try:
