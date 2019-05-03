@@ -28,7 +28,7 @@ class Team_kun_25_teammate(Team_kun_25):
     def shou_dao_yai_qing(self, argument, handle):
         ti_li = self.get_ti_li(handle)
         print(ti_li)
-        if ti_li < 24:
+        if ti_li < 24 and ti_li != -1:
             return -3
         if self.click_img("yys/接受邀请按钮.bmp", handle, 0.90) == 0:
             print("接受邀请按钮")

@@ -5,6 +5,9 @@ from Cwindow import Window
 import sys
 import time
 from abc import ABCMeta, abstractmethod
+from Chandle import Handle
+from CsendQQ import SendQQ
+
 
 class Game:
     da_guo_le_path = 'yys/打过了.bmp'
@@ -25,12 +28,12 @@ class Game:
             SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
             SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
             SceneKey.GOU_MAI_TI_LI: self.hon_cha_exit,
-            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.hon_cha_exit
+            SceneKey.XUAN_SHANG_FENG_YING_YAO_QING: self.ju_jue_xuan_shang
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.error_scene)(argument, handle)
         # Execute the function
-        pass
+        return func
 
     def waiting(self, argument, handle):
         time.sleep(1)
@@ -51,8 +54,8 @@ class Game:
     def fight_end(self, argument, handle):
         self.qu_bo_lang_xian()
         mouse = Mouse()
-        mouse.click(handle.left + 100, handle.top + 100)
-        return 0
+        mouse.click(handle.left + 100, handle.top + 150)
+        return -11
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
     def set_window(self, handle, window_name, index, position=True):
@@ -64,16 +67,16 @@ class Game:
         left = 10
         top = 10
         if position:
-            if index == 1:
+            if index == "1":
                 left = 10
                 top = 10
-            elif index == 2:
+            elif index == "2":
                 left = 1050
                 top = 10
-            elif index == 3:
+            elif index == "3":
                 left = 10
                 top = 520
-            elif index == 4:
+            elif index == "4":
                 left = 1050
                 top = 520
             if left != handle.left or top != handle.top:
@@ -91,7 +94,6 @@ class Game:
                                        handle.bottom - handle.top - i_depth * temp_i)
                 time.sleep(0.8)
             self.window.set_window(handle, left, top, handle.right - handle.left, target_height)
-
         return 0
 
     # 在探索界面获取突破卷数量
@@ -173,6 +175,8 @@ class Game:
         window_img = self.window.jie_tu(handle)
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
+        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
+            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
         if Game.if_exist("yys/接受邀请按钮.bmp") == 0:
             return SceneKey.SHOU_DAO_YAO_QING
         if Game.if_exist(path + "购买体力界面.bmp") == 0:
@@ -185,8 +189,6 @@ class Game:
         if Game.if_exist(path + "是否邀请继续2.bmp") == 0:
             print("是否邀请继续2")
             return SceneKey.SHI_FOU_YAO_QING_JI_XU
-        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
-            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
         if Game.if_exist(path + "组队选择队友界面.bmp") == 0:
             return SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU
         if Game.if_exist(path + "庭院界面.bmp") == 0:
@@ -266,14 +268,20 @@ class Game:
     def da_tang_suo_gui(self, handle):
         if self.click_img("yys/打小怪.bmp", handle) == 0:
             print("打小怪")
+            return -21
         elif self.click_img("yys/打boss.bmp", handle) == 0:
             print("打boss")
+            return -22
         elif self.click_img("yys/探索奖励.bmp", handle) == 0:
             print("探索奖励")
+            return -31
         elif self.click_img("yys/打小怪2.bmp", handle) == 0:
             print("打小怪2")
+            return -21
         else:
             self.click_img("yys/探索向右走.bmp", handle)
+            return -32
+        return 0
 
     # 在探索中界面打探索
     def da_tang_suo(self, handle):
@@ -315,12 +323,17 @@ class Game:
                 print("退出战斗按钮")
         pass
 
-    # 返回值-900 表示没体力
-    def hon_cha_exit(self, argument, handle):
+    def ju_jue_xuan_shang(self, argument, handle):
         if self.click_img("yys/细红叉按钮.bmp", handle, 0.90) == 0:
             print("细红叉按钮")
         if self.click_img("yys/粗红叉按钮.bmp", handle, 0.90) == 0:
             print("粗红叉按钮")
+        return 0
+
+    # 返回值-900 表示没体力
+    def hon_cha_exit(self, argument, handle):
+        if self.click_img("yys/细红叉按钮.bmp", handle, 0.90) == 0:
+            print("细红叉按钮")
         return -900
 
     def mo_ren_yao_qing_dui_you(self, argument, handle):
@@ -345,7 +358,7 @@ class Game:
     def yao_qing_dui_you_ji_xu(self, argument, handle):
         if self.click_img("yys/确定按钮.bmp", handle) == 0:
             print("确定按钮")
-            return 0
+        return 0
 
     def dou_ji(self, argument, handle):
         switcher = {
@@ -362,8 +375,17 @@ class Game:
         # Execute the function
         return func
 
+    # 发送 temp.bmp 给qq好友消息窗口，窗口名name ，一般是好友昵称还在备注，或者群名称
+    def send_qq_temp_img(self, name):
+        new_qq_handle = Handle()
+        send_QQ = SendQQ(new_qq_handle, name)
+        return send_QQ.send_qq_bmp('temp/temp.bmp')
 
-
+    # 发送 text 文本 给qq好友消息窗口，窗口名name ，一般是好友昵称还在备注，或者群名称
+    def send_qq_text(self, name, text):
+        new_qq_handle = Handle()
+        send_QQ = SendQQ(new_qq_handle, name)
+        return send_QQ.send_qq_text(text)
 
 
 @unique

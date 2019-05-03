@@ -24,7 +24,7 @@ class Team_kun_25_captain(Team_kun_25):
 
     def this_da_tang_suo(self, argument, handle):
         if self.da_tang_suo(handle) != -1:
-            self.da_tang_suo_gui(handle)
+            return self.da_tang_suo_gui(handle)
         return 0
 
     def this_yao_qing_dui_you_ji_xu(self, argument, handle):
@@ -37,6 +37,9 @@ class Team_kun_25_captain(Team_kun_25):
         return Team_kun_25.do_work(self, argument, handle)
 
     def team_kun_25_captain_main(self, argument, handle):
+        ti_li = self.get_ti_li(handle)
+        if ti_li < 24 and ti_li != -1:
+            return -3
         if self.if_exist("yys/第二十五章祭品巫女后编.bmp") == 0:
             if self.click_img("yys/探索困难按钮.bmp", handle, 0.90) == 0:
                 print("探索困难按钮")
@@ -50,6 +53,8 @@ class Team_kun_25_captain(Team_kun_25):
         return 0
 
     def xuan_ze_dui_you(self, argument, handle):
+
+        return -901
         if self.click_img("yys/组队好友灰.bmp", handle, 0.90) == 0:
             print("组队好友灰")
         if self.if_exist("yys/选定好友.bmp") == 0:

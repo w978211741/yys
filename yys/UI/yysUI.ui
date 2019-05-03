@@ -7,20 +7,20 @@
     <x>0</x>
     <y>0</y>
     <width>800</width>
-    <height>600</height>
+    <height>452</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>痒痒鼠1.3</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
     <property name="geometry">
      <rect>
-      <x>20</x>
-      <y>110</y>
+      <x>10</x>
+      <y>30</y>
       <width>441</width>
-      <height>441</height>
+      <height>411</height>
      </rect>
     </property>
     <property name="title">
@@ -47,12 +47,12 @@
       <rect>
        <x>170</x>
        <y>30</y>
-       <width>115</width>
+       <width>61</width>
        <height>19</height>
       </rect>
      </property>
      <property name="text">
-      <string>结界1</string>
+      <string>结界</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -63,12 +63,12 @@
       <rect>
        <x>310</x>
        <y>30</y>
-       <width>115</width>
+       <width>61</width>
        <height>19</height>
       </rect>
      </property>
      <property name="text">
-      <string>结界2</string>
+      <string>血月</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -84,7 +84,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>结界3</string>
+      <string>组队探索</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -100,7 +100,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>结界4</string>
+      <string>组队御魂觉醒</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -116,7 +116,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>组队魂十</string>
+      <string>备用</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -125,8 +125,8 @@
     <widget class="QPushButton" name="pushButton_1">
      <property name="geometry">
       <rect>
-       <x>32</x>
-       <y>370</y>
+       <x>30</x>
+       <y>310</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -138,8 +138,8 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>290</x>
-       <y>370</y>
+       <x>270</x>
+       <y>310</y>
        <width>121</width>
        <height>41</height>
       </rect>
@@ -158,71 +158,127 @@
       </rect>
      </property>
      <property name="title">
-      <string>窗口参数（1-9）指沙盒开启的窗口名</string>
+      <string>窗口参数 指沙盒开启的窗口名</string>
      </property>
-     <widget class="QLineEdit" name="lineEdit_1">
+     <widget class="QComboBox" name="comboBox_1">
       <property name="geometry">
        <rect>
-        <x>30</x>
+        <x>40</x>
         <y>30</y>
-        <width>51</width>
-        <height>31</height>
+        <width>41</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="maxLength">
-       <number>1</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_2">
+     <widget class="QComboBox" name="comboBox_2">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>140</x>
         <y>30</y>
-        <width>51</width>
-        <height>31</height>
+        <width>41</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="maxLength">
-       <number>1</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_3">
+     <widget class="QComboBox" name="comboBox_3">
       <property name="geometry">
        <rect>
-        <x>230</x>
+        <x>240</x>
         <y>30</y>
-        <width>51</width>
-        <height>31</height>
+        <width>41</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="maxLength">
-       <number>1</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_4">
+     <widget class="QComboBox" name="comboBox_4">
       <property name="geometry">
        <rect>
-        <x>320</x>
+        <x>330</x>
         <y>30</y>
-        <width>51</width>
-        <height>31</height>
+        <width>41</width>
+        <height>22</height>
        </rect>
       </property>
-      <property name="maxLength">
-       <number>1</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
+      <item>
+       <property name="text">
+        <string>1</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>2</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>3</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>4</string>
+       </property>
+      </item>
      </widget>
     </widget>
     <widget class="QRadioButton" name="radioButton_7">
@@ -235,7 +291,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>刷血月</string>
+      <string>备用</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -251,7 +307,7 @@
       </rect>
      </property>
      <property name="text">
-      <string>组队困25</string>
+      <string>备用</string>
      </property>
      <attribute name="buttonGroup">
       <string notr="true">buttonGroup</string>
@@ -277,7 +333,7 @@
      <property name="geometry">
       <rect>
        <x>20</x>
-       <y>250</y>
+       <y>220</y>
        <width>401</width>
        <height>80</height>
       </rect>
@@ -285,12 +341,12 @@
      <property name="title">
       <string>副本参数</string>
      </property>
-     <widget class="QLineEdit" name="lineEdit_5">
+     <widget class="QLineEdit" name="lineEdit_times">
       <property name="geometry">
        <rect>
         <x>30</x>
         <y>30</y>
-        <width>51</width>
+        <width>101</width>
         <height>31</height>
        </rect>
       </property>
@@ -301,77 +357,85 @@
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_6">
+     <widget class="QLineEdit" name="lineEdit_qqname">
       <property name="geometry">
        <rect>
-        <x>130</x>
+        <x>260</x>
         <y>30</y>
-        <width>51</width>
+        <width>101</width>
         <height>31</height>
        </rect>
       </property>
       <property name="maxLength">
-       <number>4</number>
+       <number>10</number>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_7">
-      <property name="geometry">
-       <rect>
-        <x>230</x>
-        <y>30</y>
-        <width>51</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="maxLength">
-       <number>4</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_8">
-      <property name="geometry">
-       <rect>
-        <x>320</x>
-        <y>30</y>
-        <width>51</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="maxLength">
-       <number>4</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-      <property name="dragEnabled">
-       <bool>true</bool>
       </property>
      </widget>
     </widget>
-    <widget class="QLineEdit" name="lineEdit">
+    <widget class="QComboBox" name="comboBox_jienum">
      <property name="geometry">
       <rect>
-       <x>50</x>
-       <y>220</y>
-       <width>113</width>
-       <height>21</height>
+       <x>230</x>
+       <y>30</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QTextEdit" name="textEdit">
+    <widget class="QComboBox" name="comboBox_xuenum">
      <property name="geometry">
       <rect>
-       <x>250</x>
-       <y>220</y>
-       <width>104</width>
-       <height>31</height>
+       <x>370</x>
+       <y>30</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
     </widget>
    </widget>
    <widget class="QTextBrowser" name="textBrowser">
@@ -380,13 +444,27 @@
       <x>460</x>
       <y>10</y>
       <width>331</width>
-      <height>581</height>
+      <height>431</height>
      </rect>
     </property>
    </widget>
   </widget>
+  <action name="actionsadf">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/ico/easyicon_net_512.ico</normaloff>:/ico/easyicon_net_512.ico</iconset>
+   </property>
+   <property name="text">
+    <string>sadf</string>
+   </property>
+  </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
  <connections>
   <connection>
    <sender>buttonGroup</sender>
@@ -411,8 +489,8 @@
    <slot>start()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>264</x>
-     <y>449</y>
+     <x>160</x>
+     <y>394</y>
     </hint>
     <hint type="destinationlabel">
      <x>265</x>
@@ -427,12 +505,76 @@
    <slot>stop()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>539</x>
-     <y>452</y>
+     <x>400</x>
+     <y>394</y>
     </hint>
     <hint type="destinationlabel">
      <x>549</x>
      <y>534</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_jienum</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setjienum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>258</x>
+     <y>73</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>269</x>
+     <y>21</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_xuenum</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setxuenum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>412</x>
+     <y>70</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>431</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_times</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>settimes()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>89</x>
+     <y>297</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>103</x>
+     <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>lineEdit_qqname</sender>
+   <signal>editingFinished()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setqqname()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>198</x>
+     <y>295</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>217</x>
+     <y>15</y>
     </hint>
    </hints>
   </connection>
@@ -441,6 +583,10 @@
   <slot>setMod()</slot>
   <slot>start()</slot>
   <slot>stop()</slot>
+  <slot>setjienum()</slot>
+  <slot>setxuenum()</slot>
+  <slot>settimes()</slot>
+  <slot>setqqname()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="buttonGroup"/>

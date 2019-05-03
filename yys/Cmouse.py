@@ -1,4 +1,5 @@
 from pymouse import PyMouse
+from pykeyboard import PyKeyboard
 import win32api
 import win32con
 import time
@@ -43,3 +44,46 @@ class Mouse:
         win32api.mouse_event(win32con.MOUSEEVENTF_ABSOLUTE + win32con.MOUSEEVENTF_MOVE, mw, mh, 0, 0)
         time.sleep(0.2)
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+
+
+class Keyboard:
+    k = None
+
+    def __init__(self):
+        self.k = PyKeyboard()
+
+    def ctrl_enter(self):
+        time.sleep(0.3)
+        self.k.press_key(self.k.control_r_key) # 按住alt键
+        time.sleep(0.3)
+        self.k.tap_key(self.k.enter_key) # 点击tab键
+        time.sleep(0.3)
+        self.k.release_key(self.k.control_r_key) # 松开alt键
+
+    def alt_s(self):
+        #time.sleep(0.3)
+        self.k.press_key(self.k.alt_l_key) # 按住alt键
+        #time.sleep(0.3)
+        self.k.tap_key('s') # 点击tab键
+        #time.sleep(0.3)
+        self.k.release_key(self.k.alt_l_key) # 松开alt键
+
+    def api_ctrl_enter(self):
+        win32api.keybd_event(win32con.RIGHT_CTRL_PRESSED, 0, 0, 0)
+        win32api.keybd_event(13, 0, 0, 0)
+        win32api.keybd_event(13, 0, win32con.KEYEVENTF_KEYUP, 0)
+        win32api.keybd_event(win32con.RIGHT_CTRL_PRESSED, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+    def api_ctrl_down(self):
+        win32api.keybd_event(win32con.RIGHT_CTRL_PRESSED, 0, 0, 0)
+
+    def api_ctrl_up(self):
+        win32api.keybd_event(win32con.RIGHT_CTRL_PRESSED, 0, win32con.KEYEVENTF_KEYUP, 0)
+
+    def ctrl_A_C(self):
+        self.k.press_key(self.k.control_r_key)  # 按住alt键
+        self.k.tap_key('a')  # 点击a键
+        self.k.tap_key('c')  # 点击c键
+        self.k.release_key(self.k.control_r_key)  # 松开alt键
+
+

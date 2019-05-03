@@ -5,6 +5,9 @@ import win32con
 
 
 class Window:
+    @staticmethod
+    def check_window(caption, class_name=None):
+        return win32gui.FindWindow(class_name, caption)
 
     @staticmethod
     def get_window(handle, class_name, caption):
@@ -58,6 +61,8 @@ class Window:
         window_img.save("error/error" + str(number) + ".bmp")
 
     @staticmethod
-    def jie_tu(handle):
+    def jie_tu(handle=None):
+        if handle == None:
+            return ImageGrab.grab()
         return ImageGrab.grab((handle.left, handle.top, handle.right, handle.bottom))
 

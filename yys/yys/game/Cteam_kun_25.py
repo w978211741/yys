@@ -23,19 +23,18 @@ class Team_kun_25(Game):
     def this_mo_ren_yao_qing_dui_you(self, argument, handle):
         ti_li = self.get_ti_li(handle)
         print(ti_li)
-        if ti_li < 24:
+        if ti_li < 24 and ti_li != -1:
             return -3
         self.mo_ren_yao_qing_dui_you(argument, handle)
         return 0
 
     def ffather(self, argument, handle):
-        Game.do_work(self, argument, handle)
-        return 0
+        return Game.do_work(self, argument, handle)
 
     def find_25_button(self, argument, handle):
         ti_li = self.get_ti_li(handle)
         print(ti_li)
-        if ti_li < 24:
+        if ti_li < 24 and ti_li != -1:
             return -3
         if self.click_img("yys/第十五章.bmp", handle, 0.90) == 0:
             print("第十五章")
