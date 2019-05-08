@@ -2,6 +2,7 @@ from PIL import ImageGrab
 from Cimg import Img
 import win32gui
 import win32con
+import codedef
 
 
 class Window:
@@ -17,11 +18,11 @@ class Window:
             handle.top = 0
             handle.right = 0
             handle.bottom = 0
-            return -1
+            return codedef.ERROR_END
         else:
             # 获取窗口左上角的屏幕坐标和右下角的屏幕坐标
             handle.left, handle.top, handle.right, handle.bottom = win32gui.GetWindowRect(handle.hwnd)
-        return 0
+        return codedef.NORMAL_END
 
     @staticmethod
     def set_window(handle, x, y, cx, cy):
@@ -30,7 +31,7 @@ class Window:
             handle.top = 0
             handle.right = 0
             handle.bottom = 0
-            return -1
+            return codedef.ERROR_END
         try:
             win32gui.SetWindowPos(handle.hwnd, win32con.HWND_TOPMOST, x, y, cx, cy, win32con.SWP_DEFERERASE)
             handle.left, handle.top, handle.right, handle.bottom = win32gui.GetWindowRect(handle.hwnd)
@@ -41,8 +42,8 @@ class Window:
             handle.top = 0
             handle.right = 0
             handle.bottom = 0
-            return -1
-        return 0
+            return codedef.ERROR_END
+        return codedef.NORMAL_END
 
     # 在屏幕指定区域找图
     @staticmethod
@@ -51,18 +52,25 @@ class Window:
         window_img.save('temp/temp.bmp')
         re, x, y = Img.find_img_in_img('temp/temp.bmp', img_path, accuracy)
         if re == -1:
-            return -1, -1, -1
-        return 0, x + handle.left, y + handle.top
+            return codedef.ERROR_END, -1, -1
+        return codedef.NORMAL_END, x + handle.left, y + handle.top
 
     # 在屏幕指定区域截图，保存为无法识别画面 error
     @staticmethod
     def error_jie_tu(handle, number):
         window_img = Window.jie_tu(handle)
         window_img.save("error/error" + str(number) + ".bmp")
+        return codedef.NORMAL_END
+
+    @staticmethod
+    def temp_jie_tu(handle, path="temp/temp.bmp"):
+        window_img = Window.jie_tu(handle)
+        window_img.save(path)
+        return codedef.NORMAL_END
 
     @staticmethod
     def jie_tu(handle=None):
-        if handle == None:
+        if handle is None:
             return ImageGrab.grab()
         return ImageGrab.grab((handle.left, handle.top, handle.right, handle.bottom))
 

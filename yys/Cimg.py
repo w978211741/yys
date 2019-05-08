@@ -1,6 +1,7 @@
 import aircv as ac
 import cv2
 import numpy as np
+#from skimage import transform
 from Cdistinguish import Distinguish
 
 
@@ -15,6 +16,13 @@ class Img:
         if pos is None:
             return -1
         return len(pos)
+
+    @staticmethod
+    def find_all_pos_img_in_img(src_img_path, target_img_path, accuracy):
+        src_img = cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
+        target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
+        pos = ac.find_all_template(src_img, target_img, accuracy)
+        return pos
 
     @staticmethod
     def find_img_in_img(src_img_path, target_img_path, accuracy=0.5):
@@ -92,10 +100,15 @@ class Img:
 
     @staticmethod
     def cut_img_path(src_img_path, point_from, point_to):
-        src_img = cv2.imread(src_img_path)
-        tag_img = src_img[point_from[1]:point_to[1], point_from[0]:point_to[0]]
-        return tag_img
+        src_img = Img.read_img(src_img_path)
+        return Img.cut_img(src_img, point_from, point_to)
 
     @staticmethod
     def save(name, img):
         cv2.imwrite(name, img)
+
+    # 支持中文路径的图片文件读取
+    @staticmethod
+    def read_img(src_img_path):
+        return cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
+

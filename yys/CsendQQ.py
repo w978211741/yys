@@ -38,6 +38,7 @@ class SendQQ:
         w.EmptyClipboard()  # 先清空剪贴板
         w.SetClipboardData(win32con.CF_BITMAP, data)  # 将图片放入剪贴板
         w.CloseClipboard()
+        return 0
 
     @staticmethod
     def set_text(aString):
@@ -46,6 +47,7 @@ class SendQQ:
         w.EmptyClipboard()
         w.SetClipboardData(win32con.CF_UNICODETEXT, aString)
         w.CloseClipboard()
+        return 0
 
     def send_qq_text(self, msg):
         qq = self.m_handle.hwnd
@@ -97,6 +99,7 @@ class SendQQ:
         key_board = Keyboard()
         # 发送消息的快捷键
         key_board.alt_s()
+        return 0
 
     def get_text(self, name):
         re = Window.get_window(self.m_handle, None, name)
@@ -150,19 +153,10 @@ class SendQQ:
 
         return re
 
-
-    @staticmethod
-    def find_last(string, str):
-        last_position = -1
-        while True:
-            position = string.find(str, last_position + 1)
-            if position == -1:
-                return last_position
-            last_position = position
-
-    def send_jie_tu(self):
-        window_img = Window.jie_tu()
-        image_path = "error/error.bmp"
+    def send_jie_tu(self,handle=None):
+        window_img = Window.jie_tu(handle)
+        image_path = "temp/qqjietu.bmp"
         window_img.save(image_path)
         self.send_qq_bmp(image_path)
+        return 0
 

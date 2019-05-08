@@ -1,9 +1,6 @@
-from Cgame import Game, SceneKey
-from Cimg import Img
-from Cmouse import Mouse
-from Cwindow import Window
-import sys
-import time
+from Cgame import Game
+from Chandle import SceneKey
+import codedef
 
 
 class dashitou(Game):
@@ -27,14 +24,12 @@ class dashitou(Game):
 
     def father(self, argument, handle):
         Game.do_work(self, argument, handle)
-        return 0
+        return codedef.NORMAL_END
 
     def zhunbei(self, argument, handle):
         if self.click_img("yys/战斗中准备按钮.bmp", handle, 0.90) == 0:
             print("战斗中准备按钮")
-            return -2# 局数计数用
-        time.sleep(2)
-        return 0
+        return codedef.NORMAL_END
 
     def da(self, argument, handle):
         if self.if_exist("yys/血月.bmp") == 0:
@@ -46,7 +41,8 @@ class dashitou(Game):
                 #    print("挑战石头按钮")
                 if self.click_img("yys/挑战石头按钮.bmp", handle, 0.90) == 0:
                     print("挑战石头按钮")
+                    return codedef.FIGHT_BEGIN
                 pass
             else:
-                return -3
-        return 0
+                return codedef.NOT_ENOUGH_POWER
+        return codedef.NORMAL_END

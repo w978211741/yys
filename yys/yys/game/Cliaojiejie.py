@@ -1,4 +1,5 @@
-from Cgame import Game, SceneKey
+from Cgame import Game
+from Chandle import SceneKey
 from Cimg import Img
 from Cmouse import Mouse
 from Cwindow import Window

@@ -1,12 +1,13 @@
 from Cimg import Img
-from enum import Enum, unique
+
 from Cmouse import Mouse
 from Cwindow import Window
 import sys
 import time
 from abc import ABCMeta, abstractmethod
-from Chandle import Handle
+from Chandle import Handle, SceneKey
 from CsendQQ import SendQQ
+import codedef
 
 
 class Game:
@@ -21,6 +22,9 @@ class Game:
 
     @abstractmethod
     def do_work(self, argument, handle):
+        if Game.judge_scene(argument, handle) != 0:
+            return codedef.SCENCE_REPEAT_END
+
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
             SceneKey.ZHANG_DOU_ZHONG: self.waiting,
@@ -35,27 +39,39 @@ class Game:
         # Execute the function
         return func
 
+    # 判断场景是否重复，重复是否超限
+    @staticmethod
+    def judge_scene(scene, handle):
+        if scene != handle.old_scene:
+            handle.old_scene = scene
+            handle.iold_scene = 0
+        elif scene != SceneKey.DOU_JI_ZHONG and scene != SceneKey.ZHANG_DOU_ZHONG:
+            if handle.iold_scene + 1 >= codedef.SCENCE_REPEAT_TIMES:
+                return codedef.ERROR_END
+            handle.iold_scene += 1
+        return codedef.NORMAL_END
+
     def waiting(self, argument, handle):
         time.sleep(1)
-        return 0
+        return codedef.NORMAL_END
 
     def error_scene(self, argument, handle):
         if self.click_img("yys/退出斗技按钮.bmp", handle, 0.98) == 0:
             print("退出斗技按钮")
         if self.click_img("yys/确认退出斗技按钮.bmp", handle, 0.98) == 0:
             print("确认退出斗技按钮")
-        return 0
+        return codedef.NORMAL_END
 
     def enter_jie_jie(self, argument, handle):
         if self.click_img("yys/进入突破按钮.bmp", handle, 0.98) == 0:
             print("进入突破按钮")
-        return 0
+        return codedef.NORMAL_END
 
     def fight_end(self, argument, handle):
         self.qu_bo_lang_xian()
         mouse = Mouse()
         mouse.click(handle.left + 100, handle.top + 150)
-        return -11
+        return codedef.FIGHT_END
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
     def set_window(self, handle, window_name, index, position=True):
@@ -64,6 +80,7 @@ class Game:
             return -1
         if handle.bottom - handle.top < 100 or handle.top < 0:
             return -1
+
         left = 10
         top = 10
         if position:
@@ -84,9 +101,9 @@ class Game:
 
         target_height = 520
         dx = handle.bottom - handle.top - target_height
-        i_depth = 20
+        i_depth = 10
         if dx != 0:
-            temp_times = int(dx/i_depth)
+            temp_times = int(dx / i_depth)
             temp_i = 1
             while temp_i <= temp_times:
                 temp_i = temp_i + 1
@@ -94,7 +111,7 @@ class Game:
                                        handle.bottom - handle.top - i_depth * temp_i)
                 time.sleep(0.8)
             self.window.set_window(handle, left, top, handle.right - handle.left, target_height)
-        return 0
+        return codedef.NORMAL_END
 
     # 在探索界面获取突破卷数量
     def get_tu_po_juan(self, handle):
@@ -111,7 +128,10 @@ class Game:
             tu_po_number = tu_po_number_str[0]
             if tu_po_number == '':
                 return -1
-            return int(tu_po_number)
+            if tu_po_number.isdigit():
+                return int(tu_po_number)
+            else:
+                return -1
         return -1
 
     # 在结界突破界面获取突破卷数量
@@ -131,7 +151,10 @@ class Game:
             tu_po_number = tu_po_number_str[0]
             if tu_po_number == '':
                 return -1
-            return int(tu_po_number)
+            if tu_po_number.isdigit():
+                return int(tu_po_number)
+            else:
+                return -1
         return -1
 
     # 在探索界面获取体力数量
@@ -160,8 +183,8 @@ class Game:
 
     # 查找图片是否在temp图片中是否存在
     @staticmethod
-    def if_exist(path):
-        re, x, y = Img.find_img_in_img('temp/temp.bmp', path, 0.90)
+    def if_exist(path, accuracy=0.90):
+        re, x, y = Img.find_img_in_img('temp/temp.bmp', path, accuracy)
         return re
 
     def jie_tu_if_exist(self, handle, path):
@@ -230,7 +253,7 @@ class Game:
         if re == 0:
             mouse = Mouse()
             mouse.click(x, y)
-            return 0
+            return codedef.NORMAL_END
         return -1
 
     # 双击指定图片
@@ -240,58 +263,23 @@ class Game:
             mouse = Mouse()
             mouse.click(x, y)
             mouse.click(x, y)
-            return 0
+            return codedef.NORMAL_END
         return -1
-
-    # 决策打结界还是探索
-    def jie_jie_or_tang_suo(self, handle):
-        # 获取体力结界券
-        tu_po_juan = self.get_tu_po_juan(handle)
-        print("突破卷:" + str(tu_po_juan))
-        ti_li = self.get_ti_li(handle)
-        print("体力:" + str(ti_li))
-        if tu_po_juan != -1 and ti_li != -1:
-            # if tu_po_juan <= 25 and ti_li > 25:
-            if ti_li > 25:
-                return "探索"
-            elif tu_po_juan == 0 and ti_li < 25:
-                return "没了"
-            else:
-                return "结界突破"
 
     # 从探索进入探索界面
     def jin_ru_tang_suo(self, handle):
         if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
             print("探索按钮")
 
-    # 在探索中界面打探索怪
-    def da_tang_suo_gui(self, handle):
-        if self.click_img("yys/打小怪.bmp", handle) == 0:
-            print("打小怪")
-            return -21
-        elif self.click_img("yys/打boss.bmp", handle) == 0:
-            print("打boss")
-            return -22
-        elif self.click_img("yys/探索奖励.bmp", handle) == 0:
-            print("探索奖励")
-            return -31
-        elif self.click_img("yys/打小怪2.bmp", handle) == 0:
-            print("打小怪2")
-            return -21
-        else:
-            self.click_img("yys/探索向右走.bmp", handle)
-            return -32
-        return 0
-
     # 在探索中界面打探索
     def da_tang_suo(self, handle):
         if self.click_img("yys/探索奖励.bmp", handle) == 0:
-            return 0
+            return codedef.NORMAL_END
         if self.click_img("yys/获得奖励.bmp", handle) == 0:
             if self.click_img("yys/scene/探索中界面.bmp", handle) == 0:
-                return 0
-            return 0
-        return 0
+                return codedef.NORMAL_END
+            return codedef.NORMAL_END
+        return codedef.ERROR_END
 
     # 用于去除未使用对象成员变量的函数参数使用了self而出现的波浪线
     def qu_bo_lang_xian(self):
@@ -300,7 +288,8 @@ class Game:
     def teaming(self, argument, handle):
         if self.click_img("yys/开始战斗按钮.bmp", handle, 0.98) == 0:
             print("开始战斗按钮")
-        return 0
+            return codedef.FIGHT_BEGIN
+        return codedef.NORMAL_END
 
     def exit_fighting(self, argument, handle):
         if self.click_img("yys/退出斗技按钮.bmp", handle, 0.90) == 0:
@@ -328,7 +317,7 @@ class Game:
             print("细红叉按钮")
         if self.click_img("yys/粗红叉按钮.bmp", handle, 0.90) == 0:
             print("粗红叉按钮")
-        return 0
+        return codedef.NORMAL_END
 
     # 返回值-900 表示没体力
     def hon_cha_exit(self, argument, handle):
@@ -343,13 +332,13 @@ class Game:
         if self.jie_tu_if_exist(handle, "yys/默认邀请队友按钮.bmp") == 0:
             if self.click_img("yys/确定按钮.bmp", handle, 0.90) == 0:
                 print("确定按钮")
-        return 0
+        return codedef.NORMAL_END
 
     # 判断是在个人结界还是在寮结界 -1 错误；0 个人结界； 1 寮结界
     def ge_ren_or_liao(self, handle):
         if self.jie_tu_if_exist(handle, "yys/个人结界.bmp") == 0 and self.jie_tu_if_exist(handle, "yys/寮结界灰.bmp") == 0:
             print("个人结界")
-            return 0
+            return codedef.NORMAL_END
         if self.jie_tu_if_exist(handle, "yys/个人结界灰.bmp") == 0 and self.jie_tu_if_exist(handle, "yys/寮结界.bmp") == 0:
             print("寮结界")
             return 1
@@ -358,7 +347,7 @@ class Game:
     def yao_qing_dui_you_ji_xu(self, argument, handle):
         if self.click_img("yys/确定按钮.bmp", handle) == 0:
             print("确定按钮")
-        return 0
+        return codedef.NORMAL_END
 
     def dou_ji(self, argument, handle):
         switcher = {
@@ -377,38 +366,13 @@ class Game:
 
     # 发送 temp.bmp 给qq好友消息窗口，窗口名name ，一般是好友昵称还在备注，或者群名称
     def send_qq_temp_img(self, name):
-        new_qq_handle = Handle()
-        send_QQ = SendQQ(new_qq_handle, name)
+        send_QQ = SendQQ(name)
         return send_QQ.send_qq_bmp('temp/temp.bmp')
 
     # 发送 text 文本 给qq好友消息窗口，窗口名name ，一般是好友昵称还在备注，或者群名称
     def send_qq_text(self, name, text):
-        new_qq_handle = Handle()
-        send_QQ = SendQQ(new_qq_handle, name)
+        send_QQ = SendQQ(name)
         return send_QQ.send_qq_text(text)
 
 
-@unique
-class SceneKey(Enum):
-    NUKOWN = 0
-    TING_YUAN = 1
-    TANG_SUO = 2
-    DING_ZHONG = 3
-    JIE_JIE_TU_PO = 4
-    ZHANG_DOU_ZHONG = 5
-    ZHANG_DOU_JIANG_LI = 6
-    ZHANG_DOU_SHENG_LI = 7
-    ZHANG_DOU_SHI_BAI = 8
-    XIE_ZHAN_DUI_WU = 9
-    DOU_JI = 10
-    DOU_JI_ZHUN_BEI =11
-    DOU_JI_ZHONG = 12
-    GOU_MAI_TI_LI = 13
-    XUAN_SHANG_FENG_YING_YAO_QING = 14
-    TANG_SUO_ZHONG = 15
-    MO_REN_YAOQ_QING_DUI_YOU = 16
-    TANG_SUO_ZHANG_JIE = 17
-    SHI_FOU_YAO_QING_JI_XU = 18
-    ZU_DUI_XUAN_ZE_DUI_YOU = 19
-    SHOU_DAO_YAO_QING = 20
 

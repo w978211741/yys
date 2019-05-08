@@ -6,128 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>452</height>
+    <width>191</width>
+    <height>851</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>痒痒鼠1.3</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QGroupBox" name="groupBox">
+   <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>30</y>
-      <width>441</width>
-      <height>411</height>
+      <x>0</x>
+      <y>430</y>
+      <width>191</width>
+      <height>421</height>
+     </rect>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_4">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>360</y>
+      <width>191</width>
+      <height>61</height>
      </rect>
     </property>
     <property name="title">
-     <string>副本选择</string>
+     <string/>
     </property>
-    <widget class="QRadioButton" name="radioButton_1">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>30</y>
-       <width>115</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>设置窗口</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_2">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>30</y>
-       <width>61</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>结界</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_3">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>30</y>
-       <width>61</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>血月</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_4">
-     <property name="geometry">
-      <rect>
-       <x>30</x>
-       <y>60</y>
-       <width>115</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>组队探索</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_5">
-     <property name="geometry">
-      <rect>
-       <x>170</x>
-       <y>60</y>
-       <width>115</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>组队御魂觉醒</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
-    <widget class="QRadioButton" name="radioButton_6">
-     <property name="geometry">
-      <rect>
-       <x>310</x>
-       <y>60</y>
-       <width>115</width>
-       <height>19</height>
-      </rect>
-     </property>
-     <property name="text">
-      <string>备用</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
-    </widget>
     <widget class="QPushButton" name="pushButton_1">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>310</y>
-       <width>121</width>
+       <x>10</x>
+       <y>10</y>
+       <width>81</width>
        <height>41</height>
       </rect>
      </property>
@@ -138,9 +52,9 @@
     <widget class="QPushButton" name="pushButton_2">
      <property name="geometry">
       <rect>
-       <x>270</x>
-       <y>310</y>
-       <width>121</width>
+       <x>100</x>
+       <y>10</y>
+       <width>81</width>
        <height>41</height>
       </rect>
      </property>
@@ -148,237 +62,202 @@
       <string>停止</string>
      </property>
     </widget>
-    <widget class="QGroupBox" name="groupBox_2">
+   </widget>
+   <widget class="QGroupBox" name="groupBox_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>240</y>
+      <width>191</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>窗口参数 沙盒窗口名</string>
+    </property>
+    <widget class="QComboBox" name="comboBox_1">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>140</y>
-       <width>401</width>
-       <height>80</height>
+       <x>0</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="title">
-      <string>窗口参数 指沙盒开启的窗口名</string>
-     </property>
-     <widget class="QComboBox" name="comboBox_1">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>30</y>
-        <width>41</width>
-        <height>22</height>
-       </rect>
+     <item>
+      <property name="text">
+       <string>1</string>
       </property>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_2">
-      <property name="geometry">
-       <rect>
-        <x>140</x>
-        <y>30</y>
-        <width>41</width>
-        <height>22</height>
-       </rect>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
       </property>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_3">
-      <property name="geometry">
-       <rect>
-        <x>240</x>
-        <y>30</y>
-        <width>41</width>
-        <height>22</height>
-       </rect>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
       </property>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_4">
-      <property name="geometry">
-       <rect>
-        <x>330</x>
-        <y>30</y>
-        <width>41</width>
-        <height>22</height>
-       </rect>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
       </property>
-      <item>
-       <property name="text">
-        <string>1</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>2</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>3</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>4</string>
-       </property>
-      </item>
-     </widget>
+     </item>
     </widget>
-    <widget class="QRadioButton" name="radioButton_7">
+    <widget class="QComboBox" name="comboBox_2">
      <property name="geometry">
       <rect>
-       <x>30</x>
-       <y>90</y>
-       <width>115</width>
-       <height>19</height>
+       <x>50</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="text">
-      <string>备用</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QRadioButton" name="radioButton_8">
+    <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
-       <x>170</x>
-       <y>90</y>
-       <width>115</width>
-       <height>19</height>
+       <x>100</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="text">
-      <string>备用</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QRadioButton" name="radioButton_9">
+    <widget class="QComboBox" name="comboBox_4">
      <property name="geometry">
       <rect>
-       <x>310</x>
-       <y>90</y>
-       <width>115</width>
-       <height>19</height>
+       <x>150</x>
+       <y>20</y>
+       <width>41</width>
+       <height>22</height>
       </rect>
      </property>
-     <property name="text">
-      <string>备用</string>
-     </property>
-     <attribute name="buttonGroup">
-      <string notr="true">buttonGroup</string>
-     </attribute>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
     </widget>
-    <widget class="QGroupBox" name="groupBox_3">
+   </widget>
+   <widget class="QGroupBox" name="groupBox_3">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>300</y>
+      <width>191</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>副本参数</string>
+    </property>
+    <widget class="QLineEdit" name="lineEdit_times">
      <property name="geometry">
       <rect>
-       <x>20</x>
-       <y>220</y>
-       <width>401</width>
-       <height>80</height>
+       <x>10</x>
+       <y>20</y>
+       <width>71</width>
+       <height>31</height>
       </rect>
      </property>
-     <property name="title">
-      <string>副本参数</string>
+     <property name="maxLength">
+      <number>4</number>
      </property>
-     <widget class="QLineEdit" name="lineEdit_times">
-      <property name="geometry">
-       <rect>
-        <x>30</x>
-        <y>30</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="maxLength">
-       <number>4</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_qqname">
-      <property name="geometry">
-       <rect>
-        <x>260</x>
-        <y>30</y>
-        <width>101</width>
-        <height>31</height>
-       </rect>
-      </property>
-      <property name="maxLength">
-       <number>10</number>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
-      </property>
-     </widget>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
     </widget>
+    <widget class="QLineEdit" name="lineEdit_qqname">
+     <property name="geometry">
+      <rect>
+       <x>100</x>
+       <y>20</y>
+       <width>81</width>
+       <height>31</height>
+      </rect>
+     </property>
+     <property name="maxLength">
+      <number>10</number>
+     </property>
+     <property name="alignment">
+      <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignTop</set>
+     </property>
+    </widget>
+   </widget>
+   <widget class="QGroupBox" name="groupBox_5">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>10</y>
+      <width>191</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>副本选择</string>
+    </property>
     <widget class="QComboBox" name="comboBox_jienum">
      <property name="geometry">
       <rect>
-       <x>230</x>
-       <y>30</y>
+       <x>140</x>
+       <y>50</y>
        <width>41</width>
        <height>22</height>
       </rect>
@@ -410,8 +289,110 @@
     <widget class="QComboBox" name="comboBox_xuenum">
      <property name="geometry">
       <rect>
-       <x>370</x>
-       <y>30</y>
+       <x>140</x>
+       <y>80</y>
+       <width>41</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>2</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>3</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>4</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_UP">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>61</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>不挑</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>金币</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>经验</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>奖励</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_BOSS">
+     <property name="geometry">
+      <rect>
+       <x>90</x>
+       <y>130</y>
+       <width>91</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <property name="editable">
+      <bool>false</bool>
+     </property>
+     <item>
+      <property name="text">
+       <string>打BOSS</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>不打BOSS</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QRadioButton" name="radioButton_6">
+     <property name="geometry">
+      <rect>
+       <x>30</x>
+       <y>190</y>
+       <width>61</width>
+       <height>19</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string>斗技</string>
+     </property>
+     <attribute name="buttonGroup">
+      <string notr="true">buttonGroup</string>
+     </attribute>
+    </widget>
+    <widget class="QComboBox" name="comboBox_dounum">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>190</y>
        <width>41</width>
        <height>22</height>
       </rect>
@@ -438,15 +419,85 @@
      </item>
     </widget>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QRadioButton" name="radioButton_4">
     <property name="geometry">
      <rect>
-      <x>460</x>
-      <y>10</y>
-      <width>331</width>
-      <height>431</height>
+      <x>30</x>
+      <y>120</y>
+      <width>91</width>
+      <height>19</height>
      </rect>
     </property>
+    <property name="text">
+     <string>组队探索</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_5">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>170</y>
+      <width>115</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>组队御魂觉醒</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_1">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>30</y>
+      <width>115</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>设置窗口</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_2">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>60</y>
+      <width>61</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>结界</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
+   </widget>
+   <widget class="QRadioButton" name="radioButton_3">
+    <property name="geometry">
+     <rect>
+      <x>30</x>
+      <y>90</y>
+      <width>61</width>
+      <height>19</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>血月</string>
+    </property>
+    <attribute name="buttonGroup">
+     <string notr="true">buttonGroup</string>
+    </attribute>
    </widget>
   </widget>
   <action name="actionsadf">
@@ -467,34 +518,18 @@
  </resources>
  <connections>
   <connection>
-   <sender>buttonGroup</sender>
-   <signal>buttonClicked(int)</signal>
-   <receiver>MainWindow</receiver>
-   <slot>setMod()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>-1</x>
-     <y>-1</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>399</x>
-     <y>299</y>
-    </hint>
-   </hints>
-  </connection>
-  <connection>
    <sender>pushButton_1</sender>
    <signal>clicked()</signal>
    <receiver>MainWindow</receiver>
    <slot>start()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>160</x>
-     <y>394</y>
+     <x>50</x>
+     <y>330</y>
     </hint>
     <hint type="destinationlabel">
-     <x>265</x>
-     <y>523</y>
+     <x>190</x>
+     <y>453</y>
     </hint>
    </hints>
   </connection>
@@ -505,12 +540,12 @@
    <slot>stop()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>400</x>
-     <y>394</y>
+     <x>290</x>
+     <y>330</y>
     </hint>
     <hint type="destinationlabel">
-     <x>549</x>
-     <y>534</y>
+     <x>190</x>
+     <y>453</y>
     </hint>
    </hints>
   </connection>
@@ -521,11 +556,11 @@
    <slot>setjienum()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>258</x>
-     <y>73</y>
+     <x>250</x>
+     <y>50</y>
     </hint>
     <hint type="destinationlabel">
-     <x>269</x>
+     <x>190</x>
      <y>21</y>
     </hint>
    </hints>
@@ -541,7 +576,7 @@
      <y>70</y>
     </hint>
     <hint type="destinationlabel">
-     <x>431</x>
+     <x>190</x>
      <y>20</y>
     </hint>
    </hints>
@@ -553,8 +588,8 @@
    <slot>settimes()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>89</x>
-     <y>297</y>
+     <x>80</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
      <x>103</x>
@@ -569,12 +604,76 @@
    <slot>setqqname()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>198</x>
-     <y>295</y>
+     <x>180</x>
+     <y>320</y>
     </hint>
     <hint type="destinationlabel">
-     <x>217</x>
+     <x>190</x>
      <y>15</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_UP</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setUP()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>57</x>
+     <y>140</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>12</x>
+     <y>92</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>buttonGroup</sender>
+   <signal>buttonClicked(int)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setMod()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>95</x>
+     <y>440</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_BOSS</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setBOSS()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>144</x>
+     <y>148</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>153</x>
+     <y>8</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_dounum</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setdounum()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>168</x>
+     <y>211</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>107</x>
+     <y>6</y>
     </hint>
    </hints>
   </connection>
@@ -587,6 +686,9 @@
   <slot>setxuenum()</slot>
   <slot>settimes()</slot>
   <slot>setqqname()</slot>
+  <slot>setUP()</slot>
+  <slot>setBOSS()</slot>
+  <slot>setdounum()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="buttonGroup"/>

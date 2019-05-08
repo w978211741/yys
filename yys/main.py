@@ -4,6 +4,7 @@ from PyQt5 import QtWidgets
 import sys
 import multiprocessing
 
+
 def main():
     print("开始")
     multiprocessing.freeze_support()
@@ -13,7 +14,6 @@ def main():
     sys.exit(app.exec_())
 
 
+
 if __name__ == '__main__':
     main()
-
-
