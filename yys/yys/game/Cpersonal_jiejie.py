@@ -3,13 +3,19 @@ from Chandle import SceneKey
 from Cmouse import Mouse
 from Cimg import Img
 import time
+import codedef
 
 
 class Personal_jiejie(Game):
     # -1 找个人结界或寮结界按钮失败
     # -2 在没打过的数量大于零时，却在分块找到这个结界时找不到
     # -3 结界突破卷数量为0
+    def judge_scenes(self, argument, handle):
+        return Game.judge_scenes(self, argument, handle)
+
     def do_work(self, argument, handle):
+        if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
+            return codedef.SCENCE_REPEAT_END
         switcher = {
             SceneKey.JIE_JIE_TU_PO: self.personal_jiejie_main,
             SceneKey.TANG_SUO: self.enter_jie_jie,
@@ -33,9 +39,9 @@ class Personal_jiejie(Game):
             if self.click_img("yys/个人结界灰.bmp", handle, 0.98) == 0:
                 print("个人结界灰")
             return 0
-        tu_po_juan = self.get_tu_po_juan2(handle)
-        if tu_po_juan == 0:
-            return -3
+        #tu_po_juan = self.get_tu_po_juan2(handle)
+        #if tu_po_juan == 0:
+        #    return -3
         da_guo, da_bug_uo, mei_da_guo = self.jie_jie_number(handle)
         if da_guo >= 3 or mei_da_guo == 0:
             return self.refresh_jie_jie(handle)

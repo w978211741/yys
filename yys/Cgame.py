@@ -8,6 +8,7 @@ from abc import ABCMeta, abstractmethod
 from Chandle import Handle, SceneKey
 from CsendQQ import SendQQ
 import codedef
+from win32api import GetSystemMetrics
 
 
 class Game:
@@ -21,10 +22,13 @@ class Game:
         self.window = Window()
 
     @abstractmethod
-    def do_work(self, argument, handle):
+    def judge_scenes(self, argument, handle):
         if Game.judge_scene(argument, handle) != 0:
             return codedef.SCENCE_REPEAT_END
+        return codedef.NORMAL_END
 
+    @abstractmethod
+    def do_work(self, argument, handle):
         switcher = {
             SceneKey.NUKOWN: self.error_scene,
             SceneKey.ZHANG_DOU_ZHONG: self.waiting,
@@ -70,7 +74,7 @@ class Game:
     def fight_end(self, argument, handle):
         self.qu_bo_lang_xian()
         mouse = Mouse()
-        mouse.click(handle.left + 100, handle.top + 150)
+        mouse.click(int((handle.left + handle.right) / 2), handle.bottom - 20)
         return codedef.FIGHT_END
 
     # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
@@ -81,25 +85,27 @@ class Game:
         if handle.bottom - handle.top < 100 or handle.top < 0:
             return -1
 
-        left = 10
-        top = 10
+        xishu = GetSystemMetrics(0) / 1920
+
+        left = int(10 * xishu)
+        top = int(10 * xishu)
         if position:
             if index == "1":
-                left = 10
-                top = 10
+                left = int(10 * xishu)
+                top = int(10 * xishu)
             elif index == "2":
-                left = 1050
-                top = 10
+                left = int(1050 * xishu)
+                top = int(10 * xishu)
             elif index == "3":
-                left = 10
-                top = 520
+                left = int(10 * xishu)
+                top = int(520 * xishu)
             elif index == "4":
-                left = 1050
-                top = 520
+                left = int(1050 * xishu)
+                top = int(520 * xishu)
             if left != handle.left or top != handle.top:
                 self.window.set_window(handle, left, top, handle.right - handle.left, handle.bottom - handle.top)
 
-        target_height = 520
+        target_height = int(520 * xishu)
         dx = handle.bottom - handle.top - target_height
         i_depth = 10
         if dx != 0:
@@ -271,15 +277,7 @@ class Game:
         if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
             print("探索按钮")
 
-    # 在探索中界面打探索
-    def da_tang_suo(self, handle):
-        if self.click_img("yys/探索奖励.bmp", handle) == 0:
-            return codedef.NORMAL_END
-        if self.click_img("yys/获得奖励.bmp", handle) == 0:
-            if self.click_img("yys/scene/探索中界面.bmp", handle) == 0:
-                return codedef.NORMAL_END
-            return codedef.NORMAL_END
-        return codedef.ERROR_END
+
 
     # 用于去除未使用对象成员变量的函数参数使用了self而出现的波浪线
     def qu_bo_lang_xian(self):

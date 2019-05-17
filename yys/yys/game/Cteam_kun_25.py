@@ -3,14 +3,17 @@ from Chandle import SceneKey
 from Cimg import Img
 from Cmouse import Mouse
 from Cwindow import Window
-import sys
 import time
+import codedef
 
 
 class Team_kun_25(Game):
     def __init__(self):
         super(Game, self).__init__()
         pass
+
+    def judge_scenes(self, argument, handle):
+        return Game.judge_scenes(self, argument, handle)
 
     def do_work(self, argument, handle):
         switcher = {
@@ -28,6 +31,9 @@ class Team_kun_25(Game):
     def ffather(self, argument, handle):
         return Game.do_work(self, argument, handle)
 
-
-
-
+    def exit_tang_suo(self, handle):
+        if self.click_img("yys/退出探索.bmp", handle) == 0:
+            time.sleep(0.5)
+            if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
+                return codedef.NORMAL_END
+        return codedef.ERROR_END

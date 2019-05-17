@@ -1,0 +1,5 @@
+<RCC>
+  <qresource lang="exeico" prefix="ico">
+    <file>easyicon_net_512.ico</file>
+  </qresource>
+</RCC>

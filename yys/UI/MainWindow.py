@@ -7,7 +7,7 @@ from Cfuben import Fuben
 from CsendQQ import SendQQ
 from PyQt5.QtCore import QTimer
 from PyQt5.QtGui import QWindow
-import win32process
+import traceback
 from win32process import CreateProcess
 from PyQt5.QtWidgets import QWidget
 from Chandle import Handle
@@ -187,8 +187,25 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
                 pass
+            elif self.mod == codedef.MOD_DOU:
+                self.add_in_text_browser("启动 刷斗技荣誉点\r\n")
+                iMaxtimes = 9999
+                strMaxtimes = self.Maxtimes
+                if strMaxtimes.isdigit() is False:
+                    self.add_in_text_browser("刷斗技次数不为数字，启动次数9999\r\n")
+                else:
+                    iMaxtimes = int(strMaxtimes)
+                if self.main_process is None or self.main_process.is_alive() is False:
+                    self.main_process = multiprocessing.Process(
+                        target=my_hun_shi_process, args=(
+                            self.log_queue, self.qq_name, self.comboBox_1.currentText(),
+                            self.comboBox_2.currentText(), iMaxtimes), name='my_process')
+                    self.main_process.start()
+                else:
+                    self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
+                pass
         except Exception as e:
-            self.add_in_text_browser("Exception:" + e.__str__() + "\r\n")
+            self.add_in_text_browser("Exception:" + traceback.format_exc() + "\r\n")
         return 0
 
     def stop(self):
@@ -214,7 +231,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             self.add_in_text_browser(self.log_queue.get(timeout=0.1))
         except Exception as e:
             pass
-            #self.add_in_text_browser("log_queue Exception:" + e.__str__())
+            #self.add_in_text_browser("log_queue Exception:" + traceback.format_exc())
         #self.add_in_text_browser("\r\n")
         return 0
 
@@ -318,7 +335,7 @@ def my_set_windows_process(log_queue, qq_name, yys1, yys2, yys3, yys4):
         fuben.set_windows(yys3)
         fuben.set_windows(yys4)
     except Exception as e:
-        str_log = "Exception:" + e.__str__() + "\r\n"
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
 
@@ -328,7 +345,7 @@ def my_jie_jie_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum):
     try:
         fuben.jie_jie(yys1, yys2, yys3, yys4, inum)
     except Exception as e:
-        str_log = "Exception:" + e.__str__() + "\r\n"
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("结界 结束\r\n")
@@ -339,7 +356,7 @@ def my_hun_shi_process(log_queue, qq_name, yys1, yys2, imax_times):
     try:
         fuben.hun_shi(yys1, yys2, imax_times)
     except Exception as e:
-        str_log = "Exception:" + e.__str__() + "\r\n"
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("魂十 结束\r\n")
@@ -350,7 +367,8 @@ def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_ti
     try:
         fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times)
     except Exception as e:
-        str_log = "Exception:" + e.__str__() + "\r\n"
+        
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("刷血月副本 结束\r\n")
@@ -362,11 +380,20 @@ def my_team_kun_25_process(log_queue, qq_name, yys1, yys2, UP, BOSS, imax_times)
         if fuben.team_kun_25(yys1, yys2, UP, BOSS, imax_times) != 0:
             fuben.add_log("阴阳师 组队探索副本 不对\r\n")
     except Exception as e:
-        str_log = "Exception:" + e.__str__() + "\r\n"
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("组队探索副本 结束\r\n")
 
+def my_dou_ji_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum):
+    fuben = Fuben(log_queue, qq_name)
+    try:
+        fuben.jie_jie(yys1, yys2, yys3, yys4, inum)
+    except Exception as e:
+        str_log = "Exception:" + traceback.format_exc() + "\r\n"
+        fuben.add_log(str_log)
+        send_qq(fuben, qq_name, str_log)
+    fuben.add_log("结界 结束\r\n")
 # 主动发qq消息
 def send_qq(fuben, qq_name, msg):
     if qq_name == '':

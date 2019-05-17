@@ -8,7 +8,12 @@ class dashitou(Game):
         Game.__init__(self)
         pass
 
+    def judge_scenes(self, argument, handle):
+        return Game.judge_scenes(self, argument, handle)
+
     def do_work(self, argument, handle):
+        if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
+            return codedef.SCENCE_REPEAT_END
         switcher = {
             SceneKey.NUKOWN: self.da,
             SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,

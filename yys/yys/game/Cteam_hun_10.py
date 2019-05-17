@@ -3,10 +3,16 @@ from Chandle import SceneKey
 from Cmouse import Mouse
 from Cimg import Img
 import time
+import codedef
 
 
 class Team_hun_10(Game):
+    def judge_scenes(self, argument, handle):
+        return Game.judge_scenes(self, argument, handle)
+
     def do_work(self, argument, handle):
+        if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
+            return codedef.SCENCE_REPEAT_END
         switcher = {
             SceneKey.XIE_ZHAN_DUI_WU: self.teaming,
             SceneKey.MO_REN_YAOQ_QING_DUI_YOU: self.mo_ren_yao_qing_dui_you,
@@ -19,8 +25,7 @@ class Team_hun_10(Game):
         return func
 
     def father(self, argument, handle):
-        Game.do_work(self, argument, handle)
-        return 0
+        return Game.do_work(self, argument, handle)
 
     def team_hun_10_main(self, argument, handle):
         pass
