@@ -11,7 +11,9 @@ import traceback
 from win32process import CreateProcess
 from PyQt5.QtWidgets import QWidget
 from Chandle import Handle
+from registerWindow import My_registerWindow
 import codedef
+from Cregister import register
 
 
 class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
@@ -49,6 +51,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.Maxtimes = ''
         self.UP = codedef.UP_C_NULL
         self.BOSS = True
+        self.register_show = False
         pass
 
     def setMod(self, id):
@@ -108,6 +111,26 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         return 0
 
     def start(self):
+        my_register = register()
+        re = my_register.check()
+        final_serial_list_str = '|'.join(my_register.final_serial_list)
+        if re == 0:
+            if self.register_show is False:
+                self.register_show = True
+                my_registerWindow = My_registerWindow(my_register)
+                my_registerWindow.show()
+                my_registerWindow.exec_()
+        else:
+            my_registerWindow = My_registerWindow(my_register)
+            my_registerWindow.show()
+            my_registerWindow.exec_()
+            re = my_register.check()
+            if re != 0:
+                return 0
+            else:
+                self.register_show = True
+
+
         self.add_in_text_browser("正在启动\r\n")
         self.bool_run = True
         try:

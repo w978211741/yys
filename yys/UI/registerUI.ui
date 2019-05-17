@@ -16,8 +16,8 @@
   <widget class="QDialogButtonBox" name="buttonBox">
    <property name="geometry">
     <rect>
-     <x>30</x>
-     <y>240</y>
+     <x>60</x>
+     <y>260</y>
      <width>341</width>
      <height>32</height>
     </rect>
@@ -32,8 +32,8 @@
   <widget class="QLineEdit" name="lineEdit_register">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>150</y>
+     <x>60</x>
+     <y>170</y>
      <width>181</width>
      <height>21</height>
     </rect>
@@ -42,10 +42,10 @@
   <widget class="QLabel" name="label">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>45</y>
-     <width>351</width>
-     <height>31</height>
+     <x>20</x>
+     <y>10</y>
+     <width>371</width>
+     <height>111</height>
     </rect>
    </property>
    <property name="text">
@@ -55,10 +55,10 @@
   <widget class="QLabel" name="label_serial">
    <property name="geometry">
     <rect>
-     <x>90</x>
-     <y>120</y>
-     <width>72</width>
-     <height>15</height>
+     <x>60</x>
+     <y>140</y>
+     <width>181</width>
+     <height>16</height>
     </rect>
    </property>
    <property name="text">
@@ -68,8 +68,8 @@
   <widget class="QPushButton" name="pushButtoncopy">
    <property name="geometry">
     <rect>
-     <x>282</x>
-     <y>110</y>
+     <x>260</x>
+     <y>130</y>
      <width>111</width>
      <height>28</height>
     </rect>
@@ -81,14 +81,40 @@
   <widget class="QPushButton" name="pushButton_registe">
    <property name="geometry">
     <rect>
-     <x>280</x>
-     <y>150</y>
+     <x>260</x>
+     <y>170</y>
      <width>111</width>
      <height>28</height>
     </rect>
    </property>
    <property name="text">
     <string>注册</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>140</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>序列号</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>170</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>注册码</string>
    </property>
   </widget>
  </widget>
