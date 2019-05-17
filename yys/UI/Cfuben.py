@@ -42,7 +42,6 @@ class Fuben():
         game = Game()
         yys1 = Handle()
         self.set_yys(yys, game, yys1)
-        self.add_log("设置窗口完成\r\n")
         return codedef.NORMAL_END
 
     def jie_jie(self, y1, y2, y3, y4, inum):

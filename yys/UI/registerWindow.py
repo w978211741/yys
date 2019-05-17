@@ -3,6 +3,7 @@ from PyQt5 import QtWidgets, QtCore
 from PyQt5.QtWidgets import QDialog
 from Cregister import register
 from CsendQQ import SendQQ
+import traceback
 
 
 class My_registerWindow(Ui_Dialog, QDialog):
@@ -13,7 +14,7 @@ class My_registerWindow(Ui_Dialog, QDialog):
         self.label_serial.setEnabled(False)   # 序列号文本
         self.pushButtoncopy.setEnabled(False)   # 复制到剪贴板按钮
         self.pushButton_registe.setEnabled(False)   # 注册按钮
-
+        self.o_register = o_register
         str_tips = '欢迎来到德莱联盟\r\n'
         if o_register.final_serial_list.__len__() != 6:
             self.label.setText('error')
@@ -86,7 +87,14 @@ class My_registerWindow(Ui_Dialog, QDialog):
         QDialog.reject(self)
 
     def registe(self):
-        print('registe')
+        try:
+            register_number = self.lineEdit_register.text()
+            self.o_register.register_button(register_number)
+            print('registe' + register_number)
+        except Exception as e:
+            str_log = "Exception:" + traceback.format_exc() + "\r\n"
+            print(str_log)
+
 
     def cptoClipboard(self):
         SendQQ.set_text(self.serial_number)

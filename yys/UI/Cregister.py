@@ -191,7 +191,7 @@ class register():
         fp = open(file_name, 'w')
         str_jian = '|'
         str_write = str_jian.join(serial_list)
-        # print(str_write)
+        print(str_write)
         # des加密
         str_write = self.encode_str(str_write)
         fp.writelines(str_write)
@@ -218,3 +218,4 @@ class register():
         if re == -3 or re == -5:
             re = self.probater(re)
         self.re = re
+        return re

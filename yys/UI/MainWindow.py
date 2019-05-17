@@ -111,29 +111,31 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         return 0
 
     def start(self):
-        my_register = register()
-        re = my_register.check()
-        final_serial_list_str = '|'.join(my_register.final_serial_list)
-        if re == 0:
-            if self.register_show is False:
-                self.register_show = True
+        try:
+            my_register = register()
+            re = my_register.check()
+            print('check1:' + str(re))
+            if re == 0:
+                if self.register_show is False:
+                    self.register_show = True
+                    my_registerWindow = My_registerWindow(my_register)
+                    my_registerWindow.show()
+                    my_registerWindow.exec_()
+            else:
                 my_registerWindow = My_registerWindow(my_register)
                 my_registerWindow.show()
                 my_registerWindow.exec_()
-        else:
-            my_registerWindow = My_registerWindow(my_register)
-            my_registerWindow.show()
-            my_registerWindow.exec_()
-            re = my_register.check()
-            if re != 0:
-                return 0
-            else:
-                self.register_show = True
+                re = my_register.check()
+                print('check2:' + str(re))
+                if re != 0:
+                    return 0
+                else:
+                    self.register_show = True
 
 
-        self.add_in_text_browser("正在启动\r\n")
-        self.bool_run = True
-        try:
+            self.add_in_text_browser("正在启动\r\n")
+            self.bool_run = True
+
             if self.mod == codedef.MOD_SET:# 设置窗口
                 self.add_in_text_browser("启动 设置窗口\r\n")
                 if self.main_process is None or self.main_process.is_alive() is False:
@@ -357,6 +359,7 @@ def my_set_windows_process(log_queue, qq_name, yys1, yys2, yys3, yys4):
         fuben.set_windows(yys2)
         fuben.set_windows(yys3)
         fuben.set_windows(yys4)
+        fuben.add_log("设置窗口成功\r\n")
     except Exception as e:
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
@@ -390,7 +393,7 @@ def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_ti
     try:
         fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times)
     except Exception as e:
-        
+
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
