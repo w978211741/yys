@@ -23,6 +23,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.setWindowFlags(QtCore.Qt.WindowSystemMenuHint | QtCore.Qt.WindowCloseButtonHint |
                             QtCore.Qt.WindowMinimizeButtonHint)
         self.setFixedSize(self.width(), self.height())
+        self.radioButton_1.setChecked(True)
         self.comboBox_1.setEnabled(False)
         self.comboBox_2.setEnabled(False)
         self.comboBox_3.setEnabled(False)

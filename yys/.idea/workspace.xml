@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4db9f66d-8b1c-4325-a6a5-4a71b8828187" name="Default Changelist" comment="Default Changelist">
+    <list default="true" id="4db9f66d-8b1c-4325-a6a5-4a71b8828187" name="Default Changelist" comment="加注册界面">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/yys.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/yys.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Cfuben.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Cfuben.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/Cregister.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Cregister.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/UI/MainWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainWindow.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/registerUI.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/registerUI.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/registerUI.ui" beforeDir="false" afterPath="$PROJECT_DIR$/UI/registerUI.ui" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UI/registerWindow.py" beforeDir="false" afterPath="$PROJECT_DIR$/UI/registerWindow.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/serial" beforeDir="false" afterPath="$PROJECT_DIR$/serial" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/temp/temp.bmp" beforeDir="false" afterPath="$PROJECT_DIR$/temp/temp.bmp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py" beforeDir="false" afterPath="$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/yys/game/codedef.py" beforeDir="false" afterPath="$PROJECT_DIR$/yys/game/codedef.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,48 +53,52 @@
     <session id="868394516">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="31" />
-          <entry key="project.open.time.0" value="2" />
-          <entry key="project.open.time.1" value="5" />
+          <entry key="project.closed" value="54" />
+          <entry key="project.open.time.0" value="3" />
+          <entry key="project.open.time.1" value="12" />
           <entry key="project.open.time.10" value="1" />
-          <entry key="project.open.time.12" value="2" />
-          <entry key="project.open.time.13" value="6" />
-          <entry key="project.open.time.14" value="9" />
-          <entry key="project.open.time.15" value="2" />
+          <entry key="project.open.time.11" value="1" />
+          <entry key="project.open.time.12" value="4" />
+          <entry key="project.open.time.13" value="10" />
+          <entry key="project.open.time.14" value="11" />
+          <entry key="project.open.time.15" value="3" />
           <entry key="project.open.time.16" value="1" />
           <entry key="project.open.time.19" value="1" />
+          <entry key="project.open.time.2" value="2" />
           <entry key="project.open.time.20" value="1" />
+          <entry key="project.open.time.30" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.open.time.6" value="2" />
+          <entry key="project.open.time.6" value="4" />
           <entry key="project.open.time.9" value="1" />
-          <entry key="project.opened" value="34" />
+          <entry key="project.opened" value="57" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="bmp" value="7" />
-          <entry key="py" value="119" />
+          <entry key="ico" value="2" />
+          <entry key="py" value="247" />
           <entry key="qrc" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Image" value="7" />
-          <entry key="Python" value="119" />
+          <entry key="Image" value="9" />
+          <entry key="Python" value="247" />
           <entry key="XML" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="dummy" value="15" />
-          <entry key="py" value="9623" />
-          <entry key="txt" value="84" />
+          <entry key="py" value="17077" />
+          <entry key="txt" value="146" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="PLAIN_TEXT" value="99" />
-          <entry key="Python" value="9623" />
+          <entry key="PLAIN_TEXT" value="161" />
+          <entry key="Python" value="17077" />
         </counts>
       </usages-collector>
     </session>
@@ -133,14 +141,85 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/main.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UI/Cregister.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+            <state relative-caret-position="308">
+              <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
               <folding>
-                <element signature="e#16#52#0" expanded="true" />
+                <element signature="e#0#26#0" expanded="true" />
+                <element signature="e#2816#5014#0" />
+                <element signature="e#5127#6410#0" />
+                <element signature="e#6459#6725#0" />
+                <element signature="e#6806#7323#0" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/des.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="174">
+              <caret line="22" column="36" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="36" />
+              <folding>
+                <element signature="e#0#13#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UI/registerWindow.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="223">
+              <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+                <element signature="e#284#409#0" />
+                <element signature="e#391#4447#0" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="290">
+              <caret line="86" column="51" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="430">
+              <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Cgame.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="314">
+              <caret line="204" column="40" lean-forward="true" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="40" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/UI/easyicon_net_512.ico">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/CsendQQ.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="166">
+              <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
             </state>
           </provider>
         </entry>
@@ -156,36 +235,36 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>set_windows</find>
-      <find>my_set_windows_process</find>
-      <find>log_queue Exception:</find>
-      <find>if self.main_process.is_alive() is False:</find>
-      <find>if self.main_process.is_a</find>
-      <find>bool_run</find>
-      <find>str_log =</find>
-      <find>__str__())</find>
-      <find>print(&quot;Exception:&quot; + e.__str__())</find>
-      <find>get_ti_li</find>
-      <find>SHOU_DAO_YAO_QING</find>
-      <find>-3</find>
-      <find>XUAN_SHANG_FENG_YING_YAO_QING</find>
-      <find>get_window</find>
-      <find>set_window</find>
-      <find>Image</find>
-      <find>enter</find>
-      <find>temp.bmp</find>
-      <find>SendQQ</find>
-      <find>send_qq</find>
-      <find>Fuben.send_qq</find>
-      <find>check</find>
-      <find>xue_yue</find>
+      <find>subwindow</find>
+      <find>WinId</find>
+      <find>gui</find>
+      <find>da_tang_suo_gui</find>
+      <find>set_yys</find>
+      <find>setjienum</find>
+      <find>comboBox_jienum</find>
+      <find>self.window</find>
+      <find>fight_UP_guai</find>
+      <find>da_wan_flag</find>
+      <find>judge_scene</find>
+      <find>str</find>
+      <find>argument</find>
       <find>my_team_kun_25_process</find>
-      <find>comboBox</find>
-      <find>my_hun_shi_process</find>
-      <find>lineEdit</find>
-      <find>comboBox_4.text</find>
-      <find>xue</find>
-      <find>lineEdit_times</find>
+      <find>ti_li</find>
+      <find>da_tang_suo</find>
+      <find>get_ti_li</find>
+      <find>iold_scence</find>
+      <find>fight_end</find>
+      <find>e.__str__()</find>
+      <find>退出探索</find>
+      <find>YAO_QING_DUI_YOU_JI_XU</find>
+      <find>&lt;</find>
+      <find>TANG_GO_RIGHT</find>
+      <find>TANG_CAN_EXIT</find>
+      <find>print</find>
+      <find>traceback</find>
+      <find>find_UP</find>
+      <find>register_show</find>
+      <find>register_button</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -199,6 +278,9 @@
       <replace>self.send_qq</replace>
       <replace>comboBox</replace>
       <replace>comboBox_4.currentText</replace>
+      <replace>return codedef.ERROR_END</replace>
+      <replace>return codedef.NORMAL_END</replace>
+      <replace>traceback.format_exc()</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -218,31 +300,37 @@
         <option value="$PROJECT_DIR$/Cdisdigit.py" />
         <option value="$PROJECT_DIR$/CHandle.py" />
         <option value="$PROJECT_DIR$/Mouse.py" />
-        <option value="$PROJECT_DIR$/Chandle.py" />
         <option value="$PROJECT_DIR$/Cluping.py" />
         <option value="$PROJECT_DIR$/../.gitignore" />
-        <option value="$PROJECT_DIR$/Cimg.py" />
-        <option value="$PROJECT_DIR$/yys/game/Cdashitou.py" />
-        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25.py" />
-        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25_teammate.py" />
-        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py" />
-        <option value="$PROJECT_DIR$/Cgame.py" />
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/Cmouse.py" />
-        <option value="$PROJECT_DIR$/Cwindow.py" />
         <option value="$PROJECT_DIR$/CsendQQ.py" />
+        <option value="$PROJECT_DIR$/Cimg.py" />
+        <option value="$PROJECT_DIR$/Cwindow.py" />
         <option value="$PROJECT_DIR$/UI/yysUI.py" />
+        <option value="$PROJECT_DIR$/Chandle.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cliaojiejie.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cpersonal_jiejie.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cdashitou.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cteam_hun_10.py" />
+        <option value="$PROJECT_DIR$/Cgame.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25_teammate.py" />
         <option value="$PROJECT_DIR$/main.py" />
-        <option value="$PROJECT_DIR$/UI/MainWindow.py" />
         <option value="$PROJECT_DIR$/UI/Cfuben.py" />
+        <option value="$PROJECT_DIR$/UI/MainWindow.py" />
+        <option value="$PROJECT_DIR$/UI/Cregister.py" />
+        <option value="$PROJECT_DIR$/UI/registerWindow.py" />
+        <option value="$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py" />
+        <option value="$PROJECT_DIR$/yys/game/codedef.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="685" />
-    <option name="y" value="35" />
-    <option name="width" value="1220" />
-    <option name="height" value="1040" />
+    <option name="x" value="1105" />
+    <option name="y" value="115" />
+    <option name="width" value="1365" />
+    <option name="height" value="720" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -264,7 +352,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -277,10 +364,22 @@
               <item name="yys" type="462c0819:PsiDirectoryNode" />
               <item name="UI" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="yys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yys" type="462c0819:PsiDirectoryNode" />
+              <item name="yys" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="yys" type="b2602c69:ProjectViewProjectNode" />
+              <item name="yys" type="462c0819:PsiDirectoryNode" />
+              <item name="yys" type="462c0819:PsiDirectoryNode" />
+              <item name="game" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -429,7 +528,42 @@
       <option name="project" value="LOCAL" />
       <updated>1556866206274</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="5.3 设置multiprocessing.freeze_support()解决多线程启动窗口问题">
+      <created>1556894308057</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1556894308057</updated>
+    </task>
+    <task id="LOCAL-00015" summary="5.9去掉识别体力，改为场景重复，过多直接结束副本进程">
+      <created>1557358676786</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1557358676786</updated>
+    </task>
+    <task id="LOCAL-00016" summary="加注册界面">
+      <created>1558080805739</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1558080805739</updated>
+    </task>
+    <task id="LOCAL-00017" summary="加注册界面">
+      <created>1558134713900</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1558134713900</updated>
+    </task>
+    <task id="LOCAL-00018" summary="注册第一版通过">
+      <created>1558137294734</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1558137294734</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TodoView">
@@ -445,17 +579,17 @@
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.14464994" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.30118892" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.29912025" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.29178885" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.398827" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.107038125" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32991204" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32844576" />
       <window_info anchor="bottom" id="Terminal" order="8" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Python Console" order="10" weight="0.329429" />
@@ -496,6 +630,32 @@
       </list>
     </option>
   </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
@@ -507,79 +667,13 @@
     <MESSAGE value="Default Changelist" />
     <MESSAGE value="yiban" />
     <MESSAGE value="5.1" />
-    <option name="LAST_COMMIT_MESSAGE" value="5.1" />
+    <MESSAGE value="5.3 设置multiprocessing.freeze_support()解决多线程启动窗口问题" />
+    <MESSAGE value="5.9去掉识别体力，改为场景重复，过多直接结束副本进程" />
+    <MESSAGE value="加注册界面" />
+    <MESSAGE value="注册第一版通过" />
+    <option name="LAST_COMMIT_MESSAGE" value="注册第一版通过" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/yys/结界突破入口.bmp" />
-    <entry file="file://$PROJECT_DIR$/yys/进攻结界按钮.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/关闭按钮.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/体力数量.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/确认退出.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/temp.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://D:/softwres/Python37/Lib/enum.py" />
-    <entry file="file://$PROJECT_DIR$/yys/scene/战斗奖励界面.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/组队按钮.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/粗红叉按钮.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/细红叉按钮.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cliaojiejie.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="112">
-          <caret line="19" column="69" lean-forward="true" selection-start-line="19" selection-start-column="69" selection-end-line="19" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/探索.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/temp/findStrInImg.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/aircv/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1204">
-          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/cv2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="18" selection-start-line="2" selection-start-column="18" selection-end-line="2" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/QWidget.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6787">
-          <caret line="332" column="51" selection-start-line="332" selection-start-column="51" selection-end-line="332" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/multiprocessing/queues.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="644">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/multiprocessing/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2884">
@@ -597,59 +691,10 @@
     <entry file="file://$PROJECT_DIR$/yys/血月.bmp">
       <provider selected="true" editor-type-id="images" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cdashitou.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1176">
-          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cpersonal_jiejie.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="6" column="6" selection-start-line="6" selection-start-column="6" selection-end-line="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/QLineEdit.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="173">
           <caret line="450" column="8" selection-start-line="450" selection-start-column="8" selection-end-line="450" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="296">
-          <caret line="1274" column="8" selection-start-line="1274" selection-start-column="8" selection-end-line="1274" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="924">
-          <caret line="39" column="38" selection-start-line="39" selection-start-column="38" selection-end-line="39" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_hun_10.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="20" column="18" selection-start-line="20" selection-start-column="18" selection-end-line="20" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25_teammate.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="672">
-          <caret line="25" column="16" selection-start-line="25" selection-start-column="16" selection-end-line="25" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="23" column="30" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -674,20 +719,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/cv2/cv2/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-119">
-          <caret line="7194" column="4" selection-start-line="7194" selection-start-column="4" selection-end-line="7194" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cdistinguish.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="364">
-          <caret line="13" column="42" selection-start-line="13" selection-start-column="27" selection-end-line="13" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/win32api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="175">
@@ -702,13 +733,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Chandle.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="6" selection-start-column="6" selection-end-column="6" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/PIL/ImageGrab.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="130">
@@ -719,107 +743,304 @@
     <entry file="file://$PROJECT_DIR$/UI/res.qrc">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/test.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/multiprocessing/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/cv2/cv2/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1500" selection-start-line="1500" selection-end-line="1500" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/win32process.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2548">
+          <caret line="91" column="4" selection-start-line="91" selection-start-column="4" selection-end-line="91" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtGui/QWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3192">
+          <caret line="118" column="8" selection-start-line="118" selection-start-column="8" selection-end-line="118" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/skimage/color/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/skimage/color/colorconv.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="91">
+          <caret line="54" selection-start-line="54" selection-end-line="54" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/site-packages/skimage/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3528">
+          <caret line="126" selection-start-line="126" selection-end-line="126" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtCore/Qt.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="1160" column="4" selection-start-line="1160" selection-start-column="4" selection-end-line="1160" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cliaojiejie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="28" selection-start-line="1" selection-start-column="28" selection-end-line="1" selection-end-column="28" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/easyicon_net_512.ico">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cdistinguish.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="12" column="24" lean-forward="true" selection-start-line="12" selection-start-column="24" selection-end-line="12" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cpersonal_jiejie.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="12" selection-start-line="12" selection-end-line="15" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cdashitou.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="420">
+          <caret line="15" column="44" selection-start-line="10" selection-start-column="4" selection-end-line="15" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_hun_10.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="574">
+          <caret line="27" column="51" selection-start-line="27" selection-start-column="51" selection-end-line="27" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cmouse.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="186">
+          <caret line="16" column="8" selection-start-line="16" selection-start-column="8" selection-end-line="16" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cimg.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="107">
+          <caret line="27" column="8" selection-start-line="27" selection-start-column="8" selection-end-line="27" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25_teammate.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="309">
+          <caret line="33" column="49" selection-start-line="33" selection-start-column="49" selection-end-line="33" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Chandle.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="4" column="6" selection-start-line="4" selection-start-column="6" selection-end-line="4" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="296">
+          <caret line="896" column="6" selection-start-line="896" selection-start-column="6" selection-end-line="896" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/win32gui.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="141">
+        <state relative-caret-position="10136">
           <caret line="362" column="4" selection-start-line="362" selection-start-column="4" selection-end-line="362" selection-end-column="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cgame.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/QWidget.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="159">
-          <caret line="363" column="15" selection-start-line="363" selection-start-column="15" selection-end-line="363" selection-end-column="15" />
-          <folding>
-            <element signature="e#0#20#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-829">
+          <caret line="930" column="8" selection-start-line="930" selection-start-column="8" selection-end-line="930" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cwindow.py">
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/QDialog.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+        <state relative-caret-position="171">
+          <caret line="170" column="8" selection-start-line="170" selection-start-column="8" selection-end-line="170" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/yysUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="11">
+          <caret line="198" column="33" selection-start-line="198" selection-start-column="33" selection-end-line="198" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="16" column="20" selection-start-line="16" selection-start-column="20" selection-end-line="16" selection-end-column="20" />
           <folding>
-            <element signature="e#0#25#0" expanded="true" />
+            <element signature="e#16#52#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/CsendQQ.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="164" column="27" selection-start-line="164" selection-start-column="22" selection-end-line="164" selection-end-column="27" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="166">
+          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Cmouse.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="82" column="21" selection-start-line="82" selection-start-column="21" selection-end-line="82" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Cimg.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="28">
-          <caret line="1" column="2" selection-start-line="1" selection-end-line="1" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/UI/yysUI.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3836">
-          <caret line="140" column="46" selection-start-line="140" selection-start-column="46" selection-end-line="140" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python37/Lib/multiprocessing/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/UI/easyicon_net_512.ico">
+      <provider selected="true" editor-type-id="images" />
     </entry>
     <entry file="file://$PROJECT_DIR$/UI/Cfuben.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="619">
-          <caret line="65" column="52" lean-forward="true" selection-start-line="65" selection-start-column="52" selection-end-line="65" selection-end-column="52" />
+        <state relative-caret-position="232">
+          <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#2852#3520#0" />
-            <element signature="e#3587#5398#0" />
-            <element signature="e#5465#7202#0" />
+            <element signature="e#722#779#0" />
+            <element signature="e#833#1216#0" />
+            <element signature="e#1571#3420#0" />
+            <element signature="e#3473#4976#0" />
+            <element signature="e#5043#7164#0" />
+            <element signature="e#7242#12592#0" />
+            <element signature="e#12644#12807#0" />
+            <element signature="e#12869#13034#0" />
+            <element signature="e#13088#13707#0" />
+            <element signature="e#13768#14021#0" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cwindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="143">
+          <caret line="65" column="8" selection-start-line="65" selection-start-column="8" selection-end-line="65" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/.PyCharmCE2018.2/system/python_stubs/-1544665248/PyQt5/QtWidgets/QMessageBox.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="151">
+          <caret line="332" column="8" selection-start-line="332" selection-start-column="8" selection-end-line="332" selection-end-column="8" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/UI/MainWindow.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="299" column="19" lean-forward="true" selection-start-line="299" selection-start-column="19" selection-end-line="299" selection-end-column="19" />
+        <state relative-caret-position="115">
+          <caret line="23" column="26" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="26" />
           <folding>
             <element signature="e#0#31#0" expanded="true" />
-            <element signature="e#3323#7751#0" />
-            <element signature="e#9464#10269#0" />
-            <element signature="e#10303#10575#0" />
-            <element signature="e#10610#10970#0" />
-            <element signature="e#11048#11304#0" />
-            <element signature="e#11385#11602#0" />
-            <element signature="e#11665#11863#0" />
+            <element signature="e#2052#4079#0" />
+            <element signature="e#4110#10437#0" />
+            <element signature="e#10364#10749#0" />
+            <element signature="e#10799#10902#0" />
+            <element signature="e#10936#11244#0" />
+            <element signature="e#11280#11320#0" />
+            <element signature="e#14417#14751#0" />
+            <element signature="e#14832#15121#0" />
+            <element signature="e#15196#15479#0" />
+            <element signature="e#15572#15885#0" />
+            <element signature="e#15974#16331#0" />
+            <element signature="e#16410#16699#0" />
+            <element signature="e#16748#16934#0" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main.py">
+    <entry file="file://$PROJECT_DIR$/des.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="6" column="11" lean-forward="true" selection-start-line="6" selection-start-column="11" selection-end-line="6" selection-end-column="11" />
+        <state relative-caret-position="174">
+          <caret line="22" column="36" selection-start-line="22" selection-start-column="15" selection-end-line="22" selection-end-column="36" />
           <folding>
-            <element signature="e#16#52#0" expanded="true" />
+            <element signature="e#0#13#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/Cregister.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="81" column="48" selection-start-line="81" selection-start-column="48" selection-end-line="81" selection-end-column="48" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+            <element signature="e#2816#5014#0" />
+            <element signature="e#5127#6410#0" />
+            <element signature="e#6459#6725#0" />
+            <element signature="e#6806#7323#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/registerUI.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="42" column="63" selection-start-line="42" selection-start-column="63" selection-end-line="42" selection-end-column="63" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/UI/registerWindow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="90" column="22" selection-start-line="90" selection-start-column="22" selection-end-line="90" selection-end-column="22" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+            <element signature="e#284#409#0" />
+            <element signature="e#391#4447#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Cgame.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="204" column="40" lean-forward="true" selection-start-line="204" selection-start-column="8" selection-end-line="204" selection-end-column="40" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="430">
+          <caret line="33" column="8" selection-start-line="33" selection-start-column="8" selection-end-line="33" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/codedef.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="206">
+          <caret line="15" column="21" selection-start-line="15" selection-start-column="21" selection-end-line="15" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/yys/game/Cteam_kun_25_captain.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="290">
+          <caret line="86" column="51" selection-start-line="86" selection-start-column="51" selection-end-line="86" selection-end-column="51" />
         </state>
       </provider>
     </entry>

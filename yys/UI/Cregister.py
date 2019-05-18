@@ -79,6 +79,7 @@ class register():
                         iret = -2
             else:
                 iret = -3
+            self.final_serial_list = serial_list
         else:
             iret = -1
         return iret

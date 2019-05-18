@@ -83,6 +83,8 @@ class Team_kun_25_captain(Team_kun_25):
             return -22
         elif self.right and self.click_img("yys/探索向右走.bmp", handle) == 0:
             print("探索向右走")
+            time.sleep(0.3)
+            self.click_img("yys/探索向右走.bmp", handle)
             return codedef.TANG_GO_RIGHT
 
         return codedef.NORMAL_END
@@ -123,12 +125,15 @@ class Team_kun_25_captain(Team_kun_25):
         return codedef.ERROR_END
 
     def fight_UP_guai(self, handle, UP, target_img_path):
-        Window.temp_jie_tu(handle)
         src_img_path1 = 'temp/temp1.bmp'
+        Window.temp_jie_tu(handle, src_img_path1)
         time.sleep(0.8)
         src_img_path2 = 'temp/temp2.bmp'
+        Window.temp_jie_tu(handle, src_img_path2)
         time.sleep(0.8)
         src_img_path3 = 'temp/temp3.bmp'
+        Window.temp_jie_tu(handle, src_img_path3)
+
         if self.witch_up(handle, UP, src_img_path1, target_img_path) == codedef.NORMAL_END:
             return codedef.NORMAL_END
         if self.witch_up(handle, UP, src_img_path2, target_img_path) == codedef.NORMAL_END:

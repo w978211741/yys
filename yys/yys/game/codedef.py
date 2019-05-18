@@ -13,7 +13,7 @@ SCENCE_REPEAT = -43         # 场景重复，计数加1
 # 打探索
 TANG_CAN_EXIT = -50         # 打完识别到探索奖励，次数可退出
 TANG_GO_RIGHT = -51         # 探索中，向右走
-TANG_GO_RIGHT_MAX = 10      # 探索中，向右走最大值，到达后退出探索
+TANG_GO_RIGHT_MAX = 5      # 探索中，向右走最大值，到达后退出探索
 
 # 次数定义
 SCENCE_REPEAT_TIMES = 15    # 识别到场景重复次数
