@@ -8,7 +8,7 @@ import os
 
 class register():
     def __init__(self):
-        self.key = '*$h@D$f8'
+        self.key = '*$r@a$ng'
         self.final_serial_list = []
         self.re = 0
 

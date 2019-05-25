@@ -60,10 +60,6 @@ class Game:
         return codedef.NORMAL_END
 
     def error_scene(self, argument, handle):
-        if self.click_img("yys/退出斗技按钮.bmp", handle, 0.98) == 0:
-            print("退出斗技按钮")
-        if self.click_img("yys/确认退出斗技按钮.bmp", handle, 0.98) == 0:
-            print("确认退出斗技按钮")
         return codedef.NORMAL_END
 
     def enter_jie_jie(self, argument, handle):
@@ -247,10 +243,6 @@ class Game:
         if Game.if_exist(path + "探索章节界面.bmp") == 0:
             return SceneKey.TANG_SUO_ZHANG_JIE
 
-
-
-        # if Game.if_exist(path + "斗技准备界面.bmp") == 0:
-        #   return SceneKey.DOU_JI_ZHUN_BEI
         return SceneKey.NUKOWN
 
     # 单击指定图片
@@ -277,8 +269,6 @@ class Game:
         if self.click_img(self.window, "yys/探索按钮.bmp", handle) == 0:
             print("探索按钮")
 
-
-
     # 用于去除未使用对象成员变量的函数参数使用了self而出现的波浪线
     def qu_bo_lang_xian(self):
         window = self.window
@@ -301,15 +291,6 @@ class Game:
             print("开始斗技按钮")
         pass
 
-    def get_ready(self, argument, handle):
-        if self.click_img("yys/斗技准备按钮.bmp", handle, 0.98) == 0:
-            print("斗技准备按钮")
-        re, x, y = self.window.find_img(handle, "yys/斗技中界面.bmp")  # 斗技中界面
-        if re == 0:
-            if self.click_img("yys/退出战斗按钮.bmp", handle, 0.98) == 0:
-                print("退出战斗按钮")
-        pass
-
     def ju_jue_xuan_shang(self, argument, handle):
         if self.click_img("yys/细红叉按钮.bmp", handle, 0.90) == 0:
             print("细红叉按钮")
@@ -326,7 +307,7 @@ class Game:
     def mo_ren_yao_qing_dui_you(self, argument, handle):
         if self.click_img("yys/默认邀请队友按钮灰.bmp", handle, 0.90) == 0:
             print("默认邀请队友按钮灰")
-            time.sleep(1)
+            time.sleep(0.8)
         if self.jie_tu_if_exist(handle, "yys/默认邀请队友按钮.bmp") == 0:
             if self.click_img("yys/确定按钮.bmp", handle, 0.90) == 0:
                 print("确定按钮")
@@ -345,22 +326,8 @@ class Game:
     def yao_qing_dui_you_ji_xu(self, argument, handle):
         if self.click_img("yys/确定按钮.bmp", handle) == 0:
             print("确定按钮")
-        return codedef.NORMAL_END
-
-    def dou_ji(self, argument, handle):
-        switcher = {
-            SceneKey.NUKOWN: self.error_scene,
-            SceneKey.DOU_JI: self.get_ready,
-            SceneKey.ZHANG_DOU_SHI_BAI: self.fight_end,
-            SceneKey.ZHANG_DOU_SHENG_LI: self.fight_end,
-            SceneKey.ZHANG_DOU_JIANG_LI: self.fight_end,
-            SceneKey.DOU_JI_ZHUN_BEI: self.start_dj_fight,
-            SceneKey.DOU_JI_ZHONG: self.exit_fighting
-        }
-        # Get the function from switcher dictionary
-        func = switcher.get(argument, self.error_scene)(handle)
-        # Execute the function
-        return func
+            return codedef.NORMAL_END
+        return codedef.ERROR_END
 
     # 发送 temp.bmp 给qq好友消息窗口，窗口名name ，一般是好友昵称还在备注，或者群名称
     def send_qq_temp_img(self, name):

@@ -26,10 +26,10 @@ class Team_kun_25_teammate(Team_kun_25):
         return Team_kun_25.do_work(self, argument, handle)
 
     def shou_dao_yai_qing(self, argument, handle):
-        if self.click_img("yys/接受邀请按钮.bmp", handle, 0.90) == 0:
+        if self.click_img("yys/接受邀请按钮.bmp", handle) == 0:
             print("接受邀请按钮")
-            return 0
-        return 0
+            return codedef.NORMAL_END
+        return codedef.NORMAL_END
 
     def this_da_tang_suo(self, argument, handle):
         return codedef.NORMAL_END

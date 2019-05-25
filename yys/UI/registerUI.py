@@ -15,7 +15,8 @@ class Ui_Dialog(object):
         self.buttonBox = QtWidgets.QDialogButtonBox(Dialog)
         self.buttonBox.setGeometry(QtCore.QRect(410, 300, 91, 32))
         self.buttonBox.setOrientation(QtCore.Qt.Horizontal)
-        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Close)
+        self.buttonBox.setStandardButtons(QtWidgets.QDialogButtonBox.Ok)
+        self.buttonBox.setCenterButtons(False)
         self.buttonBox.setObjectName("buttonBox")
         self.lineEdit_register = QtWidgets.QLineEdit(Dialog)
         self.lineEdit_register.setGeometry(QtCore.QRect(140, 230, 181, 21))
@@ -42,6 +43,7 @@ class Ui_Dialog(object):
         self.retranslateUi(Dialog)
         self.pushButton_registe.clicked.connect(Dialog.registe)
         self.pushButtoncopy.clicked.connect(Dialog.cptoClipboard)
+        self.buttonBox.accepted.connect(Dialog.accept)
         QtCore.QMetaObject.connectSlotsByName(Dialog)
 
     def retranslateUi(self, Dialog):

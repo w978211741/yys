@@ -44,7 +44,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.bool_run = False
         self.timer = QTimer()  # 初始化一个定时器
         self.timer.timeout.connect(self.show_log)  # 计时结束调用operate()方法
-        self.timer.start(1000)
+        self.timer.start(800)
         # self.timer2 = QTimer()  # 初始化一个定时器
         # self.timer2.timeout.connect(self.try_get_qq)  # 计时结束调用operate()方法
         # self.timer2.start(10000)
@@ -215,6 +215,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                 pass
             elif self.mod == codedef.MOD_DOU:
                 self.add_in_text_browser("启动 刷斗技荣誉点\r\n")
+                inum = int(self.comboBox_dounum.currentText())
                 iMaxtimes = 9999
                 strMaxtimes = self.Maxtimes
                 if strMaxtimes.isdigit() is False:
@@ -223,9 +224,10 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     iMaxtimes = int(strMaxtimes)
                 if self.main_process is None or self.main_process.is_alive() is False:
                     self.main_process = multiprocessing.Process(
-                        target=my_hun_shi_process, args=(
+                        target=my_dou_ji_process, args=(
                             self.log_queue, self.qq_name, self.comboBox_1.currentText(),
-                            self.comboBox_2.currentText(), iMaxtimes), name='my_process')
+                            self.comboBox_2.currentText(), self.comboBox_3.currentText(),
+                            self.comboBox_4.currentText(), inum, iMaxtimes), name='my_process')
                     self.main_process.start()
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
@@ -262,27 +264,25 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         return 0
 
     def try_get_qq(self):
-        Fuben.get_qq_cmd('昆虫记')
+        self.qq_name = self.lineEdit_qqname.text()
+        if self.qq_name != '':
+            handle = Window.check_window(self.qq_name)
+            if handle != 0:
+                Fuben.get_qq_cmd(self.qq_name)
         return 0
 
     def setjienum(self, text):
         self.radioButton_2.setChecked(True)
         self.mod = codedef.MOD_JIE
         inum = int(text)
-        if self.set_yys_wins(inum) != 0:
-            self.add_in_text_browser("打结界的窗口数量不为1234，设置失败\r\n")
-            self.comboBox_jienum.setText("")
-            return 0
+        self.set_yys_wins(inum)
         self.add_in_text_browser("打结界的窗口数量设置成功\r\n")
 
     def setxuenum(self, text):
         self.radioButton_3.setChecked(True)
         self.mod = codedef.MOD_XUE
         inum = int(text)
-        if self.set_yys_wins(inum) != 0:
-            self.add_in_text_browser("刷血月的窗口数量不为1234，设置失败\r\n")
-            self.comboBox_xuenum.setText("")
-            return 0
+        self.set_yys_wins(inum)
         self.add_in_text_browser("刷血月的窗口数量设置成功\r\n")
 
     def setdounum(self, text):
@@ -412,15 +412,18 @@ def my_team_kun_25_process(log_queue, qq_name, yys1, yys2, UP, BOSS, imax_times)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("组队探索副本 结束\r\n")
 
-def my_dou_ji_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum):
+
+def my_dou_ji_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_times):
     fuben = Fuben(log_queue, qq_name)
     try:
-        fuben.jie_jie(yys1, yys2, yys3, yys4, inum)
+        fuben.dou_ji(yys1, yys2, yys3, yys4, inum, imax_times)
     except Exception as e:
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         send_qq(fuben, qq_name, str_log)
     fuben.add_log("结界 结束\r\n")
+
+
 # 主动发qq消息
 def send_qq(fuben, qq_name, msg):
     if qq_name == '':

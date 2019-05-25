@@ -33,8 +33,9 @@ class Team_hun_10(Game):
     def shou_dao_yai_qing(self, argument, handle):
         if self.click_img("yys/自动加入队伍按钮.bmp", handle, 0.90) == 0:
             print("自动加入队伍按钮")
-            return 0
+            time.sleep(0.8)
+            return self.mo_ren_yao_qing_dui_you(argument, handle)
         if self.click_img("yys/接受邀请按钮.bmp", handle, 0.90) == 0:
             print("接受邀请按钮")
-            return 0
-        return 0
+            return codedef.NORMAL_END
+        return codedef.NORMAL_END

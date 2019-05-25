@@ -11,11 +11,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(191, 851)
+        MainWindow.resize(199, 851)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
-        self.textBrowser.setGeometry(QtCore.QRect(0, 430, 191, 421))
+        self.textBrowser.setGeometry(QtCore.QRect(10, 430, 181, 421))
         self.textBrowser.setObjectName("textBrowser")
         self.groupBox_4 = QtWidgets.QGroupBox(self.centralwidget)
         self.groupBox_4.setGeometry(QtCore.QRect(0, 360, 191, 61))
@@ -31,7 +31,7 @@ class Ui_MainWindow(object):
         self.groupBox_2.setGeometry(QtCore.QRect(0, 240, 191, 51))
         self.groupBox_2.setObjectName("groupBox_2")
         self.comboBox_1 = QtWidgets.QComboBox(self.groupBox_2)
-        self.comboBox_1.setGeometry(QtCore.QRect(0, 20, 41, 22))
+        self.comboBox_1.setGeometry(QtCore.QRect(10, 20, 41, 22))
         self.comboBox_1.setObjectName("comboBox_1")
         self.comboBox_1.addItem("")
         self.comboBox_1.addItem("")
@@ -45,14 +45,14 @@ class Ui_MainWindow(object):
         self.comboBox_2.addItem("")
         self.comboBox_2.addItem("")
         self.comboBox_3 = QtWidgets.QComboBox(self.groupBox_2)
-        self.comboBox_3.setGeometry(QtCore.QRect(100, 20, 41, 22))
+        self.comboBox_3.setGeometry(QtCore.QRect(90, 20, 41, 22))
         self.comboBox_3.setObjectName("comboBox_3")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_3.addItem("")
         self.comboBox_4 = QtWidgets.QComboBox(self.groupBox_2)
-        self.comboBox_4.setGeometry(QtCore.QRect(150, 20, 41, 22))
+        self.comboBox_4.setGeometry(QtCore.QRect(130, 20, 41, 22))
         self.comboBox_4.setObjectName("comboBox_4")
         self.comboBox_4.addItem("")
         self.comboBox_4.addItem("")
@@ -159,7 +159,7 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         _translate = QtCore.QCoreApplication.translate
-        MainWindow.setWindowTitle(_translate("MainWindow", "痒痒鼠1.3"))
+        MainWindow.setWindowTitle(_translate("MainWindow", "痒痒鼠1.7"))
         self.pushButton_1.setText(_translate("MainWindow", "启动"))
         self.pushButton_2.setText(_translate("MainWindow", "停止"))
         self.groupBox_2.setTitle(_translate("MainWindow", "窗口参数 沙盒窗口名"))

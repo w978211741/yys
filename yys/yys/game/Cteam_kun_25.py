@@ -33,7 +33,7 @@ class Team_kun_25(Game):
 
     def exit_tang_suo(self, handle):
         if self.click_img("yys/退出探索.bmp", handle) == 0:
-            time.sleep(0.5)
-            if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
-                return codedef.NORMAL_END
+            time.sleep(0.8)
+        if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
+            return codedef.NORMAL_END
         return codedef.ERROR_END

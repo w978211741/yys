@@ -68,11 +68,12 @@ class Team_kun_25_captain(Team_kun_25):
             return codedef.NORMAL_END
 
         if self.UP != codedef.UP_C_NULL:
+            # t = time.time()
+            # st_time = int(round(t * 1000))
             if self.fight_UP_guai(handle, self.UP, "yys/打小怪.bmp") == codedef.NORMAL_END:
+                # end_time = int(round(t * 1000))
+                # print('找到，耗时：' + str(end_time - st_time) + '毫秒')
                 return -21
-            else:
-                if self.fight_UP_guai(handle, self.UP, "yys/打小怪.bmp") == codedef.NORMAL_END:
-                    return -21
         else:
             if self.click_img("yys/打小怪.bmp", handle) == 0:
                 print("打小怪")
@@ -92,7 +93,7 @@ class Team_kun_25_captain(Team_kun_25):
     #         target_rad = [35, 45, 213]
     #         target_mi = [163, 203, 223]
     #         target_yellow = [112, 200, 217]
-    def find_UP(self, x, UP, src_img_path):
+    def find_UP(self, x, y, UP, src_img_path):
         if UP == codedef.UP_C_COIN:
             target_BGR = codedef.UP_COIN
         elif UP == codedef.UP_C_EXP:
@@ -101,8 +102,8 @@ class Team_kun_25_captain(Team_kun_25):
             target_BGR = codedef.UP_REWARD
         else:
             return codedef.ERROR_END
-        point_from = [x - 100, 0]
-        point_to = [x + 100, 500]
+        point_from = [x - 80, y + 50]
+        point_to = [x + 80, y + 160]
         src_img = Img.cut_img_path(src_img_path, point_from, point_to)
         # Img.save("temp/tt.bmp", src_img)
 
@@ -113,7 +114,7 @@ class Team_kun_25_captain(Team_kun_25):
         image_weight = img_info[1]
 
         dxx = [3, 3, 3]
-        max = 20
+        max = 10
         index = 0
         for w in range(image_height):
             for j in range(image_weight):
@@ -127,30 +128,39 @@ class Team_kun_25_captain(Team_kun_25):
     def fight_UP_guai(self, handle, UP, target_img_path):
         src_img_path1 = 'temp/temp1.bmp'
         Window.temp_jie_tu(handle, src_img_path1)
-        time.sleep(0.8)
-        src_img_path2 = 'temp/temp2.bmp'
-        Window.temp_jie_tu(handle, src_img_path2)
-        time.sleep(0.8)
-        src_img_path3 = 'temp/temp3.bmp'
-        Window.temp_jie_tu(handle, src_img_path3)
-
         if self.witch_up(handle, UP, src_img_path1, target_img_path) == codedef.NORMAL_END:
             return codedef.NORMAL_END
+        time.sleep(0.4)
+
+        src_img_path2 = 'temp/temp2.bmp'
+        Window.temp_jie_tu(handle, src_img_path2)
         if self.witch_up(handle, UP, src_img_path2, target_img_path) == codedef.NORMAL_END:
             return codedef.NORMAL_END
+        time.sleep(0.4)
+
+        src_img_path3 = 'temp/temp3.bmp'
+        Window.temp_jie_tu(handle, src_img_path3)
         if self.witch_up(handle, UP, src_img_path3, target_img_path) == codedef.NORMAL_END:
             return codedef.NORMAL_END
         return codedef.ERROR_END
 
-    def witch_up(self, handle, UP,src_img_path, target_img_path):
+    def fight_UP_guai3(self, handle, UP, target_img_path):
+        src_img_path = 'temp/temp.bmp'
+        Window.temp_jie_tu(handle, src_img_path)
+        if self.witch_up(handle, UP, src_img_path, target_img_path) == codedef.NORMAL_END:
+            return codedef.NORMAL_END
+        return codedef.ERROR_END
+
+    def witch_up(self, handle, UP, src_img_path, target_img_path):
         pos_list = Img.find_all_pos_img_in_img(src_img_path, target_img_path, 0.9)
         if pos_list is None:
             return codedef.ERROR_END
         for i in range(len(pos_list)):
             x = int(pos_list[i]['result'][0])
-            if self.find_UP(x, UP, src_img_path) == codedef.NORMAL_END:
-                y = int(pos_list[i]['result'][1])
+            y = int(pos_list[i]['result'][1])
+            if self.find_UP(x, y, UP, src_img_path) == codedef.NORMAL_END:
                 mouse = Mouse()
+                # mouse.mouse_to(handle.left + x, handle.top + y)
                 mouse.click(handle.left + x, handle.top + y)
                 return codedef.NORMAL_END
         return codedef.ERROR_END

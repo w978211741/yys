@@ -6,20 +6,20 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>191</width>
+    <width>199</width>
     <height>851</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>痒痒鼠1.3</string>
+   <string>痒痒鼠1.7</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextBrowser" name="textBrowser">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>430</y>
-      <width>191</width>
+      <width>181</width>
       <height>421</height>
      </rect>
     </property>
@@ -78,7 +78,7 @@
     <widget class="QComboBox" name="comboBox_1">
      <property name="geometry">
       <rect>
-       <x>0</x>
+       <x>10</x>
        <y>20</y>
        <width>41</width>
        <height>22</height>
@@ -138,7 +138,7 @@
     <widget class="QComboBox" name="comboBox_3">
      <property name="geometry">
       <rect>
-       <x>100</x>
+       <x>90</x>
        <y>20</y>
        <width>41</width>
        <height>22</height>
@@ -168,7 +168,7 @@
     <widget class="QComboBox" name="comboBox_4">
      <property name="geometry">
       <rect>
-       <x>150</x>
+       <x>130</x>
        <y>20</y>
        <width>41</width>
        <height>22</height>
@@ -505,7 +505,7 @@
     <bool>true</bool>
    </property>
    <property name="icon">
-    <iconset resource="res.qrc">
+    <iconset>
      <normaloff>:/ico/easyicon_net_512.ico</normaloff>:/ico/easyicon_net_512.ico</iconset>
    </property>
    <property name="text">
