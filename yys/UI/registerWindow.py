@@ -23,7 +23,7 @@ class My_registerWindow(Ui_Dialog, QDialog):
 
             str_tips = '欢迎来到德莱联盟\r\n'
             if self.o_register.final_serial_list.__len__() != 6:
-                self.label.setText('error')
+                self.label.setText('注册文件不存在，请检查路径。\r\n')
             else:
                 self.had_registed = self.o_register.final_serial_list[0]  # 1已注册；0未注册 字符串
                 self.serial_number = self.o_register.final_serial_list[1]  # 主板序列号 字符串
@@ -64,6 +64,8 @@ class My_registerWindow(Ui_Dialog, QDialog):
                     if register_re == 0:
                         str_tips += '您已注册,正常使用,注册日期：' + self.registe_date + '\r\n'
                         str_tips += '可使用总天数：' + self.registe_dates + '，感谢您的支持。\r\n'
+                    elif register_re == -1:
+                        str_tips += '注册文件不存在，请检查路径。\r\n'
                     elif register_re == -2:
                         str_tips += '有效期已过，您还未注册，\r\n' \
                                     '请点击下方的\'复制到剪贴板\'按钮，\r\n' \
@@ -74,6 +76,8 @@ class My_registerWindow(Ui_Dialog, QDialog):
                                     '暂无法使用，请联系作者。\r\n'
                     elif register_re == -5:
                         str_tips += '您已注册，未到生效日期，试用期已到，暂无法使用。\r\n'
+                    elif register_re == -6:
+                        str_tips += '未连接网络，请先联网。\r\n'
                     else:
                         str_tips += '发生未知错误[' + str(register_re) + '],请联系作者。\r\n'
                     if register_re == -2:

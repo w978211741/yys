@@ -4,6 +4,7 @@ import sys
 import wmi
 import datetime
 import os
+import httplib2
 
 
 class register():
@@ -38,7 +39,7 @@ class register():
     # 0|0|0|1|0|0
     # 如果未注册，且主板序列号为0，设置试用日期为当天
 
-    # return int :0成功；-1不存在文件；-2过期；-3未注册;-4序列号不匹配;-5已注册，未生效；
+    # return int :0成功；-1不存在文件；-2过期；-3未注册;-4序列号不匹配;-5已注册，未生效；-6未联网
     # 如果-3未注册，-5已注册，未生效；进入试用判断
     def jian_cha(self):
         file_name = 'serial'
@@ -64,8 +65,9 @@ class register():
                     # 注册日期|注册有效期
                     serial_time = serial_list[4]
                     can_use_time = int(serial_list[5])
-                    now = datetime.datetime.now()
-                    time_now = now.strftime('%Y-%m-%d')
+                    time_now = self.gettime()
+                    if time_now is None:
+                        return -6
 
                     d1 = datetime.datetime.strptime(time_now, '%Y-%m-%d')
                     d2 = datetime.datetime.strptime(serial_time, '%Y-%m-%d')
@@ -86,7 +88,7 @@ class register():
 
     # return int :0成功；-1不存在文件；-2过期；-3未注册;-4序列号不匹配;-5已注册，未生效；-6试用日期|试用有效期有个为0
     # 试用判断 传入参数 int ifrom 和序列列表serial_list，如果是-3未注册，试用期已过提示试用期已过。返回值-2
-    # 如果是-5已注册，未生效，试用期已过提示试用期已过，有效期未到，未生效。返回值-5
+    # 如果是-5已注册，未生效，试用期已过提示试用期已过，有效期未到，未生效。返回值-5 -6 未联网
     def probater(self, ifrom):
         iret = 0
         file_name = 'serial'
@@ -107,8 +109,10 @@ class register():
                 serial_number = self.get_serial_number()
                 serial_list[1] = serial_number
                 # 设置试用日期
-                now = datetime.datetime.now()
-                time_now = now.strftime('%Y-%m-%d')
+                time_now = self.gettime()
+                if time_now is None:
+                    return -6
+
                 serial_list[2] = time_now
                 # 写注册文件 结束
                 self.write_file(serial_list)
@@ -126,8 +130,9 @@ class register():
                     if serial_time == '0' or can_use_time == '0':
                         iret = -6
                     else:
-                        now = datetime.datetime.now()
-                        time_now = now.strftime('%Y-%m-%d')
+                        time_now = self.gettime()
+                        if time_now is None:
+                            return -6
 
                         d1 = datetime.datetime.strptime(time_now, '%Y-%m-%d')
                         d2 = datetime.datetime.strptime(serial_time, '%Y-%m-%d')
@@ -201,8 +206,9 @@ class register():
     def set_register_number(self, serial_number, date='', dates='30'):
         register_list = ['1', serial_number, '0', '0', '0', '0']
         if date == '':
-            now = datetime.datetime.now()
-            time_now = now.strftime('%Y-%m-%d')
+            time_now = self.gettime()
+            if time_now is None:
+                return -6
             register_list[4] = time_now
             register_list[5] = dates
         else:
@@ -220,3 +226,27 @@ class register():
             re = self.probater(re)
         self.re = re
         return re
+
+    def trans_format(self, time_string, from_format, to_format='%Y.%m.%d %H:%M:%S'):
+        time_struct = time.strptime(time_string, from_format)
+        times = time.strftime(to_format, time_struct)
+        return times
+
+    def gettime(self):
+        daytime = None
+        try:
+            conn = httplib2.Http()
+            content = conn.request('http://www.beijing-time.org', "GET", "/time.asp")
+            # print(content[0]['date'])
+            result = str(content[0]['date'])[5:25]
+            # print(result)
+            time_string = result
+            times = self.trans_format(time_string, '%d %b %Y %H:%M:%S', '%Y-%m-%d %H:%M:%S')
+            # print(times)
+            d1 = datetime.datetime.strptime(times, "%Y-%m-%d %H:%M:%S")
+            d2 = (d1 + datetime.timedelta(hours=8)).strftime("%Y-%m-%d")
+            # print(d2)
+            daytime = d2
+        except Exception as e:
+            pass
+        return daytime

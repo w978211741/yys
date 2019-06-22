@@ -8,8 +8,10 @@ import time
 class Mouse:
     m = None
 
-    def __init__(self):
+    def __init__(self, metrics_x=1920, metrics_y=1080):
         self.m = PyMouse()
+        self.metrics_x = metrics_x
+        self.metrics_y = metrics_y
 
     def mouse_to(self, x, y):
         self.m.move(x,y)
@@ -33,12 +35,31 @@ class Mouse:
         self.m.move(x, y - n)
         self.m.release(x, y, 1)
 
+    def left_down(self):
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 左键按下
+
+    def left_up(self):
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+
     def absolute(self, x, y, dx, dy):
-        SW = 1920
-        SH = 1080
+        SW = self.metrics_x
+        SH = self.metrics_y
         self.mouse_to(x, y)  # 鼠标移动到
         win32api.mouse_event(win32con.MOUSEEVENTF_LEFTDOWN, 0, 0, 0, 0)  # 左键按下
-        time.sleep(0.2)
+        i = 1
+        ddx = int(dx / 10)
+        ddy = int(dy / 10)
+
+        while i < 10:
+            time.sleep(0.02)
+            self.mouse_to(x + ddx * i, y + ddy * i)  # 鼠标移动到
+            i += 1
+        self.mouse_to(x + dx, y + dy)  # 鼠标移动到
+        win32api.mouse_event(win32con.MOUSEEVENTF_LEFTUP, 0, 0, 0, 0)
+        return
+        time.sleep(0.5)
+        self.mouse_to(x+10, y+10)  # 鼠标移动到
+        time.sleep(0.5)
         mw = int((dx + x) * 65535 / SW)
         mh = int((dy + y) * 65535 / SH)
         win32api.mouse_event(win32con.MOUSEEVENTF_ABSOLUTE + win32con.MOUSEEVENTF_MOVE, mw, mh, 0, 0)

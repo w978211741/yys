@@ -39,3 +39,10 @@ class Team_hun_10(Game):
             print("接受邀请按钮")
             return codedef.NORMAL_END
         return codedef.NORMAL_END
+
+    def dian_guai_11(self, handle):
+        x = int((handle.right + handle.left) / 2)
+        xishu = 0.2
+        y = int((handle.top + (handle.bottom - handle.top) * xishu))
+        m = Mouse()
+        m.click(x, y)

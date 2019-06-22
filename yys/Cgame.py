@@ -103,7 +103,7 @@ class Game:
 
         target_height = int(520 * xishu)
         dx = handle.bottom - handle.top - target_height
-        i_depth = 10
+        i_depth = int(10 * xishu)
         if dx != 0:
             temp_times = int(dx / i_depth)
             temp_i = 1
@@ -114,6 +114,11 @@ class Game:
                 time.sleep(0.8)
             self.window.set_window(handle, left, top, handle.right - handle.left, target_height)
         return codedef.NORMAL_END
+
+    # 更新temp图
+    def update_temp(self, handle):
+        tu = self.window.jie_tu(handle)
+        tu.save('temp/temp.bmp')
 
     # 在探索界面获取突破卷数量
     def get_tu_po_juan(self, handle):

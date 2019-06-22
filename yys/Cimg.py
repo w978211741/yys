@@ -24,6 +24,7 @@ class Img:
         pos = ac.find_all_template(src_img, target_img, accuracy)
         return pos
 
+    # 返回找到的图的位置 在指定路径的图找另一路径的图
     @staticmethod
     def find_img_in_img(src_img_path, target_img_path, accuracy=0.5):
         src_img = cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
@@ -111,4 +112,16 @@ class Img:
     @staticmethod
     def read_img(src_img_path):
         return cv2.imdecode(np.fromfile(src_img_path, dtype=np.uint8), -1)
+
+    # 返回找到的图的位置 在指定路径的图《裁剪后》找另一路径的图
+    @staticmethod
+    def find_img_in_cut_img(src_img_path, target_img_path, point, point2, accuracy=0.8):
+        src_img = Img.cut_img_path(src_img_path, point, point2)
+        target_img = cv2.imdecode(np.fromfile(target_img_path, dtype=np.uint8), -1)
+        pos = ac.find_template(src_img, target_img, accuracy)
+        if pos is None:
+            return -1, -1, -1
+        circle_center_pos = pos['result']
+        return 0, int(circle_center_pos[0]), int(circle_center_pos[1])
+
 

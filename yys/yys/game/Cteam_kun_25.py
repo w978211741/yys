@@ -35,5 +35,6 @@ class Team_kun_25(Game):
         if self.click_img("yys/退出探索.bmp", handle) == 0:
             time.sleep(0.8)
         if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
-            return codedef.NORMAL_END
+            return codedef.EXIT_TANG_SUO
         return codedef.ERROR_END
+

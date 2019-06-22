@@ -38,16 +38,8 @@ class dashitou(Game):
 
     def da(self, argument, handle):
         if self.if_exist("yys/血月.bmp") == 0:
-            print("血月")
-            ti_li = self.get_ti_li(handle, 0.55)
-            print(ti_li)
-            if ti_li > 12 or ti_li == -1:
-                #if self.if_exist("yys/挑战石头按钮.bmp") == 0:
-                #    print("挑战石头按钮")
-                if self.click_img("yys/挑战石头按钮.bmp", handle, 0.90) == 0:
-                    print("挑战石头按钮")
-                    return codedef.FIGHT_BEGIN
-                pass
-            else:
-                return codedef.NOT_ENOUGH_POWER
+            if self.click_img("yys/挑战石头按钮.bmp", handle, 0.90) == 0:
+                print("挑战石头按钮")
+                return codedef.FIGHT_BEGIN
+            pass
         return codedef.NORMAL_END

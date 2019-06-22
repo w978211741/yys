@@ -4,9 +4,15 @@ from Cmouse import Mouse
 from Cimg import Img
 import time
 import codedef
+from win32api import GetSystemMetrics
 
 
 class Personal_jiejie(Game):
+
+    def __init__(self):
+        super(Personal_jiejie, self).__init__()
+        self.metrics_x = GetSystemMetrics(0)
+
     # -1 找个人结界或寮结界按钮失败
     # -2 在没打过的数量大于零时，却在分块找到这个结界时找不到
     # -3 结界突破卷数量为0
@@ -72,21 +78,35 @@ class Personal_jiejie(Game):
     def jie_chu_tu_po_block(self, handle):
         tu = self.window.jie_tu(handle)
         tu.save('temp/temp.bmp')
-        x = 100 - 2 * 10 + 15
-        y = 100 - 2 * 10 + 12
-        w = 300 - 80
-        h = 120 - 35
+        if self.metrics_x == 1920:
+            x = 100 - 2 * 10 + 15
+            y = 100 - 2 * 10 + 12
+            w = 300 - 80
+            h = 120 - 35
+            w_silde = 230
+            h_silde = 91
+            jindu = 0.5
+        else:
+            x = 68
+            y = 74
+            w = 151
+            h = 58
+            w_silde = 158
+            h_silde = 61
+            jindu = 0.7
+
+
         point0 = [x, y]
         for i in range(9):
             if i == 0:
                 point = point0
             else:
-                point = [int(point0[0] + int(i % 3) * 230), int(point0[1] + int(i / 3) * 91)]
+                point = [int(point0[0] + int(i % 3) * w_silde), int(point0[1] + int(i / 3) * h_silde)]
             point2 = [point[0] + w, point[1] + h]
             print(str(i) + str(point))
             src_img = Img.cut_img_path('temp/temp.bmp', point, point2)
             Img.save('temp/temp' + str(i) + '.bmp', src_img)
-            re, x, y = Img.find_img_in_img('temp/temp' + str(i) + '.bmp', self.mei_da_guo_path)
+            re, x, y = Img.find_img_in_img('temp/temp' + str(i) + '.bmp', self.mei_da_guo_path, jindu)
             if re == 0:
                 return 0, x + handle.left + point[0], y + handle.top + point[1]
         return -1, 0, 0
