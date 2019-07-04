@@ -251,6 +251,7 @@ class Fuben():
         while 1:
             # 队长
             scene = game.get_scene(yys1)
+            self.add_log(str(scene) + "\r\n")
             re = game.do_work(scene, yys1)
             if re == codedef.BEGIN_DA_GUAI or re == codedef.BEGIN_DA_BOSS:
                 ju_flag = True
@@ -271,114 +272,19 @@ class Fuben():
                 yys2.iold_scene = 0
             elif re == codedef.EXIT_TANG_SUO:
                 game2.set_exit(True)
+            elif re == codedef.YAO_QING_ZHONG:
+                yys1.iold_scene = 0
+                yys2.iold_scene = 0
 
-                    # 队员
+            # 队员
             scene = game2.get_scene(yys2)
-            print(scene)
+            self.add_log(str(scene) + "\r\n")
             if scene == SceneKey.TANG_SUO or scene == SceneKey.TANG_SUO_ZHANG_JIE:
                 game.set_yao_qing(True)     # 队长可邀请
 
             re = game2.do_work(scene, yys2)
             if re == codedef.ZAI_TANG_SUO:
                 game.set_da_guai(True)
-
-
-        #
-        # while 1:
-        #     scene = game.get_scene(yys1)
-        #
-        #     if scene == SceneKey.TANG_SUO or scene == SceneKey.TANG_SUO_ZHANG_JIE \
-        #             or scene == SceneKey.SHI_FOU_YAO_QING_JI_XU:
-        #         c_exited = True
-        #
-        #     captain_wait = game.do_work(scene, yys1)
-        #
-        #     self.add_log(scene.__str__() + captain_wait.__str__() + "\r\n")
-        #     if captain_wait == -900:
-        #         self.add_log("队长体力不足，进程结束\r\n")
-        #         return codedef.NORMAL_END
-        #     elif captain_wait == -3:
-        #         self.add_log("队长体力不足或者识别失败，进程结束\r\n")
-        #         return codedef.NORMAL_END
-        #     elif captain_wait == -21 or captain_wait == -22:
-        #         ju_flag = True
-        #     elif captain_wait == -11 and ju_flag is True:
-        #         ju_flag = False
-        #         times = times + 1
-        #         exit_fighted = True
-        #         self.add_log(times.__str__() + "\r\n")
-        #         if times > imax_times:
-        #             self.add_log("达到最大次数，进程结束\r\n")
-        #             self.send_qq(r'困25 达到最大次数，进程结束')
-        #             return codedef.NORMAL_END
-        #
-        #     elif captain_wait == codedef.YAO_QING_DUI_YOU_JI_XU and t_exited is True:
-        #         self.add_log("队员已退出到探索界面，点击邀请继续战斗\r\n")
-        #         if game.yao_qing_dui_you_ji_xu(scene, yys1) == codedef.NORMAL_END:
-        #             can_exited = False
-        #             c_exited = False
-        #             tang_go_right_times = 0
-        #             ju_flag = False
-        #             exit_fighted = False
-        #             game.right = True
-        #         else:
-        #             self.add_log("找不到 点击邀请继续战斗按钮\r\n")
-        #
-        #     elif captain_wait == codedef.SCENCE_REPEAT_END:
-        #         self.add_log("场景重复超限\r\n")
-        #         self.send_qq_jie_tu(yys1)
-        #         return codedef.NORMAL_END
-        #
-        #     # 向右走太多次，退出
-        #     elif captain_wait == codedef.TANG_GO_RIGHT:
-        #         yys1.iold_scene = 0
-        #         yys2.iold_scene = 0
-        #         self.add_log("yys" + captain + "向右走，计数" + str(tang_go_right_times) + "，场景重复次数重置\r\n")
-        #         tang_go_right_times += 1
-        #         if tang_go_right_times >= codedef.TANG_GO_RIGHT_MAX:
-        #             can_exited = True
-        #             tang_go_right_times = 0
-        #
-        #     elif captain_wait == codedef.TANG_CAN_EXIT:
-        #         can_exited = True
-        #
-        #     if captain_wait != -901:
-        #         time.sleep(0.5)
-        #
-        #     if can_exited is True and exit_fighted is False:
-        #         # 没打过怪，又要退出
-        #         game.right = False
-        #         self.add_log("没打过怪，又要退出，向左走，随便打一个小怪\r\n")
-        #     elif can_exited is True and exit_fighted is True and c_exited is False:
-        #         if game.exit_tang_suo(yys1) == codedef.NORMAL_END:
-        #             yys1.iold_scene = 0
-        #             self.add_log("都可退出探索，队长先退出，场景重复次数重置\r\n")
-        #             time.sleep(1)
-        #         else:
-        #             self.add_log("队长退出探索失败。\r\n")
-        #
-        #     scene = game2.get_scene(yys2)
-        #     self.add_log(scene.__str__() + "\r\n")
-        #     time.sleep(0.5)
-        #     if scene == SceneKey.TANG_SUO or scene == SceneKey.TANG_SUO_ZHANG_JIE:
-        #         self.add_log("队员退出到探索界面\r\n")
-        #         t_exited = True
-        #         yys2.iold_scene = 0
-        #     else:
-        #         t_exited = False
-        #
-        #     re = game2.do_work(scene, yys2)
-        #
-        #     if re == -3 or re == -900:
-        #         self.add_log("队员体力不足或者识别失败，进程结束\r\n")
-        #         return codedef.NORMAL_END
-        #
-        #     elif scene == SceneKey.TANG_SUO_ZHONG and c_exited is True:
-        #         if game2.exit_tang_suo(yys2) == codedef.NORMAL_END:
-        #             yys2.iold_scene = 0
-        #             self.add_log("队长已退出，按退出。场景重复次数重置\r\n")
-        #         else:
-        #             self.add_log("队员退出探索失败。\r\n")
 
     def time_sleep(self, inum):
         time.sleep(1.5 - inum * 0.3)
@@ -435,7 +341,6 @@ class Fuben():
                 break
         self.send_qq(r'斗技 打完，进程结束')
         return codedef.NORMAL_END
-
 
     # 主动发qq消息
     def send_qq(self, msg):

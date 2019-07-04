@@ -58,7 +58,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.QingMax = True
         self.Beater = True
         self.BeatMax = True
-        self.Loop = True
+        self.Loop = False
         pass
 
     def setMod(self, id):
@@ -201,11 +201,10 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                 if self.main_process is None or self.main_process.is_alive() is False:
                     if self.Loop:
                         self.main_process = multiprocessing.Process(
-                            target=my_tang_suo_jie_jie_process(), args=(
+                            target=my_tang_suo_jie_jie_process, args=(
                                 self.log_queue, self.qq_name, self.comboBox_1.currentText(),
-                                self.comboBox_2.currentText(),
-                                self.UP, self.BOSS, self.QingMax, self.Beater, self.BeatMax, iMaxtimes,),
-                            name='my_process')
+                                self.comboBox_2.currentText(), self.UP, self.BOSS, self.QingMax,
+                                self.Beater, self.BeatMax, iMaxtimes,), name='my_process')
                         self.main_process.start()
                     else:
                         self.main_process = multiprocessing.Process(
@@ -386,6 +385,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             self.BOSS = True
 
     def setQingMax(self, text):
+        print(text)
         if text == codedef.QING_MAX_TRUE:
             self.QingMax = True
         elif text == codedef.QING_MAX_FALSE:

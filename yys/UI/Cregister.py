@@ -9,7 +9,7 @@ import httplib2
 
 class register():
     def __init__(self):
-        self.key = '*$r@a$ng'
+        self.key = '233333'
         self.final_serial_list = []
         self.re = 0
 

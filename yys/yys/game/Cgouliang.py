@@ -191,7 +191,7 @@ class Gouliang():
         ddx = int(dx / 10)
 
         while i < 10:
-            time.sleep(0.03)
+            time.sleep(0.05)
             m.mouse_to(x + ddx * i, tar_y)  # 鼠标移动到
             i += 1
 

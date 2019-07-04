@@ -429,12 +429,12 @@
      </property>
      <item>
       <property name="text">
-       <string>清明满级</string>
+       <string>晴明已满级</string>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>清明没满级</string>
+       <string>晴明没满级</string>
       </property>
      </item>
     </widget>

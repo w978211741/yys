@@ -24,6 +24,8 @@ class SceneKey(Enum):
     SHI_FOU_YAO_QING_JI_XU = 18
     ZU_DUI_XUAN_ZE_DUI_YOU = 19
     SHOU_DAO_YAO_QING = 20
+    CHAO_GUI_WANG_LAI_XI = 21
+    GOU_MAI_CHA = 22
 
 class Handle:
     hwnd = 0

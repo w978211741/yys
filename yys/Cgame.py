@@ -247,7 +247,10 @@ class Game:
             return SceneKey.ZHANG_DOU_ZHONG
         if Game.if_exist(path + "探索章节界面.bmp") == 0:
             return SceneKey.TANG_SUO_ZHANG_JIE
-
+        if Game.if_exist(path + "超鬼王来袭界面.bmp") == 0:
+            return SceneKey.CHAO_GUI_WANG_LAI_XI
+        if Game.if_exist(path + "购买茶界面.bmp") == 0:
+            return SceneKey.GOU_MAI_CHA
         return SceneKey.NUKOWN
 
     # 单击指定图片
@@ -344,5 +347,10 @@ class Game:
         send_QQ = SendQQ(name)
         return send_QQ.send_qq_text(text)
 
-
+    def exit_tang_suo(self, handle):
+        if self.click_img("yys/退出探索.bmp", handle) == 0:
+            time.sleep(0.8)
+        if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
+            return codedef.EXIT_TANG_SUO
+        return codedef.ERROR_END
 

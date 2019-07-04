@@ -84,19 +84,20 @@ class Team_kun_25_captain(Team_kun_25):
                 time.sleep(2)
 
             if self.click_img("yys/组队好友.bmp", handle) == 0 or self.click_img("yys/组队好友灰.bmp", handle) == 0:
-                time.sleep(2)
                 if self.yao_qing_wait == 0:
+                    time.sleep(2)
                     time.sleep(0.5)
                     self.dian_friend(handle, self.index_dian_friend)
                     time.sleep(0.5)
                     # 如果后续有自动选中了一个，那就先点一下别的，再回来，如想点1，先点了2，再点1，即可
                     if self.click_img("yys/邀请按钮.bmp", handle) == 0:
-                        self.yao_qing_wait = 3
+                        self.yao_qing_wait = 2
                         self.index_dian_friend += 1
                         if self.index_dian_friend >= 6:
                             self.index_dian_friend = 0
                 else:
                     self.yao_qing_wait -= 1
+            return codedef.YAO_QING_ZHONG
         return codedef.NORMAL_END
 
     def this_zhang_dou_zhong(self, argument, handle):
@@ -108,7 +109,7 @@ class Team_kun_25_captain(Team_kun_25):
                 if self.if_exist("yys/N卡选择按钮.bmp") != 0:
                     # 点晴明附近
                     x = int(handle.left + (handle.right - handle.left) / 4)
-                    y = int(handle.top + (handle.bottom - handle.top) * 3 / 4)
+                    y = int(handle.top + (handle.bottom - handle.top) * 3 / 5)
                     m = Mouse()
                     m.click(x, y)
                 else:
@@ -129,13 +130,13 @@ class Team_kun_25_captain(Team_kun_25):
     def fight_win(self, argument, handle):
         # 查找已满级的数量
         num_max_l = Img.find_all_img_in_img('temp/temp.bmp', "yys/已满级.bmp", 0.9)
-        print("找已满级的数量:" + str(num_max_l))
+        print("队长找已满级的数量:" + str(num_max_l))
         huan_num = 0    # 超过就换狗粮
         if self.QingMax is True:
             huan_num += 1
         if self.Beater is True and self.BeatMax is True:
             huan_num += 1
-
+        print("队长数量:" + str(huan_num))
         if num_max_l != -1:
             if num_max_l > huan_num:
                 # 换狗粮标记
@@ -211,7 +212,6 @@ class Team_kun_25_captain(Team_kun_25):
                 return codedef.TANG_GO_RIGHT
 
         return codedef.NORMAL_END
-
 
     def dian_friend(self, handle, index):
         # （0.4 0.3）（0.6 0.3）

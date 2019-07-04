@@ -9,6 +9,7 @@ ZAI_TANG_SUO = -6       # 队员 在探索界面
 BEGIN_DA_GUAI = -21       # 开打小怪
 BEGIN_DA_BOSS = -22       # 开打boss
 EXIT_TANG_SUO = -23       # 退出探索
+YAO_QING_ZHONG = -24       # 退出探索
 
 SCENCE_NOT_REPEAT = -41     # 场景未重复
 SCENCE_REPEAT_END = -42     # 场景重复，且超次数，退出
@@ -44,7 +45,7 @@ BOSS_TRUE = '打BOSS'
 BOSS_FALSE = '不打BOSS'
 
 # 晴明是否满级 对应界面中文
-QING_MAX_TRUE = '晴明满级'
+QING_MAX_TRUE = '晴明已满级'
 QING_MAX_FALSE = '晴明没满级'
 
 # 队长是否打手 对应界面中文
@@ -56,8 +57,8 @@ BEAT_MAX_TRUE = '打手满级'
 BEAT_MAX_FALSE = '打手没满级'
 
 # 是否交叉打结界
-LOOP_TRUE = '不交叉打'
-LOOP_FALSE = '交叉打结界'
+LOOP_TRUE = '交叉打结界'
+LOOP_FALSE = '不交叉打'
 
 # mod
 MOD_SET = 0

@@ -84,7 +84,7 @@ class Team_kun_25_teammate(Team_kun_25):
                 else:
                     # 找没满级狗粮和拖上去替换
                     gouliang = Gouliang(self.metrics_x, self.metrics_y, handle)
-                    gouliang.find_and_huang(bool(1 - self.Beater), self.BeatMax)
+                    gouliang.find_and_huang(bool(1 - self.Beater), bool(1 - self.BeatMax))
                     self.click_img("yys/战斗中准备按钮.bmp", handle)
                     self.huang_flag = False
             else:
@@ -93,13 +93,14 @@ class Team_kun_25_teammate(Team_kun_25):
                         time.sleep(0.3)
                         self.click_img("yys/N卡选择按钮.bmp", handle)
         else:
+            self.click_img("yys/战斗中准备按钮.bmp", handle)
             self.waiting(argument, handle)
         return codedef.NORMAL_END
 
     def fight_win(self, argument, handle):
         # 查找已满级的数量
         num_max_l = Img.find_all_img_in_img('temp/temp.bmp', "yys/已满级.bmp", 0.9)
-        print("找已满级的数量:" + str(num_max_l))
+        print("队员找已满级的数量:" + str(num_max_l))
         huan_num = 0    # 超过就换狗粮
 
         if self.Beater is False and self.BeatMax is True:
