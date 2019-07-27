@@ -9,7 +9,7 @@ from Chandle import Handle
 import win32gui
 from Cteam_kun_25_captain import Team_kun_25_captain
 import codedef
-
+import re
 
 def main():
     print("开始")
@@ -40,3 +40,10 @@ def testtt():
 if __name__ == '__main__':
     main()
     # testtt()
+
+if __name__ == '__main1__':
+    s = 'wer1123sdf123'
+    kk = re.compile(r'\d+')
+    c = kk.findall(s)[1]
+    # print(isinstance(c, list))
+    print(int(c))

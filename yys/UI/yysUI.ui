@@ -6,12 +6,12 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>323</width>
+    <width>341</width>
     <height>851</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>痒痒鼠1.7</string>
+   <string>痒痒鼠1.9.0</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QTextBrowser" name="textBrowser">
@@ -481,14 +481,14 @@
     <widget class="QLabel" name="label">
      <property name="geometry">
       <rect>
-       <x>200</x>
-       <y>190</y>
-       <width>111</width>
+       <x>80</x>
+       <y>140</y>
+       <width>101</width>
        <height>20</height>
       </rect>
      </property>
      <property name="text">
-      <string>打手放清明右边</string>
+      <string>打手放清明右手边</string>
      </property>
     </widget>
     <widget class="QComboBox" name="comboBox_loop">
@@ -508,6 +508,156 @@
      <item>
       <property name="text">
        <string>交叉打结界</string>
+      </property>
+     </item>
+    </widget>
+    <widget class="QComboBox" name="comboBox_chapter">
+     <property name="geometry">
+      <rect>
+       <x>200</x>
+       <y>190</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>第一章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第三章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第四章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第五章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第六章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第七章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第八章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第九章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十一章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十二章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十三章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十四章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十五章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十六章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十七章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十八章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第十九章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十一章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十二章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十三章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十四章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十五章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十六章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十七章</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>第二十八章</string>
       </property>
      </item>
     </widget>
@@ -581,16 +731,54 @@
      <rect>
       <x>30</x>
       <y>90</y>
-      <width>61</width>
+      <width>91</width>
       <height>19</height>
      </rect>
     </property>
     <property name="text">
-     <string>血月</string>
+     <string>其他功能</string>
     </property>
     <attribute name="buttonGroup">
      <string notr="true">buttonGroup</string>
     </attribute>
+   </widget>
+   <widget class="QGroupBox" name="groupBox">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>240</y>
+      <width>120</width>
+      <height>80</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string>其他功能</string>
+    </property>
+    <widget class="QComboBox" name="comboBox_other">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>30</y>
+       <width>101</width>
+       <height>22</height>
+      </rect>
+     </property>
+     <item>
+      <property name="text">
+       <string>抽N卡</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>砸百鬼</string>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>血月</string>
+      </property>
+     </item>
+    </widget>
    </widget>
   </widget>
   <action name="actionsadf">
@@ -834,6 +1022,38 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>comboBox_other</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setOther()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>242</x>
+     <y>282</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>252</x>
+     <y>363</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>comboBox_chapter</sender>
+   <signal>currentTextChanged(QString)</signal>
+   <receiver>MainWindow</receiver>
+   <slot>setChapter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>266</x>
+     <y>208</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>327</x>
+     <y>212</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>setMod()</slot>
@@ -850,6 +1070,8 @@
   <slot>setBeater()</slot>
   <slot>setBeatMax()</slot>
   <slot>setLoop()</slot>
+  <slot>setOther()</slot>
+  <slot>setChapter()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="buttonGroup"/>

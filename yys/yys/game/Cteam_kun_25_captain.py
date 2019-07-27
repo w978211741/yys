@@ -13,7 +13,7 @@ from Cgouliang import Gouliang
 
 class Team_kun_25_captain(Team_kun_25):
     right = True
-    def __init__(self, UP=None, BOSS=True, QingMax=True, Beater=True, BeatMax=True):
+    def __init__(self, UP=None, BOSS=True, QingMax=True, Beater=True, BeatMax=True, Chapter='第二十八章'):
         super(Team_kun_25, self).__init__()
         self.metrics_x = GetSystemMetrics(0)    # 获取分辨率
         self.metrics_y = GetSystemMetrics(1)    # 获取分辨率
@@ -32,6 +32,7 @@ class Team_kun_25_captain(Team_kun_25):
         self.can_exited = False                 # 是否退出探索
 
         self.index_dian_friend = 0              # 点第几个好友，0~5
+        self.Chapter = Chapter                  # 章节
 
     def set_da_guai(self, da_guai):
         self.da_guai = da_guai
@@ -40,10 +41,13 @@ class Team_kun_25_captain(Team_kun_25):
         self.yao_qing = yao_qing
 
     def judge_scenes(self, argument, handle):
-        return Game.judge_scenes(self, argument, handle)
+        return Team_kun_25.judge_scenes(self, argument, handle)
 
     def do_work(self, argument, handle):
         if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
+            if Game.if_exist("yys/进攻结界按钮.bmp", handle) == 0:
+                self.fight_end(argument, handle)
+                return codedef.TANG_GO_RIGHT
             return codedef.SCENCE_REPEAT_END
         switcher = {
             SceneKey.TANG_SUO_ZHONG: self.this_da_tang_suo,
@@ -52,24 +56,53 @@ class Team_kun_25_captain(Team_kun_25):
             SceneKey.ZHANG_DOU_SHENG_LI: self.fight_win,
             SceneKey.ZHANG_DOU_ZHONG: self.this_zhang_dou_zhong,
             SceneKey.TANG_SUO_ZHANG_JIE: self.this_tang_suo_zhang_jie,
-            SceneKey.TANG_SUO: self.this_tang_suo
+            SceneKey.TANG_SUO: self.this_tang_suo,
+            SceneKey.JIE_JIE_TU_PO: self.exit_jie_jie
         }
         # Get the function from switcher dictionary
         func = switcher.get(argument, self.father)(argument, handle)
 
         return func
 
+
+
     def this_tang_suo(self, argument, handle):
+        # 4 管 1-6 ；10 管 7-12；
         # 选28章
-        if self.click_img("yys/第二十八章.bmp", handle) != 0:
-            x1 = int(handle.left + 0.85 * (handle.right - handle.left))
-            y1 = int(handle.top + 0.8 * (handle.bottom - handle.top))
-
-            dx = 0
-            dy = int(0.5 * (handle.top - handle.bottom))
-
+        if self.click_img("yys/" + self.Chapter + ".bmp", handle) != 0:
             m = Mouse(self.metrics_x, self.metrics_y)
-            m.absolute(x1, y1, dx, dy)
+            dx = 0
+            dy = -1 * int(0.5 * (handle.top - handle.bottom))
+
+            imax = 6
+            index = 0
+            while index < imax:
+                x1 = int(handle.left + 0.85 * (handle.right - handle.left))
+                y1 = int(handle.top + 0.35 * (handle.bottom - handle.top))
+                m.absolute(x1, y1, dx, dy)
+                time.sleep(1.5)
+                window_img = self.window.jie_tu(handle)
+                window_img.save('temp/temp.bmp')
+                if Game.if_exist("yys/第一章.bmp", 0.95) == 0:
+                    break
+                index += 1
+
+            index = 0
+            imax = 12
+            dy = int(-1 * dy / 3)
+            while index < imax:
+                window_img = self.window.jie_tu(handle)
+                window_img.save('temp/temp.bmp')
+                if self.click_img("yys/" + self.Chapter + ".bmp", handle) == 0:
+                    break
+
+                x1 = int(handle.left + 0.85 * (handle.right - handle.left))
+                y1 = int(handle.top + 0.8 * (handle.bottom - handle.top))
+                m.absolute(x1, y1, dx, dy)
+                time.sleep(1.5)
+
+                index += 1
+
             time.sleep(1.5)
         else:
             time.sleep(3)
@@ -85,16 +118,22 @@ class Team_kun_25_captain(Team_kun_25):
 
             if self.click_img("yys/组队好友.bmp", handle) == 0 or self.click_img("yys/组队好友灰.bmp", handle) == 0:
                 if self.yao_qing_wait == 0:
-                    time.sleep(2)
-                    time.sleep(0.5)
-                    self.dian_friend(handle, self.index_dian_friend)
+                    time.sleep(2.5)
+                    # self.dian_friend(handle, self.index_dian_friend)
+
+                    i = 4
+                    while i >= 0:
+                        self.dian_friend(handle, i)
+                        time.sleep(0.3)
+                        i -= 1
+
                     time.sleep(0.5)
                     # 如果后续有自动选中了一个，那就先点一下别的，再回来，如想点1，先点了2，再点1，即可
                     if self.click_img("yys/邀请按钮.bmp", handle) == 0:
                         self.yao_qing_wait = 2
-                        self.index_dian_friend += 1
-                        if self.index_dian_friend >= 6:
-                            self.index_dian_friend = 0
+                        # self.index_dian_friend += 1
+                        # if self.index_dian_friend >= 6:
+                        #     self.index_dian_friend = 0
                 else:
                     self.yao_qing_wait -= 1
             return codedef.YAO_QING_ZHONG
@@ -115,8 +154,9 @@ class Team_kun_25_captain(Team_kun_25):
                 else:
                     # 找没满级狗粮和拖上去替换
                     gouliang = Gouliang(self.metrics_x, self.metrics_y, handle)
-                    gouliang.find_and_huang(self.Beater, self.BeatMax)
+                    gouliang.find_and_huang(True, self.Beater and self.BeatMax)
                     self.click_img("yys/战斗中准备按钮.bmp", handle)
+                    print("yys/战斗中准备按钮.bmp")
                     self.huang_flag = False
             else:
                 if self.if_exist("yys/N卡选择按钮.bmp") != 0:
@@ -129,20 +169,25 @@ class Team_kun_25_captain(Team_kun_25):
 
     def fight_win(self, argument, handle):
         # 查找已满级的数量
-        num_max_l = Img.find_all_img_in_img('temp/temp.bmp', "yys/已满级.bmp", 0.9)
+        num_max_l = Img.find_all_img_in_img('temp/temp.bmp', "yys/已满级.bmp", 0.8)
         print("队长找已满级的数量:" + str(num_max_l))
         huan_num = 0    # 超过就换狗粮
+
         if self.QingMax is True:
-            huan_num += 1
+            huan_num = huan_num + 1
+
         if self.Beater is True and self.BeatMax is True:
-            huan_num += 1
+            huan_num = huan_num + 1
+
         print("队长数量:" + str(huan_num))
         if num_max_l != -1:
             if num_max_l > huan_num:
                 # 换狗粮标记
                 self.huang_flag = True
 
-        return self.fight_end(argument, handle)
+        self.fight_end(argument, handle)
+
+        return num_max_l
 
     def this_da_tang_suo(self, argument, handle):
         if self.yao_qing:
@@ -167,14 +212,19 @@ class Team_kun_25_captain(Team_kun_25):
                 self.can_exited = False
                 return codedef.EXIT_TANG_SUO
 
+        if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
+            return codedef.EXIT_TANG_SUO
+
         return self.da_tang_suo_gui(handle)
 
     def this_yao_qing_dui_you_ji_xu(self, argument, handle):
+        self.can_exited = False
         # 可邀请继续就点邀请
         print('可邀请继续就点邀请' + str(self.yao_qing))
         if self.yao_qing:
+            self.yao_qing_wait = 3
             print('yao_qing')
-            self.yao_qing_dui_you_ji_xu(argument, handle)
+            return self.yao_qing_dui_you_ji_xu(argument, handle)
         return codedef.YAO_QING_DUI_YOU_JI_XU
 
     # 其他情况按父类的处理
@@ -189,6 +239,10 @@ class Team_kun_25_captain(Team_kun_25):
 
     # 在探索中界面打探索怪
     def da_tang_suo_gui(self, handle):
+        if self.yao_qing_wait > 0:
+            self.yao_qing_wait -= 1
+            return codedef.NORMAL_END
+
         if self.da_guai:
             if self.UP != codedef.UP_C_NULL:
                 if self.fight_up.fight_UP_guai(handle, self.UP, "yys/打小怪.bmp") == codedef.NORMAL_END:

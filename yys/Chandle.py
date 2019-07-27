@@ -26,6 +26,12 @@ class SceneKey(Enum):
     SHOU_DAO_YAO_QING = 20
     CHAO_GUI_WANG_LAI_XI = 21
     GOU_MAI_CHA = 22
+    ZHAO_HUAN = 23
+    CHOU_N_KA = 24
+    BAI_GUI_YE_XING = 25
+    BAI_GUI_QI_YUE_SHU = 26
+    BAI_GUI_ZHONG = 27
+    BAI_GUI_GUI_WANG = 28
 
 class Handle:
     hwnd = 0

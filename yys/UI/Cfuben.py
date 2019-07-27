@@ -16,6 +16,8 @@ import win32gui
 import codedef
 from Cwindow import Window
 from Cdouji import Dou_ji
+from CNka import Nka
+from Czabaigui import Zabaigui
 import time
 from Cmouse import Mouse
 from Cgouliang import Gouliang
@@ -66,27 +68,35 @@ class Fuben():
                 return codedef.NORMAL_END
             i = i + 1
 
-        finishlist = [False, False, False, False]
+        finishlist = [0, 0, 0, 0]
         waitlist = [0, 0, 0, 0]
 
         while 1:
             i = 0
             while i < inum:
-                if finishlist[i] is False:
+                if finishlist[i] != 2:
                     if waitlist[i] == 0:
                         scene = game.get_scene(yyslist[i])
+                        if scene == SceneKey.TANG_SUO and finishlist[i] == 1:
+                            finishlist[i] = 2
+                            continue
                         self.add_log(scene.__str__() + "\r\n")
-                        re = game.do_work(scene, yyslist[i])
-                        if re == codedef.NOT_ENOUGH_POWER:
-                            finishlist[i] = True
-                        elif re == codedef.SCENCE_REPEAT_END:
-                            finishlist[i] = True
+                        if finishlist[i] == 0:
+                            re = game.do_work(scene, yyslist[i])
+                        elif finishlist[i] == 1:
+                            re = game.exit(scene, yyslist[i])
+                        else:
+                            re = codedef.NORMAL_END
+
+                        if re == codedef.SCENCE_REPEAT_END:
+                            finishlist[i] = 1
                             self.add_log("yys" + windowslist[i] + "场景重复超限\r\n")
                             self.send_qq_jie_tu(yyslist[i])
                         elif re > codedef.NORMAL_END:
                             yyslist[i].iold_scene = 0
                             waitlist[i] = re
                             self.add_log("yys" + windowslist[i] + "冷却中，场景重复次数重置\r\n")
+
                     else:
                         waitlist[i] = waitlist[i] - 1
                     if waitlist[i] < 0:
@@ -95,7 +105,7 @@ class Fuben():
                 i = i + 1
             i = 0
             while i < inum:
-                if finishlist[i] is False:
+                if finishlist[i] != 2:
                     break
                 i = i + 1
             if i == inum:
@@ -172,10 +182,18 @@ class Fuben():
         self.send_qq(r'魂十 打完，进程结束')
         return codedef.NORMAL_END
 
-    def xue_yue(self, y1, y2, y3, y4, inum, imax_times):
+    def xue_yue(self, y1, y2, y3, y4, inum, imax_times, mod):
         windowslist = [y1, y2, y3, y4]
 
-        game = dashitou()
+        if mod == codedef.CHOU_N_KA:
+            game = Nka()
+        elif mod == codedef.ZA_BAI_GUI:
+            game = Zabaigui()
+        elif mod == codedef.XUE_YUE:
+            game = dashitou()
+        else:
+            game = dashitou()
+
         yys1 = Handle()
         yys2 = Handle()
         yys3 = Handle()
@@ -230,16 +248,16 @@ class Fuben():
                 i = i + 1
             if i == inum:
                 break
-        self.send_qq(r'血月全部 打完，进程结束')
+        self.send_qq(r'进程结束')
         return codedef.NORMAL_END
 
-    def team_kun_25(self, captain, teammate, UP, BOSS, QingMax, Beater, BeatMax, imax_times):
+    def team_kun_25(self, captain, teammate, UP, BOSS, QingMax, Beater, BeatMax, imax_times, Chapter):
         if Window.check_window("[#] [yys" + captain + "] 阴阳师-网易游戏 [#]") == 0 \
                 or Window.check_window("[#] [yys" + teammate + "] 阴阳师-网易游戏 [#]") == 0:
             self.add_log("沙盒窗口不完全存在，进程结束。\r\n")
             return codedef.NORMAL_END
 
-        game = Team_kun_25_captain(UP=UP, BOSS=BOSS, QingMax=QingMax, Beater=Beater, BeatMax=BeatMax)
+        game = Team_kun_25_captain(UP=UP, BOSS=BOSS, QingMax=QingMax, Beater=Beater, BeatMax=BeatMax, Chapter=Chapter)
         yys1 = Handle()
         self.set_yys(captain, game, yys1)
         game2 = Team_kun_25_teammate(Beater=Beater, BeatMax=BeatMax)
@@ -248,11 +266,17 @@ class Fuben():
         times = 0
         ju_flag = False
 
+        oldc_c = ''
+
         while 1:
             # 队长
             scene = game.get_scene(yys1)
-            self.add_log(str(scene) + "\r\n")
+            if oldc_c != str(scene):
+                oldc_c = str(scene)
+                self.add_log(str(scene) + "\r\n")
             re = game.do_work(scene, yys1)
+            if re > 0:
+                self.add_log('队长满级数量' + str(re) + "\r\n")
             if re == codedef.BEGIN_DA_GUAI or re == codedef.BEGIN_DA_BOSS:
                 ju_flag = True
             elif re == codedef.FIGHT_END and ju_flag is True:
@@ -278,11 +302,17 @@ class Fuben():
 
             # 队员
             scene = game2.get_scene(yys2)
-            self.add_log(str(scene) + "\r\n")
+
+            if oldc_c != str(scene):
+                oldc_c = str(scene)
+                self.add_log(str(scene) + "\r\n")
+
             if scene == SceneKey.TANG_SUO or scene == SceneKey.TANG_SUO_ZHANG_JIE:
                 game.set_yao_qing(True)     # 队长可邀请
 
             re = game2.do_work(scene, yys2)
+            if re > 0:
+                self.add_log('队友满级数量' + str(re) + "\r\n")
             if re == codedef.ZAI_TANG_SUO:
                 game.set_da_guai(True)
 
@@ -340,6 +370,58 @@ class Fuben():
             if i == inum:
                 break
         self.send_qq(r'斗技 打完，进程结束')
+        return codedef.NORMAL_END
+
+    def Nka(self, y1, y2, y3, y4, inum, imax_times):
+        windowslist = [y1, y2, y3, y4]
+        #只有一个结界类实例，不同的只是窗口句柄和窗口坐标
+        game = Nka()
+        yys1 = Handle()
+        yys2 = Handle()
+        yys3 = Handle()
+        yys4 = Handle()
+        yyslist = [yys1, yys2, yys3, yys4]
+
+        i = 0
+        while i < inum:
+            if self.set_yys(windowslist[i], game, yyslist[i]) != 0:
+                self.add_log("沙盒窗口不完全存在，进程结束。\r\n")
+                return codedef.NORMAL_END
+            i = i + 1
+
+        finishlist = [False, False, False, False]
+        ji_shulist = [0, 0, 0, 0]
+        ju_flag = [False, False, False, False]
+
+        while 1:
+            i = 0
+            while i < inum:
+                if finishlist[i] is False:
+                    scene = game.get_scene(yyslist[i])
+                    self.add_log(scene.__str__() + "\r\n")
+                    re = game.do_work(scene, yyslist[i])
+                    if re == codedef.SCENCE_REPEAT_END:
+                        finishlist[i] = True
+                        self.add_log("yys" + windowslist[i] + "场景重复超限\r\n")
+                        self.send_qq_jie_tu(yyslist[i])
+                    elif re == codedef.NORMAL_END:
+                        ju_flag[i] = True
+                    elif re == codedef.NORMAL_END and ju_flag[i] is True:
+                        ju_flag[i] = False
+                        ji_shulist[i] += 1
+                        self.add_log(ji_shulist[i].__str__() + "\r\n")
+                        if ji_shulist[i] > imax_times:
+                            finishlist[i] = True
+                    self.time_sleep(inum)
+                i = i + 1
+            i = 0
+            while i < inum:
+                if finishlist[i] is False:
+                    break
+                i = i + 1
+            if i == inum:
+                break
+        self.send_qq(r'抽完N卡，进程结束')
         return codedef.NORMAL_END
 
     # 主动发qq消息

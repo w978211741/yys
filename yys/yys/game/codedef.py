@@ -1,15 +1,16 @@
 # 返回值为0 正常结束，小于0是错误，大于0是延时
-NORMAL_END = 0          # 正常结束
-ERROR_END = -1          # 错误结束
-FIGHT_END = -11          # 战斗结束
-FIGHT_BEGIN = -4        # 战斗开始
-NOT_ENOUGH_POWER = -3    # 体力不足
+NORMAL_END = 0              # 正常结束
+ERROR_END = -1              # 错误结束
+FIGHT_END = -11             # 战斗结束
+FIGHT_BEGIN = -4            # 战斗开始
+NOT_ENOUGH_POWER = -3       # 体力不足
 YAO_QING_DUI_YOU_JI_XU = -5 #邀请队友继续
-ZAI_TANG_SUO = -6       # 队员 在探索界面
-BEGIN_DA_GUAI = -21       # 开打小怪
-BEGIN_DA_BOSS = -22       # 开打boss
-EXIT_TANG_SUO = -23       # 退出探索
-YAO_QING_ZHONG = -24       # 退出探索
+ZAI_TANG_SUO = -6           # 队员 在探索界面
+BEGIN_DA_GUAI = -21         # 开打小怪
+BEGIN_DA_BOSS = -22         # 开打boss
+EXIT_TANG_SUO = -23         # 退出探索
+YAO_QING_ZHONG = -24        # 探索邀请中
+EXITED_JIE_JIE = -25          # 结界已退出
 
 SCENCE_NOT_REPEAT = -41     # 场景未重复
 SCENCE_REPEAT_END = -42     # 场景重复，且超次数，退出
@@ -18,7 +19,7 @@ SCENCE_REPEAT = -43         # 场景重复，计数加1
 # 打探索
 TANG_CAN_EXIT = -50         # 打完识别到探索奖励，次数可退出
 TANG_GO_RIGHT = -51         # 探索中，向右走
-TANG_GO_RIGHT_MAX = 5      # 探索中，向右走最大值，到达后退出探索
+TANG_GO_RIGHT_MAX = 5       # 探索中，向右走最大值，到达后退出探索
 
 # 次数定义
 SCENCE_REPEAT_TIMES = 15    # 识别到场景重复次数
@@ -59,6 +60,11 @@ BEAT_MAX_FALSE = '打手没满级'
 # 是否交叉打结界
 LOOP_TRUE = '交叉打结界'
 LOOP_FALSE = '不交叉打'
+
+# 其他功能
+CHOU_N_KA = '抽N卡'
+ZA_BAI_GUI = '砸百鬼'
+XUE_YUE = '血月'
 
 # mod
 MOD_SET = 0

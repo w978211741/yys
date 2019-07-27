@@ -29,6 +29,7 @@ class Dou_ji(Game):
         print("开始斗技按钮")
         if self.click_img("yys/开始斗技按钮.bmp", handle) == 0:
             print("开始斗技按钮")
+            time.sleep(15)
             return codedef.FIGHT_BEGIN
         return codedef.FIGHT_BEGIN
 

@@ -132,6 +132,8 @@ class Gouliang():
                 re, src_x, src_y = self.get_not_max_n()
                 if re == 0:
                     self.tuo(src_x, src_y, tar_x, tar_y)
+            else:
+                print("找不到左边满级" + str(b_flag))
 
             if b_flag is False:
                 # 判断队长右边式神是否满级 TRUE满级
@@ -142,6 +144,8 @@ class Gouliang():
                     re, src_x, src_y = self.get_not_max_n()
                     if re == 0:
                         self.tuo(src_x, src_y, tar_x, tar_y)
+            else:
+                print("找不到左边满级" + str(b_flag))
         else:
             # 判断队员左边式神是否满级 TRUE满级
             if self.is_left_max():
@@ -195,8 +199,9 @@ class Gouliang():
             m.mouse_to(x + ddx * i, tar_y)  # 鼠标移动到
             i += 1
 
+        time.sleep(0.1)
         m.mouse_to(tar_x, tar_y)  # 鼠标移动到
-
+        time.sleep(0.1)
         m.left_up()
 
         time.sleep(1)

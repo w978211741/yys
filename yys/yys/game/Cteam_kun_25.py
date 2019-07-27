@@ -25,6 +25,9 @@ class Team_kun_25(Game):
         # Execute the function
         return func
 
+    def exit_jie_jie(self, argument, handle):
+        return self.ju_jue_xuan_shang(argument, handle)
+
     def this_mo_ren_yao_qing_dui_you(self, argument, handle):
         return self.mo_ren_yao_qing_dui_you(argument, handle)
 

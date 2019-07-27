@@ -23,8 +23,11 @@ class Personal_jiejie(Game):
         if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
             return codedef.SCENCE_REPEAT_END
         switcher = {
+            SceneKey.SHI_FOU_YAO_QING_JI_XU: self.this_yao_qing_dui_you_ji_xu,
+            SceneKey.TANG_SUO_ZHANG_JIE: self.this_exit_zhang_jie,
+            SceneKey.TANG_SUO_ZHONG: self.this_exit_tang_suo,
             SceneKey.JIE_JIE_TU_PO: self.personal_jiejie_main,
-            SceneKey.TANG_SUO: self.enter_jie_jie,
+            SceneKey.TANG_SUO: self.this_enter_jie_jie,
             SceneKey.SHOU_DAO_YAO_QING: self.shou_dao_yai_qing
         }
         # Get the function from switcher dictionary
@@ -33,21 +36,22 @@ class Personal_jiejie(Game):
         return func
 
     def father(self, argument, handle):
-        Game.do_work(self, argument, handle)
-        return 0
+        return Game.do_work(self, argument, handle)
+
+    def this_enter_jie_jie(self, argument, handle):
+         return self.enter_jie_jie(argument, handle)
+
+    def this_exit_zhang_jie(self, argument, handle):
+        return self.click_img("yys/关闭按钮.bmp", handle, 0.98)
+
+    def this_yao_qing_dui_you_ji_xu(self, argument, handle):
+        return self.click_img("yys/取消邀请按钮.bmp", handle, 0.98)
+
+    def this_exit_tang_suo(self, argument, handle):
+        return self.exit_tang_suo(handle)
 
     # 查看结界突破剩余数量，判断是否打，还是刷新
     def personal_jiejie_main(self, argument, handle):
-        na = self.ge_ren_or_liao(handle)
-        if na == -1:
-            return -1
-        if na == 1:
-            if self.click_img("yys/个人结界灰.bmp", handle, 0.98) == 0:
-                print("个人结界灰")
-            return 0
-        #tu_po_juan = self.get_tu_po_juan2(handle)
-        #if tu_po_juan == 0:
-        #    return -3
         da_guo, da_bug_uo, mei_da_guo = self.jie_jie_number(handle)
         if da_guo >= 3 or mei_da_guo == 0:
             return self.refresh_jie_jie(handle)
@@ -58,8 +62,10 @@ class Personal_jiejie(Game):
         mouse.click(x, y)
         self.waiting(argument, handle)
         if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
-            print("进攻结界按钮")
-        return 0
+            time.sleep(2)
+            if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
+                return codedef.SCENCE_REPEAT_END
+        return codedef.NORMAL_END
 
     # 刷新结界突破
     def refresh_jie_jie(self, handle):
@@ -72,7 +78,7 @@ class Personal_jiejie(Game):
                 time.sleep(1)
                 if self.click_img("yys/结界刷新确定按钮.bmp", handle, 0.98) == 0:
                     print("结界刷新确定按钮")
-        return 0
+        return codedef.NORMAL_END
 
     # 逐个结界块进行找图，找到第一个没打过的返回
     def jie_chu_tu_po_block(self, handle):
@@ -119,10 +125,32 @@ class Personal_jiejie(Game):
         re1 = Img.find_all_img_in_img('temp/temp.bmp', self.da_guo_le_path, 0.8)
         re2 = Img.find_all_img_in_img('temp/temp.bmp', self.da_bu_guo_path, 0.96)  # 匹配精度0.96
         re3 = Img.find_all_img_in_img('temp/temp.bmp', self.mei_da_guo_path, 0.90)
-        print("打过了" + str(re1) + ";打不过:" + str(re2) + ";没打过:" + str(re3))
+        # print("打过了" + str(re1) + ";打不过:" + str(re2) + ";没打过:" + str(re3))
         return re1, re2, re3
 
     def shou_dao_yai_qing(self, argument, handle):
         if self.click_img("yys/粗红叉按钮2.bmp", handle, 0.90) == 0:
             print("粗红叉按钮2")
         return 0
+
+    def exit(self, argument, handle):
+        if argument == SceneKey.JIE_JIE_TU_PO:
+            if self.click_img("yys/退出结界黑.bmp", handle, 0.98) == 0:
+                time.sleep(0.5)
+                self.this_exit_zhang_jie(argument, handle)
+            else:
+                self.this_exit_zhang_jie(argument, handle)
+        else:
+            switcher = {
+                SceneKey.SHI_FOU_YAO_QING_JI_XU: self.this_yao_qing_dui_you_ji_xu,
+                SceneKey.TANG_SUO_ZHANG_JIE: self.this_exit_zhang_jie,
+                SceneKey.TANG_SUO_ZHONG: self.this_exit_tang_suo,
+                SceneKey.TANG_SUO: self.this_enter_jie_jie,
+                SceneKey.SHOU_DAO_YAO_QING: self.shou_dao_yai_qing
+            }
+            # Get the function from switcher dictionary
+            func = switcher.get(argument, self.father)(argument, handle)
+            # Execute the function
+            return func
+        return codedef.NORMAL_END
+

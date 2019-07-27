@@ -200,6 +200,7 @@ class Game:
         re = Game.if_exist(path)
         return re
 
+    @abstractmethod
     # 判断当前所在是哪个场景
     def get_scene(self, handle):
         window_img = self.window.jie_tu(handle)
@@ -247,10 +248,10 @@ class Game:
             return SceneKey.ZHANG_DOU_ZHONG
         if Game.if_exist(path + "探索章节界面.bmp") == 0:
             return SceneKey.TANG_SUO_ZHANG_JIE
-        if Game.if_exist(path + "超鬼王来袭界面.bmp") == 0:
-            return SceneKey.CHAO_GUI_WANG_LAI_XI
-        if Game.if_exist(path + "购买茶界面.bmp") == 0:
-            return SceneKey.GOU_MAI_CHA
+        # if Game.if_exist(path + "超鬼王来袭界面.bmp") == 0:
+        #     return SceneKey.CHAO_GUI_WANG_LAI_XI
+        # if Game.if_exist(path + "购买茶界面.bmp") == 0:
+        #     return SceneKey.GOU_MAI_CHA
         return SceneKey.NUKOWN
 
     # 单击指定图片

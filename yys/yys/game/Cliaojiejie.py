@@ -24,7 +24,6 @@ class Liaojiejie (Game):
         func = switcher.get(argument, self.father)(handle)
         # Execute the function
         return func
-
     def father(self, argument, handle):
         Game.do_work(self, argument, handle)
         return 0
@@ -122,3 +121,4 @@ class Liaojiejie (Game):
         # 滚轮滚2为一排
         m.gun_lun(-2 * pai, 0)
         time.sleep(0.2)
+

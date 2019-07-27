@@ -46,7 +46,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.bool_run = False
         self.timer = QTimer()  # 初始化一个定时器
         self.timer.timeout.connect(self.show_log)  # 计时结束调用operate()方法
-        self.timer.start(800)
+        self.timer.start(300)
         # self.timer11 = QTimer()  # 初始化一个定时器
         # self.timer11.timeout.connect(self.dian_guai_11)  # 计时结束调用operate()方法
         # self.timer11.start(30000)
@@ -59,10 +59,12 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.Beater = True
         self.BeatMax = True
         self.Loop = False
+        self.other = '抽N卡'     # 其他功能
+        self.Chapter = '第一章'
         pass
 
     def setMod(self, id):
-        print(id)
+        # print(id)
         # 单选按钮组 -2  -  -7
         self.mod = id
         if id == -5:
@@ -185,7 +187,8 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     self.main_process = multiprocessing.Process(
                         target=my_xue_yue_process, args=(
                             self.log_queue, self.qq_name, self.comboBox_1.currentText(), self.comboBox_2.currentText(),
-                            self.comboBox_3.currentText(), self.comboBox_4.currentText(), inum, iMaxtimes), name='my_process')
+                            self.comboBox_3.currentText(), self.comboBox_4.currentText(), inum, iMaxtimes, self.other),
+                        name='my_process')
                     self.main_process.start()
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
@@ -204,14 +207,14 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                             target=my_tang_suo_jie_jie_process, args=(
                                 self.log_queue, self.qq_name, self.comboBox_1.currentText(),
                                 self.comboBox_2.currentText(), self.UP, self.BOSS, self.QingMax,
-                                self.Beater, self.BeatMax, iMaxtimes,), name='my_process')
+                                self.Beater, self.BeatMax, iMaxtimes, self.Chapter,), name='my_process')
                         self.main_process.start()
                     else:
                         self.main_process = multiprocessing.Process(
                             target=my_team_kun_25_process, args=(
                                 self.log_queue, self.qq_name, self.comboBox_1.currentText(),
                                 self.comboBox_2.currentText(), self.UP, self.BOSS, self.QingMax,
-                                self.Beater, self.BeatMax, iMaxtimes,), name='my_process')
+                                self.Beater, self.BeatMax, iMaxtimes, self.Chapter,), name='my_process')
                         self.main_process.start()
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
@@ -385,7 +388,6 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
             self.BOSS = True
 
     def setQingMax(self, text):
-        print(text)
         if text == codedef.QING_MAX_TRUE:
             self.QingMax = True
         elif text == codedef.QING_MAX_FALSE:
@@ -417,6 +419,11 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         else:
             self.Loop = True
 
+    def setOther(self, text):
+        self.other = text
+
+    def setChapter(self, text):
+        self.Chapter = text
 
 def my_set_windows_process(log_queue, qq_name, yys1, yys2, yys3, yys4):
     fuben = Fuben(log_queue, qq_name)
@@ -437,7 +444,6 @@ def my_jie_jie_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum):
     try:
         fuben.jie_jie(yys1, yys2, yys3, yys4, inum)
     except Exception as e:
-
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
         print(str_log)
@@ -456,10 +462,10 @@ def my_hun_shi_process(log_queue, qq_name, yys1, yys2, imax_times):
     fuben.add_log("魂十 结束\r\n")
 
 
-def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_times):
+def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_times, mod):
     fuben = Fuben(log_queue, qq_name)
     try:
-        fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times)
+        fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times, mod)
     except Exception as e:
 
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
@@ -468,10 +474,10 @@ def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_ti
     fuben.add_log("刷血月副本 结束\r\n")
 
 
-def my_team_kun_25_process(log_queue, qq_name, yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times):
+def my_team_kun_25_process(log_queue, qq_name, yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times, Chapter):
     fuben = Fuben(log_queue, qq_name)
     try:
-        if fuben.team_kun_25(yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times) != 0:
+        if fuben.team_kun_25(yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times, Chapter) != 0:
             fuben.add_log("阴阳师 组队探索副本 不对\r\n")
     except Exception as e:
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
@@ -500,13 +506,14 @@ def send_qq(fuben, qq_name, msg):
     send_QQ = SendQQ(qq_name)
     send_QQ.send_qq_text(msg)
 
-def my_tang_suo_jie_jie_process(log_queue, qq_name, yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times):
+def my_tang_suo_jie_jie_process(log_queue, qq_name, yys1, yys2, UP, BOSS, QingMax,
+                                Beater, BeatMax, imax_times, Chapter):
     fuben = Fuben(log_queue, qq_name)
     try:
         while 1:
             start_time = datetime.datetime.now()
 
-            fuben.team_kun_25(yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times)
+            fuben.team_kun_25(yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times, Chapter)
             fuben.jie_jie(yys1, yys2, '1', '1', 2)
 
             end_time = datetime.datetime.now()

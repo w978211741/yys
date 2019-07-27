@@ -5,7 +5,7 @@ import codedef
 
 class dashitou(Game):
     def __init__(self):
-        Game.__init__(self)
+        super(dashitou, self).__init__()
         pass
 
     def judge_scenes(self, argument, handle):
