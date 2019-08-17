@@ -119,21 +119,21 @@ class Team_kun_25_captain(Team_kun_25):
             if self.click_img("yys/组队好友.bmp", handle) == 0 or self.click_img("yys/组队好友灰.bmp", handle) == 0:
                 if self.yao_qing_wait == 0:
                     time.sleep(2.5)
-                    # self.dian_friend(handle, self.index_dian_friend)
+                    self.dian_friend(handle, self.index_dian_friend)
 
-                    i = 4
-                    while i >= 0:
-                        self.dian_friend(handle, i)
-                        time.sleep(0.3)
-                        i -= 1
+                    # i = 4
+                    # while i >= 0:
+                    #     self.dian_friend(handle, i)
+                    #     time.sleep(0.3)
+                    #     i -= 1
 
                     time.sleep(0.5)
                     # 如果后续有自动选中了一个，那就先点一下别的，再回来，如想点1，先点了2，再点1，即可
                     if self.click_img("yys/邀请按钮.bmp", handle) == 0:
                         self.yao_qing_wait = 2
-                        # self.index_dian_friend += 1
-                        # if self.index_dian_friend >= 6:
-                        #     self.index_dian_friend = 0
+                        self.index_dian_friend += 1
+                        if self.index_dian_friend >= 5:
+                            self.index_dian_friend = 0
                 else:
                     self.yao_qing_wait -= 1
             return codedef.YAO_QING_ZHONG
@@ -144,13 +144,14 @@ class Team_kun_25_captain(Team_kun_25):
         if self.huang_flag:
             # 如果要换狗粮
             # 如果没有全部稀有度按钮
-            if self.if_exist("yys/全部稀有度按钮.bmp") != 0:
-                if self.if_exist("yys/N卡选择按钮.bmp") != 0:
+            if Game.if_exist("yys/全部稀有度按钮.bmp") != 0:
+                if Game.if_exist("yys/N卡选择按钮.bmp") != 0:
                     # 点晴明附近
                     x = int(handle.left + (handle.right - handle.left) / 4)
                     y = int(handle.top + (handle.bottom - handle.top) * 3 / 5)
                     m = Mouse()
                     m.click(x, y)
+                    time.sleep(2)
                 else:
                     # 找没满级狗粮和拖上去替换
                     gouliang = Gouliang(self.metrics_x, self.metrics_y, handle)
@@ -159,7 +160,7 @@ class Team_kun_25_captain(Team_kun_25):
                     print("yys/战斗中准备按钮.bmp")
                     self.huang_flag = False
             else:
-                if self.if_exist("yys/N卡选择按钮.bmp") != 0:
+                if Game.if_exist("yys/N卡选择按钮.bmp") != 0:
                     if self.click_img("yys/全部稀有度按钮.bmp", handle) == 0:
                         time.sleep(0.3)
                         self.click_img("yys/N卡选择按钮.bmp", handle)
@@ -204,15 +205,17 @@ class Team_kun_25_captain(Team_kun_25):
             if self.click_img("yys/未固定阵容.bmp", handle) != 0:
                 pass
 
-        if self.if_exist("yys/探索奖励.bmp") == 0:
+        if Game.if_exist("yys/探索奖励.bmp") == 0:
             self.can_exited = True
 
         if self.can_exited:
             if self.exit_tang_suo(handle) == codedef.EXIT_TANG_SUO:
                 self.can_exited = False
+                self.go_right_times = 0
                 return codedef.EXIT_TANG_SUO
 
         if self.click_img("yys/确认退出探索按钮.bmp", handle) == 0:
+            self.go_right_times = 0
             return codedef.EXIT_TANG_SUO
 
         return self.da_tang_suo_gui(handle)
@@ -258,8 +261,9 @@ class Team_kun_25_captain(Team_kun_25):
 
             if self.right and self.click_img("yys/探索向右走.bmp", handle) == 0:
                 print("探索向右走")
-                time.sleep(0.3)
+                time.sleep(0.5)
                 self.click_img("yys/探索向右走.bmp", handle)
+                time.sleep(1.5)
                 self.go_right_times += 1
                 if self.go_right_times >= codedef.TANG_GO_RIGHT_MAX:
                     self.can_exited = True

@@ -1,5 +1,6 @@
 #encoding=utf-8
 from MainWindow import My_MainWindow
+from Mainwinfeng import mainwindeng
 from PyQt5 import QtWidgets
 import sys
 import multiprocessing
@@ -11,11 +12,19 @@ from Cteam_kun_25_captain import Team_kun_25_captain
 import codedef
 import re
 
-def main():
+def main1():
     print("开始")
     multiprocessing.freeze_support()
     app = QtWidgets.QApplication(sys.argv)
     my_pyqt_form = My_MainWindow()
+    my_pyqt_form.show()
+    sys.exit(app.exec_())
+
+def main():
+    print("开始")
+    multiprocessing.freeze_support()
+    app = QtWidgets.QApplication(sys.argv)
+    my_pyqt_form = mainwindeng()
     my_pyqt_form.show()
     sys.exit(app.exec_())
 

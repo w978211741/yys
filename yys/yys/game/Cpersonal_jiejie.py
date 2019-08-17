@@ -5,6 +5,7 @@ from Cimg import Img
 import time
 import codedef
 from win32api import GetSystemMetrics
+import random
 
 
 class Personal_jiejie(Game):
@@ -58,6 +59,7 @@ class Personal_jiejie(Game):
         re, x, y = self.jie_chu_tu_po_block(handle)
         if re != 0:
             return -2
+        time.sleep(random.randint(0, 5))
         mouse = Mouse()
         mouse.click(x, y)
         self.waiting(argument, handle)

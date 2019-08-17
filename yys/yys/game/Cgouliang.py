@@ -54,6 +54,11 @@ class Gouliang():
                                            point=point, point2=point2, accuracy=accuracy)
         if re == 0:
             return True
+        else:
+            re, x, y = Img.find_img_in_cut_img(src_img_path='temp/temp.bmp', target_img_path='yys/观战标记.bmp',
+                                               point=point, point2=point2, accuracy=accuracy)
+            if re == 0:
+                return True
         return False
 
     # 判断指定位置式神是否已上场 TRUE上场
@@ -200,8 +205,8 @@ class Gouliang():
             i += 1
 
         time.sleep(0.1)
-        m.mouse_to(tar_x, tar_y)  # 鼠标移动到
-        time.sleep(0.1)
+        m.mouse_to(tar_x + 3, tar_y)  # 鼠标移动到
+        time.sleep(0.3)
         m.left_up()
 
         time.sleep(1)

@@ -64,7 +64,7 @@ class Team_kun_25_teammate(Team_kun_25):
             if self.click_img("yys/未固定阵容.bmp", handle) != 0:
                 pass
 
-        if self.if_exist("yys/探索奖励.bmp") == 0:
+        if Game.if_exist("yys/探索奖励.bmp") == 0:
             self.can_exited = True
 
         if self.can_exited:
@@ -81,8 +81,8 @@ class Team_kun_25_teammate(Team_kun_25):
         if self.huang_flag:
             # 如果要换狗粮
             # 如果没有全部稀有度按钮
-            if self.if_exist("yys/全部稀有度按钮.bmp") != 0:
-                if self.if_exist("yys/N卡选择按钮.bmp") != 0:
+            if Game.if_exist("yys/全部稀有度按钮.bmp") != 0:
+                if Game.if_exist("yys/N卡选择按钮.bmp") != 0:
                     # 点晴明附近
                     x = int(handle.left + (handle.right - handle.left) / 4)
                     y = int(handle.top + (handle.bottom - handle.top) * 3 / 4)
@@ -95,7 +95,7 @@ class Team_kun_25_teammate(Team_kun_25):
                     self.click_img("yys/战斗中准备按钮.bmp", handle)
                     self.huang_flag = False
             else:
-                if self.if_exist("yys/N卡选择按钮.bmp") != 0:
+                if Game.if_exist("yys/N卡选择按钮.bmp") != 0:
                     if self.click_img("yys/全部稀有度按钮.bmp", handle) == 0:
                         time.sleep(0.3)
                         self.click_img("yys/N卡选择按钮.bmp", handle)

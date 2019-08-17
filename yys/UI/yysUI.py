@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(341, 851)
+        MainWindow.resize(329, 851)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.textBrowser = QtWidgets.QTextBrowser(self.centralwidget)
@@ -199,6 +199,7 @@ class Ui_MainWindow(object):
         self.comboBox_other.addItem("")
         self.comboBox_other.addItem("")
         self.comboBox_other.addItem("")
+        self.comboBox_other.addItem("")
         MainWindow.setCentralWidget(self.centralwidget)
         self.actionsadf = QtWidgets.QAction(MainWindow)
         self.actionsadf.setCheckable(True)
@@ -315,6 +316,5 @@ class Ui_MainWindow(object):
         self.comboBox_other.setItemText(0, _translate("MainWindow", "抽N卡"))
         self.comboBox_other.setItemText(1, _translate("MainWindow", "砸百鬼"))
         self.comboBox_other.setItemText(2, _translate("MainWindow", "血月"))
+        self.comboBox_other.setItemText(3, _translate("MainWindow", "逢魔"))
         self.actionsadf.setText(_translate("MainWindow", "sadf"))
-
-import res_rc

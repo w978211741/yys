@@ -9,6 +9,7 @@ from Chandle import Handle, SceneKey
 from CsendQQ import SendQQ
 import codedef
 from win32api import GetSystemMetrics
+import random
 
 
 class Game:
@@ -220,34 +221,34 @@ class Game:
         if Game.if_exist(path + "是否邀请继续2.bmp") == 0:
             print("是否邀请继续2")
             return SceneKey.SHI_FOU_YAO_QING_JI_XU
-        if Game.if_exist(path + "组队选择队友界面.bmp") == 0:
-            return SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU
-        if Game.if_exist(path + "庭院界面.bmp") == 0:
-            return SceneKey.TING_YUAN
-        if Game.if_exist(path + "探索界面.bmp") == 0:
-            return SceneKey.TANG_SUO
-        if Game.if_exist(path + "町中界面.bmp") == 0:
-            return SceneKey.DING_ZHONG
-        if Game.if_exist(path + "结界突破界面.bmp") == 0:
-            return SceneKey.JIE_JIE_TU_PO
-        if Game.if_exist(path + "战斗奖励界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_JIANG_LI
-        if Game.if_exist(path + "斗技中界面.bmp") == 0:
-            return SceneKey.DOU_JI_ZHONG
-        if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_SHENG_LI
-        if Game.if_exist(path + "战斗失败界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_SHI_BAI
-        if Game.if_exist(path + "探索中界面.bmp") == 0:
-            return SceneKey.TANG_SUO_ZHONG
-        if Game.if_exist(path + "协战队伍界面.bmp") == 0:
-            return SceneKey.XIE_ZHAN_DUI_WU
-        if Game.if_exist(path + "斗技界面.bmp") == 0:
-            return SceneKey.DOU_JI
-        if Game.if_exist(path + "战斗中界面.bmp") == 0:
-            return SceneKey.ZHANG_DOU_ZHONG
-        if Game.if_exist(path + "探索章节界面.bmp") == 0:
-            return SceneKey.TANG_SUO_ZHANG_JIE
+        # if Game.if_exist(path + "组队选择队友界面.bmp") == 0:
+        #     return SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU
+        # if Game.if_exist(path + "庭院界面.bmp") == 0:
+        #     return SceneKey.TING_YUAN
+        # if Game.if_exist(path + "探索界面.bmp") == 0:
+        #     return SceneKey.TANG_SUO
+        # if Game.if_exist(path + "町中界面.bmp") == 0:
+        #     return SceneKey.DING_ZHONG
+        # if Game.if_exist(path + "结界突破界面.bmp") == 0:
+        #     return SceneKey.JIE_JIE_TU_PO
+        # if Game.if_exist(path + "战斗奖励界面.bmp") == 0:
+        #     return SceneKey.ZHANG_DOU_JIANG_LI
+        # if Game.if_exist(path + "斗技中界面.bmp") == 0:
+        #     return SceneKey.DOU_JI_ZHONG
+        # if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
+        #     return SceneKey.ZHANG_DOU_SHENG_LI
+        # if Game.if_exist(path + "战斗失败界面.bmp") == 0:
+        #     return SceneKey.ZHANG_DOU_SHI_BAI
+        # if Game.if_exist(path + "探索中界面.bmp") == 0:
+        #     return SceneKey.TANG_SUO_ZHONG
+        # if Game.if_exist(path + "协战队伍界面.bmp") == 0:
+        #     return SceneKey.XIE_ZHAN_DUI_WU
+        # if Game.if_exist(path + "斗技界面.bmp") == 0:
+        #     return SceneKey.DOU_JI
+        # if Game.if_exist(path + "战斗中界面.bmp") == 0:
+        #     return SceneKey.ZHANG_DOU_ZHONG
+        # if Game.if_exist(path + "探索章节界面.bmp") == 0:
+        #     return SceneKey.TANG_SUO_ZHANG_JIE
         # if Game.if_exist(path + "超鬼王来袭界面.bmp") == 0:
         #     return SceneKey.CHAO_GUI_WANG_LAI_XI
         # if Game.if_exist(path + "购买茶界面.bmp") == 0:
@@ -283,6 +284,7 @@ class Game:
         window = self.window
 
     def teaming(self, argument, handle):
+        time.sleep(random.randint(0, 5))
         if self.click_img("yys/开始战斗按钮.bmp", handle, 0.98) == 0:
             print("开始战斗按钮")
             return codedef.FIGHT_BEGIN

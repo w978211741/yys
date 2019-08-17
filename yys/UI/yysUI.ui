@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>341</width>
+    <width>329</width>
     <height>851</height>
    </rect>
   </property>
@@ -778,6 +778,11 @@
        <string>血月</string>
       </property>
      </item>
+     <item>
+      <property name="text">
+       <string>逢魔</string>
+      </property>
+     </item>
     </widget>
    </widget>
   </widget>
@@ -1072,6 +1077,7 @@
   <slot>setLoop()</slot>
   <slot>setOther()</slot>
   <slot>setChapter()</slot>
+  <slot>sethunnum()</slot>
  </slots>
  <buttongroups>
   <buttongroup name="buttonGroup"/>

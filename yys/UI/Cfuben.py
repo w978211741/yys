@@ -11,6 +11,7 @@ from yys.game.Cteam_hun_10 import Team_hun_10
 import time
 from Cimg import Img
 from yys.game.Cdashitou import dashitou
+from yys.game.Cfengmo import fengmo
 from CsendQQ import SendQQ
 import win32gui
 import codedef
@@ -35,7 +36,8 @@ class Fuben():
     def set_yys(self, index, game, handle):
         # 加上显示窗口，防止最小化
         win32gui.ShowWindow(handle.hwnd, 1)
-        re = game.set_window(handle, "[#] [yys" + index + "] 阴阳师-网易游戏 [#]", index, True)
+        # re = game.set_window(handle, "[#] [yys" + index + "] 阴阳师-网易游戏 [#]", index, True)
+        re = game.set_window(handle, "阴阳师-网易游戏", index, True)
         if re != 0:
             self.add_log("阴阳师窗口不对 yys[" + index + "] " + "窗口句柄：" + str(handle.hwnd) + "\r\n")
         else:
@@ -51,7 +53,7 @@ class Fuben():
         self.set_yys(yys, game, yys1)
         return codedef.NORMAL_END
 
-    def jie_jie(self, y1, y2, y3, y4, inum):
+    def jie_jie(self, y1, y2, y3, y4, inum, maxt=False):
         windowslist = [y1, y2, y3, y4]
         #只有一个结界类实例，不同的只是窗口句柄和窗口坐标
         game = Personal_jiejie()
@@ -96,6 +98,8 @@ class Fuben():
                             yyslist[i].iold_scene = 0
                             waitlist[i] = re
                             self.add_log("yys" + windowslist[i] + "冷却中，场景重复次数重置\r\n")
+                            if maxt:
+                                finishlist[i] = 1
 
                     else:
                         waitlist[i] = waitlist[i] - 1
@@ -147,6 +151,7 @@ class Fuben():
                     print("点主怪")
                     time.sleep(1)
                     game.dian_guai_11(yys1)
+            # 手动阵容需点怪
 
             re = game.do_work(scene, yys1)
             self.add_log(scene.__str__() + str(re) + "\r\n")
@@ -182,7 +187,7 @@ class Fuben():
         self.send_qq(r'魂十 打完，进程结束')
         return codedef.NORMAL_END
 
-    def xue_yue(self, y1, y2, y3, y4, inum, imax_times, mod):
+    def xue_yue(self, y1, y2, y3, y4, inum, imax_times, mod, fengmod=None):
         windowslist = [y1, y2, y3, y4]
 
         if mod == codedef.CHOU_N_KA:
@@ -191,6 +196,8 @@ class Fuben():
             game = Zabaigui()
         elif mod == codedef.XUE_YUE:
             game = dashitou()
+        elif mod == codedef.FENG_MO:
+            game = fengmo(fengmod)
         else:
             game = dashitou()
 
@@ -220,6 +227,7 @@ class Fuben():
                         scene = game.get_scene(yyslist[i])
                         self.add_log(scene.__str__() + "\r\n")
                         re = game.do_work(scene, yyslist[i])
+                        self.add_log(str(re) + "\r\n")
                         if re > codedef.NORMAL_END:
                             waitlist[i] = re
                         elif re == codedef.FIGHT_BEGIN:
@@ -227,8 +235,8 @@ class Fuben():
                         elif re == codedef.FIGHT_END and ju_flag[i] is True:
                             ju_flag[i] = False
                             ji_shulist[i] = ji_shulist[i] + 1
-                            self.add_log(ji_shulist[i].__str__() + "\r\n")
-                            if ji_shulist[i] > imax_times:
+                            self.add_log("第" + ji_shulist[i].__str__() + "次" + "\r\n")
+                            if ji_shulist[i] >= imax_times:
                                 finishlist[i] = True
                         elif re == codedef.SCENCE_REPEAT_END:
                             finishlist[i] = True

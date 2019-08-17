@@ -54,7 +54,8 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.Maxtimes = ''
         self.UP = codedef.UP_C_NULL
         self.BOSS = True
-        self.register_show = False
+        # self.register_show = False
+        self.register_show = True
         self.QingMax = True
         self.Beater = True
         self.BeatMax = True
@@ -425,6 +426,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
     def setChapter(self, text):
         self.Chapter = text
 
+
 def my_set_windows_process(log_queue, qq_name, yys1, yys2, yys3, yys4):
     fuben = Fuben(log_queue, qq_name)
     try:
@@ -514,7 +516,7 @@ def my_tang_suo_jie_jie_process(log_queue, qq_name, yys1, yys2, UP, BOSS, QingMa
             start_time = datetime.datetime.now()
 
             fuben.team_kun_25(yys1, yys2, UP, BOSS, QingMax, Beater, BeatMax, imax_times, Chapter)
-            fuben.jie_jie(yys1, yys2, '1', '1', 2)
+            fuben.jie_jie(yys1, yys2, '1', '1', 2, maxt=True)
 
             end_time = datetime.datetime.now()
             if (end_time - start_time).seconds < 60:

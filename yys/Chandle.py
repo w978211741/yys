@@ -32,6 +32,14 @@ class SceneKey(Enum):
     BAI_GUI_QI_YUE_SHU = 26
     BAI_GUI_ZHONG = 27
     BAI_GUI_GUI_WANG = 28
+    TU_YAO = 29
+    FENG_MO_ZHI_SHI = 30
+    GE_REN_SHE_ZHI = 31
+    XUAN_QU = 32
+    YOU_XIANG_DENG_LU = 33
+    XUAN_ZHE_PING_TAI = 34
+    YOU_XI_GONG_GAO = 35
+
 
 class Handle:
     hwnd = 0
