@@ -30,7 +30,7 @@ class Team_kun_25_teammate(Team_kun_25):
 
     def do_work(self, argument, handle):
         if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
-            if Game.if_exist("yys/进攻结界按钮.bmp", handle) == 0:
+            if Game.if_exist("yys/进攻结界按钮.bmp") == 0:
                 self.fight_end(argument, handle)
                 return codedef.TANG_GO_RIGHT
             return codedef.SCENCE_REPEAT_END

@@ -13,6 +13,8 @@ class fengmo(Game):
         self.metrics_y = GetSystemMetrics(1)    # 获取分辨率
         self.can_exited = False
         self.mod = mod
+        self.jiang_li_x = 0
+        self.jiang_li_y = 0
         pass
 
     def judge_scenes(self, argument, handle):
@@ -44,6 +46,9 @@ class fengmo(Game):
         window_img = self.window.jie_tu(handle)
         window_img.save('temp/temp.bmp')
         path = "yys/scene/"
+        if Game.if_exist(path + "悬赏封印邀请界面.bmp") == 0:
+            return SceneKey.XUAN_SHANG_FENG_YING_YAO_QING
+
         if Game.if_exist(path + "土曜界面.bmp") == 0:
             return SceneKey.TU_YAO
         if Game.if_exist("yys/batch_feng/个人设置界面.bmp") == 0:
@@ -56,12 +61,15 @@ class fengmo(Game):
             return SceneKey.XUAN_ZHE_PING_TAI
         if Game.if_exist("yys/batch_feng/游戏公告界面.bmp") == 0:
             return SceneKey.YOU_XI_GONG_GAO
+        if Game.if_exist(path + "逢魔之时界面.bmp") == 0:
+            return SceneKey.FENG_MO_ZHI_SHI
 
         if Game.if_exist("yys/卷轴打开.bmp") == 0:
             return SceneKey.TING_YUAN
         if Game.if_exist("yys/卷轴未打开.bmp") == 0:
             return SceneKey.TING_YUAN
-        return Game.get_scene(self, handle)
+
+        return SceneKey.NUKOWN
 
     def xuan_ping_tai(self, argument, handle):
         if self.click_img("yys/batch_feng/安卓平台按钮.bmp", handle, 0.90) == 0:
@@ -76,20 +84,36 @@ class fengmo(Game):
             if Game.if_exist("yys/batch_feng/收回按钮.bmp") == 0:
                 time.sleep(0.2)
                 if self.mod == 0:
-                    re, x, y = self.window.find_img(handle, "yys/batch_feng/扫码登录.bmp", 0.9)
+                    # re, x, y = self.window.find_img(handle, "yys/batch_feng/扫码登录.bmp", 0.9)
+                    # if re == 0:
+                    #     mouse = Mouse()
+                    #     mouse.click(x, y - 40)
+                    #     time.sleep(2)
+                    #     if self.click_img("yys/batch_feng/登录按钮.bmp", handle, 0.90) == 0:
+                    #         time.sleep(1)
+                    # else:
+                    re, x, y = self.window.find_img(handle, "yys/batch_feng/叉叉按钮.bmp", 0.9)
                     if re == 0:
-                        mouse = Mouse()
-                        mouse.click(x, y - 40)
-                        time.sleep(1)
-                        if self.click_img("yys/batch_feng/登录按钮.bmp", handle, 0.90) == 0:
-                            time.sleep(1)
-                    else:
+                        i = 5;
+                        while i > 0:
+                            i += 1
+                            src_x = x + 22
+                            xisu = 0.565
+                            src_y = handle.top + int((handle.bottom - handle.top) * xisu)
+                            tar_x = src_x
+                            tar_y = src_y + 150
+                            # mouse = Mouse()
+                            # mouse.mouse_to(src_x, src_y)
+                            self.tuo(src_x, src_y, tar_x, tar_y)
+                            time.sleep(0.2)
+                            return codedef.ERROR_END
                         re, x, y = self.window.find_img(handle, "yys/batch_feng/叉叉按钮.bmp", 0.9)
                         if re == 0:
                             mouse = Mouse()
-                            mouse.mouse_to(x, y)
-                            time.sleep(0.2)
-                            mouse.m.scroll(vertical=-13)
+                            mouse.click(x- 40, y)
+                            time.sleep(2)
+                            if self.click_img("yys/batch_feng/登录按钮.bmp", handle, 0.90) == 0:
+                                time.sleep(1)
                 else:
                     src_x = int((handle.left + handle.right) / 2)
                     src_y = handle.top + int((handle.bottom - handle.top) * 2 / 3)
@@ -106,8 +130,9 @@ class fengmo(Game):
         src_y = handle.top + int((handle.bottom - handle.top) * 4 / 5)
         m = Mouse(self.metrics_x, self.metrics_y)
         m.click(src_x, src_y)
+        # m.mouse_to(src_x, src_y)
         time.sleep(3)
-        self.can_exited = True
+        self.can_exited = False  #、。。。。。。。
         return codedef.FIGHT_BEGIN
         # else:
         #     src_x = handle.left + int((handle.right - handle.left)  * 19 / 20)
@@ -119,7 +144,7 @@ class fengmo(Game):
         #     if self.click_img("yys/batch_feng/切换账号按钮.bmp", handle) == 0:
         #         time.sleep(2.8)
         #         return codedef.FIGHT_END
-
+        #
         # return codedef.NORMAL_END
 
     def cha(self, argument, handle):
@@ -131,11 +156,8 @@ class fengmo(Game):
                 time.sleep(0.8)
                 if self.click_img("yys/前往按钮.bmp", handle, 0.90) == 0:
                     time.sleep(1.2)
-                    self.can_exited = True
-
             else:
                 self.click_img("yys/日常按钮.bmp", handle, 0.90)
-
         else:
             self.ju_jue_xuan_shang(argument, handle)
 
@@ -155,6 +177,7 @@ class fengmo(Game):
                 self.tuo(src_x, src_y, tar_x, tar_y)
 
         else:
+            # 可以退出，点左上角头像
             src_x = handle.left + int((handle.right - handle.left) / 20)
             src_y = handle.top + int((handle.bottom - handle.top) / 10)
             m = Mouse(self.metrics_x, self.metrics_y)
@@ -163,17 +186,32 @@ class fengmo(Game):
 
         return codedef.NORMAL_END
 
-
     def feng_mo_zhi_shi(self, argument, handle):
-        if Game.if_exist("yys/奖励未领.bmp") == 0:
-            if self.click_img("yys/发现按钮.bmp", handle, 0.90) == 0:
-                time.sleep(2)
-        if Game.if_exist("yys/奖励已领.bmp") == 0:
-            self.can_exited = True
-
+        # 点完退出
         if self.can_exited:
             if self.click_img("yys/退出探索.bmp", handle) == 0:
-                time.sleep(0.8)
+                time.sleep(1)
+        else:
+            # 看奖励按钮位置，没的话退出
+            re, x, y = self.window.find_img(handle, "yys/奖励不可拿.bmp", 0.9)
+            if re == 0:
+                if self.jiang_li_x == 0 and self.jiang_li_y == 0:
+                    self.jiang_li_x = x
+                    self.jiang_li_y = y
+            else:
+                self.can_exited = True
+                if self.jiang_li_x == 0 and self.jiang_li_y == 0:
+                    pass
+                else:
+                    m = Mouse(self.metrics_x, self.metrics_y)
+                    m.click(self.jiang_li_x, self.jiang_li_y)
+                    time.sleep(1)
+                    self.jiang_li_x = 0
+                    self.jiang_li_y = 0
+            # 有气泡可以点就点
+            if Game.if_exist("yys/可以点.bmp") == 0:
+                if self.click_img("yys/现世逢魔按钮.bmp", handle, 0.90) == 0:
+                    time.sleep(2)
 
         return codedef.NORMAL_END
 
@@ -185,7 +223,6 @@ class fengmo(Game):
             self.click_img("yys/batch_feng/用户中心按钮.bmp", handle)
 
         return codedef.NORMAL_END
-
 
     def tuo(self, src_x, src_y, tar_x, tar_y):
         m = Mouse(self.metrics_x, self.metrics_y)

@@ -15,7 +15,7 @@ from registerWindow import My_registerWindow
 import codedef
 from Cregister import register
 from Cmouse import Mouse
-import datetime
+import time
 
 
 class mainwindeng(Ui_MainWindow, QtWidgets.QMainWindow):
@@ -62,7 +62,7 @@ class mainwindeng(Ui_MainWindow, QtWidgets.QMainWindow):
         # self.Loop = False
         # self.other = '抽N卡'     # 其他功能
         # self.Chapter = '第一章'
-
+        self.initwin = False
         self.mod = 0
         pass
 
@@ -72,31 +72,37 @@ class mainwindeng(Ui_MainWindow, QtWidgets.QMainWindow):
         else:
             self.mod = 1
 
-
-
-
+    def initwindow(self):
+        fuben = Fuben(self.log_queue, "")
+        try:
+            fuben.set_windows('1')
+        except Exception as e:
+            str_log = "Exception:" + traceback.format_exc() + "\r\n"
+            fuben.add_log(str_log)
+            print(str_log)
+        fuben.add_log("初始化窗口 结束\r\n")
 
     def start(self):
         try:
-            my_register = register()
-            re = my_register.check()
-            # print('check1:' + str(re))
-            if re == 0:
-                if self.register_show is False:
-                    self.register_show = True
-                    my_registerWindow = My_registerWindow(my_register)
-                    my_registerWindow.show()
-                    my_registerWindow.exec_()
-            else:
-                my_registerWindow = My_registerWindow(my_register)
-                my_registerWindow.show()
-                my_registerWindow.exec_()
-                re = my_register.check()
-                # print('check2:' + str(re))
-                if re != 0:
-                    return 0
-                else:
-                    self.register_show = True
+            # my_register = register()
+            # re = my_register.check()
+            # # print('check1:' + str(re))
+            # if re == 0:
+            #     if self.register_show is False:
+            #         self.register_show = True
+            #         my_registerWindow = My_registerWindow(my_register)
+            #         my_registerWindow.show()
+            #         my_registerWindow.exec_()
+            # else:
+            #     my_registerWindow = My_registerWindow(my_register)
+            #     my_registerWindow.show()
+            #     my_registerWindow.exec_()
+            #     re = my_register.check()
+            #     # print('check2:' + str(re))
+            #     if re != 0:
+            #         return 0
+            #     else:
+            #         self.register_show = True
 
             self.add_in_text_browser("正在启动\r\n")
             self.bool_run = True
@@ -151,6 +157,9 @@ class mainwindeng(Ui_MainWindow, QtWidgets.QMainWindow):
         return 0
 
     def show_log(self):
+        if self.initwin is False:
+            self.initwin = True
+            self.initwindow()
         #self.add_in_text_browser("..")
         try:
             self.add_in_text_browser(self.log_queue.get(timeout=0.1))

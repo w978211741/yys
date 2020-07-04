@@ -12,7 +12,11 @@ from Cteam_kun_25_captain import Team_kun_25_captain
 import codedef
 import re
 
-def main1():
+from Cmouse import Mouse
+from pykeyboard import PyKeyboard
+from Cimg import Img
+from PIL import ImageGrab
+def main():
     print("开始")
     multiprocessing.freeze_support()
     app = QtWidgets.QApplication(sys.argv)
@@ -20,13 +24,46 @@ def main1():
     my_pyqt_form.show()
     sys.exit(app.exec_())
 
-def main():
+def main1():
     print("开始")
     multiprocessing.freeze_support()
     app = QtWidgets.QApplication(sys.argv)
     my_pyqt_form = mainwindeng()
     my_pyqt_form.show()
     sys.exit(app.exec_())
+
+def lianjie():
+    t = 0
+    re = -1
+    while t < 5:
+        window_img = ImageGrab.grab((1920 / 2 + 300, 1080 - 50, 1920 / 2 + 800, 1080))
+        window_img.save('temp/temp.bmp')
+        re, x, y = Img.find_img_in_img('temp/temp.bmp', '异星工厂/警报.bmp', 0.8)
+        if re == 0:
+            break
+        t += 1
+    return re
+
+def main1():
+    print("开始")
+    tMouse = Mouse()
+    time.sleep(3)
+
+    while 1:
+        print("grab")
+        re = lianjie()
+        if re == 0:
+            print("find")
+            print("当前时间戳为:")
+            print(time.strftime("%Y-%m-%d %H:%M:%S", time.localtime()))
+
+            tMouse.mouse_to(1920 - 200, 10)
+            tMouse.click(1920 - 200, 10)
+            break
+
+        time.sleep(10*60)
+
+    print("end")
 
 
 def testtt():

@@ -22,10 +22,14 @@ class Mouse:
     def double_click(self, x, y):
         self.m.click(x, y, 1, 2)
 
-    # 发送esc退出事件
+    # 发送esc退出事件r
     def send_esc(self, hwnd):
         win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_ESCAPE, 0)
-        win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_ESCAPE, 0)
+        win32api.PostMessage(hwnd, win32con.WM_KEYUP, win32con.VK_ESCAPE, 0)
+
+        #win32api.SendMessage(hwnd, win32con.WM_KEYDOWN, win32con.VK_ESCAPE, 0)
+        #win32api.SendMessage(hwnd, win32con.WM_KEYUP, win32con.VK_ESCAPE, 0)
+
 
     def gun_lun(self, n, m):
         self.m.scroll(n, m)
@@ -106,5 +110,6 @@ class Keyboard:
         self.k.tap_key('a')  # 点击a键
         self.k.tap_key('c')  # 点击c键
         self.k.release_key(self.k.control_r_key)  # 松开alt键
+
 
 

@@ -13,7 +13,8 @@ from Cgouliang import Gouliang
 
 class Team_kun_25_captain(Team_kun_25):
     right = True
-    def __init__(self, UP=None, BOSS=True, QingMax=True, Beater=True, BeatMax=True, Chapter='第二十八章'):
+    def __init__(self, UP=None, BOSS=True, QingMax=True, Beater=True,
+                 BeatMax=True, Chapter='第二十八章',IsOne=False):
         super(Team_kun_25, self).__init__()
         self.metrics_x = GetSystemMetrics(0)    # 获取分辨率
         self.metrics_y = GetSystemMetrics(1)    # 获取分辨率
@@ -34,6 +35,8 @@ class Team_kun_25_captain(Team_kun_25):
         self.index_dian_friend = 0              # 点第几个好友，0~5
         self.Chapter = Chapter                  # 章节
 
+        self.IsOne = IsOne                      # 是否是单人模式
+
     def set_da_guai(self, da_guai):
         self.da_guai = da_guai
 
@@ -45,7 +48,7 @@ class Team_kun_25_captain(Team_kun_25):
 
     def do_work(self, argument, handle):
         if self.judge_scenes(argument, handle) == codedef.SCENCE_REPEAT_END:
-            if Game.if_exist("yys/进攻结界按钮.bmp", handle) == 0:
+            if Game.if_exist("yys/进攻结界按钮.bmp") == 0:
                 self.fight_end(argument, handle)
                 return codedef.TANG_GO_RIGHT
             return codedef.SCENCE_REPEAT_END
@@ -109,6 +112,13 @@ class Team_kun_25_captain(Team_kun_25):
         return codedef.NORMAL_END
 
     def this_tang_suo_zhang_jie(self, argument, handle):
+        if self.IsOne:
+            if self.click_img("yys/探索困难按钮.bmp", handle) != 0:
+                time.sleep(1)
+            elif self.click_img("yys/探索按钮.bmp", handle) != 0:
+                time.sleep(1)
+            return codedef.NORMAL_END
+
         # 可邀请继续就点邀请
         if self.yao_qing:
             if self.click_img("yys/组队按钮.bmp", handle) != 0:

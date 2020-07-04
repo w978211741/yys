@@ -37,9 +37,11 @@ class dashitou(Game):
         return codedef.NORMAL_END
 
     def da(self, argument, handle):
+        if self.click_img("yys/结束.bmp", handle, 0.90) == 0:
+            return codedef.FIGHT_END
+        pass
         if self.if_exist("yys/血月.bmp") == 0:
             if self.click_img("yys/挑战石头按钮.bmp", handle, 0.90) == 0:
-                print("挑战石头按钮")
                 return codedef.FIGHT_BEGIN
             pass
         return codedef.NORMAL_END

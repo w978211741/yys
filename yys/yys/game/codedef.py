@@ -11,10 +11,14 @@ BEGIN_DA_BOSS = -22         # 开打boss
 EXIT_TANG_SUO = -23         # 退出探索
 YAO_QING_ZHONG = -24        # 探索邀请中
 EXITED_JIE_JIE = -25          # 结界已退出
+HUN_SHI_TEAMING = -26       # 魂十组队
 
 SCENCE_NOT_REPEAT = -41     # 场景未重复
 SCENCE_REPEAT_END = -42     # 场景重复，且超次数，退出
 SCENCE_REPEAT = -43         # 场景重复，计数加1
+
+
+
 
 # 打探索
 TANG_CAN_EXIT = -50         # 打完识别到探索奖励，次数可退出
@@ -64,8 +68,11 @@ LOOP_FALSE = '不交叉打'
 # 其他功能
 CHOU_N_KA = '抽N卡'
 ZA_BAI_GUI = '砸百鬼'
-XUE_YUE = '血月'
+XUE_YUE = '御灵'
 FENG_MO = '逢魔'
+SHENG_XING = '狗粮升星'
+RI_LUN_YU = '日轮刷玉'
+RI_LUN_CENG = '日轮刷层'
 
 # mod
 MOD_SET = 0

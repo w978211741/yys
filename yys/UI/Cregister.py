@@ -9,7 +9,7 @@ import httplib2
 
 class register():
     def __init__(self):
-        self.key = '233333'
+        self.key = '*$r@a$ng'
         self.final_serial_list = []
         self.re = 0
 
@@ -109,11 +109,11 @@ class register():
                 serial_number = self.get_serial_number()
                 serial_list[1] = serial_number
                 # 设置试用日期
-                time_now = self.gettime()
-                if time_now is None:
-                    return -6
-
-                serial_list[2] = time_now
+                # time_now = self.gettime()
+                # if time_now is None:
+                #     return -6
+                #
+                # serial_list[2] = time_now
                 # 写注册文件 结束
                 self.write_file(serial_list)
                 iret = 0
@@ -123,30 +123,32 @@ class register():
                 # print(number)
                 if serial_no != number:
                     iret = -4
-                else:
-                    # 试用日期|试用有效期
-                    serial_time = serial_list[2]
-                    can_use_time = int(serial_list[3])
-                    if serial_time == '0' or can_use_time == '0':
-                        iret = -6
-                    else:
-                        time_now = self.gettime()
-                        if time_now is None:
-                            return -6
+                # else:
 
-                        d1 = datetime.datetime.strptime(time_now, '%Y-%m-%d')
-                        d2 = datetime.datetime.strptime(serial_time, '%Y-%m-%d')
-                        delta = d1 - d2
-                        days = delta.days
-                        # print(days)
-                        # print(can_use_time)
-                        if days >= can_use_time:
-                            if ifrom == -3:
-                                iret = -2
-                            elif ifrom == -5:
-                                iret = -5
-                        else:
-                            iret = 0
+            # 试用日期|试用有效期
+            serial_time = serial_list[2]
+            can_use_time = int(serial_list[3])
+            if serial_time == '0' or can_use_time == '0':
+                iret = -6
+            else:
+                time_now = self.gettime()
+                if time_now is None:
+                    return -6
+
+                d1 = datetime.datetime.strptime(time_now, '%Y-%m-%d')
+                d2 = datetime.datetime.strptime(serial_time, '%Y-%m-%d')
+                delta = d1 - d2
+                days = delta.days
+                # print(days)
+                # print(can_use_time)
+                if days >= can_use_time:
+                    if ifrom == -3:
+                        iret = -2
+                    elif ifrom == -5:
+                        iret = -5
+                else:
+                    iret = 0
+
             self.final_serial_list = serial_list
         else:
             iret = -1
@@ -197,7 +199,7 @@ class register():
         fp = open(file_name, 'w')
         str_jian = '|'
         str_write = str_jian.join(serial_list)
-        print(str_write)
+        # print(str_write)
         # des加密
         str_write = self.encode_str(str_write)
         fp.writelines(str_write)

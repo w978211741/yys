@@ -56,6 +56,21 @@ class Zabaigui(Game):
         x = handle.left + int((handle.right - handle.left) * 5 / 6)
         y = handle.top + int((handle.bottom - handle.top) / 2)
         self.m.click(x, y)
+        time.sleep(0.2)
+        self.m.click(x, y)
+        time.sleep(0.4)
+        x = handle.left + int((handle.right - handle.left) * 4 / 6)
+        y = handle.top + int((handle.bottom - handle.top) / 2)
+        self.m.click(x, y)
+        time.sleep(0.2)
+        self.m.click(x, y)
+        time.sleep(0.4)
+        x = handle.left + int((handle.right - handle.left) * 3 / 6)
+        y = handle.top + int((handle.bottom - handle.top) / 2)
+        self.m.click(x, y)
+        time.sleep(0.2)
+        self.m.click(x, y)
+        time.sleep(0.4)
         return codedef.NORMAL_END
 
     def xuan_gui_wang(self, argument, handle):

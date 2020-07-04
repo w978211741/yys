@@ -72,7 +72,7 @@ class Nka(Game):
         ddx = int(dx / 10)
 
         while i < 10:
-            time.sleep(0.02)
+            time.sleep(0.03)
             m.mouse_to(x + ddx * i, y + ddy * i)  # 鼠标移动到
             i += 1
 

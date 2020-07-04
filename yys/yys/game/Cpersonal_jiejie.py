@@ -53,6 +53,9 @@ class Personal_jiejie(Game):
 
     # 查看结界突破剩余数量，判断是否打，还是刷新
     def personal_jiejie_main(self, argument, handle):
+        print("personal_jiejie_main")
+        if self.click_img("yys/结界奖励.bmp", handle, 0.98) == 0:
+            print("结界奖励")
         da_guo, da_bug_uo, mei_da_guo = self.jie_jie_number(handle)
         if da_guo >= 3 or mei_da_guo == 0:
             return self.refresh_jie_jie(handle)
@@ -64,9 +67,10 @@ class Personal_jiejie(Game):
         mouse.click(x, y)
         self.waiting(argument, handle)
         if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
-            time.sleep(2)
-            if self.click_img("yys/进攻结界按钮.bmp", handle, 0.90) == 0:
-                return codedef.SCENCE_REPEAT_END
+            return codedef.NORMAL_END
+        else:
+            if self.click_img("yys/进攻结界按钮2.bmp", handle, 0.90) == 0:
+                return codedef.NORMAL_END
         return codedef.NORMAL_END
 
     # 刷新结界突破
@@ -111,7 +115,7 @@ class Personal_jiejie(Game):
             else:
                 point = [int(point0[0] + int(i % 3) * w_silde), int(point0[1] + int(i / 3) * h_silde)]
             point2 = [point[0] + w, point[1] + h]
-            print(str(i) + str(point))
+            # print(str(i) + str(point))
             src_img = Img.cut_img_path('temp/temp.bmp', point, point2)
             Img.save('temp/temp' + str(i) + '.bmp', src_img)
             re, x, y = Img.find_img_in_img('temp/temp' + str(i) + '.bmp', self.mei_da_guo_path, jindu)

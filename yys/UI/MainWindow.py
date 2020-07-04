@@ -36,7 +36,8 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.lineEdit_qqname.setPlaceholderText("qq昵称或备注")
         # self.comboBox_jienum.setEnabled(False)
         # self.comboBox_xuenum.setEnabled(False)
-
+        self.comboBox_2.setCurrentIndex(1)
+        self.comboBox_3.setCurrentIndex(2)
         # 设置最大行数
         self.textBrowser.document().setMaximumBlockCount(23)
         self.log_queue = Queue()
@@ -54,18 +55,18 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.Maxtimes = ''
         self.UP = codedef.UP_C_NULL
         self.BOSS = True
-        # self.register_show = False
-        self.register_show = True
+        self.register_show = False
         self.QingMax = True
         self.Beater = True
         self.BeatMax = True
         self.Loop = False
-        self.other = '抽N卡'     # 其他功能
+        self.other = codedef.XUE_YUE        # 其他功能默认'御灵'
         self.Chapter = '第一章'
+
+        self.testF = False   # true的话，结界是测试
         pass
 
     def setMod(self, id):
-        # print(id)
         # 单选按钮组 -2  -  -7
         self.mod = id
         if id == -5:
@@ -111,6 +112,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         elif self.mod == codedef.MOD_YU:# 组队魂十
             self.comboBox_1.setEnabled(True)
             self.comboBox_2.setEnabled(True)
+            self.comboBox_3.setEnabled(True)
 
             self.lineEdit_times.setEnabled(True)
         elif self.mod == codedef.MOD_DOU:# 刷斗技
@@ -122,6 +124,9 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
     def start(self):
         try:
+            if self.testF:
+                self.register_show = True
+
             my_register = register()
             re = my_register.check()
             # print('check1:' + str(re))
@@ -158,11 +163,14 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
                 pass
             elif self.mod == codedef.MOD_JIE:# 打结界
-                # self.main_process = multiprocessing.Process(
-                #     target=my_test_main_process, args=(
-                #         self.log_queue, self.qq_name), name='my_process')
-                # self.main_process.start()
-                # return
+
+                if self.testF:
+                    self.main_process = multiprocessing.Process(
+                        target=my_test_main_process, args=(
+                            self.log_queue, self.qq_name), name='my_process')
+                    self.main_process.start()
+                    return
+
                 self.add_in_text_browser("启动 打结界\r\n")
                 inum = int(self.comboBox_jienum.currentText())
 
@@ -176,19 +184,39 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
                 pass
             elif self.mod == codedef.MOD_XUE:# 刷血月
-                self.add_in_text_browser("启动 刷血月\r\n")
+                self.add_in_text_browser("启动 刷其他\r\n")
                 inum = int(self.comboBox_xuenum.currentText())
                 strMaxtimes = self.Maxtimes
                 iMaxtimes = 9999
                 if strMaxtimes.isdigit() is False:
-                    self.add_in_text_browser("刷血月次数不为数字，启动次数9999\r\n")
+                    self.add_in_text_browser("刷其他次数不为数字，启动次数9999\r\n")
                 else:
                     iMaxtimes = int(strMaxtimes)
+
+                ibuyyan = 0
+                ibuyyu = 0
+                if self.other == codedef.RI_LUN_CENG or self.other == codedef.RI_LUN_YU :
+                    strbuyyan = self.lineEdit_buyyan.text()
+                    if strbuyyan.isdigit() is False:
+                        self.add_in_text_browser("日轮之城，买眼次数不为数字，最多买0次\r\n")
+                    else:
+                        ibuyyan = int(strbuyyan)
+
+                    strbuyyu = self.lineEdit_buyyu.text()
+                    if strbuyyu.isdigit() is False:
+                        self.add_in_text_browser("日轮之城，买溯玉次数不为数字，最多买0次\r\n")
+                    else:
+                        ibuyyu = int(strbuyyu)
+
+                    self.add_in_text_browser("日轮之城，买眼最多买" + strbuyyan +
+                                             "买溯玉最多买" + strbuyyu + "次\r\n")
+
                 if self.main_process is None or self.main_process.is_alive() is False:
                     self.main_process = multiprocessing.Process(
                         target=my_xue_yue_process, args=(
                             self.log_queue, self.qq_name, self.comboBox_1.currentText(), self.comboBox_2.currentText(),
-                            self.comboBox_3.currentText(), self.comboBox_4.currentText(), inum, iMaxtimes, self.other),
+                            self.comboBox_3.currentText(), self.comboBox_4.currentText(), inum, iMaxtimes, self.other,
+                            ibuyyan, ibuyyu),
                         name='my_process')
                     self.main_process.start()
                 else:
@@ -232,7 +260,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
                     self.main_process = multiprocessing.Process(
                         target=my_hun_shi_process, args=(
                             self.log_queue, self.qq_name, self.comboBox_1.currentText(),
-                            self.comboBox_2.currentText(), iMaxtimes), name='my_process')
+                            self.comboBox_2.currentText(), self.comboBox_3.currentText(),iMaxtimes), name='my_process')
                     self.main_process.start()
                 else:
                     self.add_in_text_browser("已经有副本正在运行，请先按停止\r\n")
@@ -318,7 +346,7 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
         self.mod = codedef.MOD_XUE
         inum = int(text)
         self.set_yys_wins(inum)
-        self.add_in_text_browser("刷血月的窗口数量设置成功\r\n")
+        self.add_in_text_browser("其他功能窗口数量设置成功\r\n")
 
     def setdounum(self, text):
         self.radioButton_6.setChecked(True)
@@ -422,6 +450,9 @@ class My_MainWindow(Ui_MainWindow, QtWidgets.QMainWindow):
 
     def setOther(self, text):
         self.other = text
+        self.radioButton_3.setChecked(True)
+        self.mod = codedef.MOD_XUE
+        self.add_in_text_browser("其他功能设置成功\r\n")
 
     def setChapter(self, text):
         self.Chapter = text
@@ -453,10 +484,10 @@ def my_jie_jie_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum):
     fuben.add_log("结界 结束\r\n")
 
 
-def my_hun_shi_process(log_queue, qq_name, yys1, yys2, imax_times):
+def my_hun_shi_process(log_queue, qq_name, yys1, yys2, yys3, imax_times):
     fuben = Fuben(log_queue, qq_name)
     try:
-        fuben.hun_shi(yys1, yys2, imax_times)
+        fuben.hun_shi(yys1, yys2, yys3, imax_times)
     except Exception as e:
         str_log = "Exception:" + traceback.format_exc() + "\r\n"
         fuben.add_log(str_log)
@@ -464,10 +495,10 @@ def my_hun_shi_process(log_queue, qq_name, yys1, yys2, imax_times):
     fuben.add_log("魂十 结束\r\n")
 
 
-def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_times, mod):
+def my_xue_yue_process(log_queue, qq_name, yys1, yys2, yys3, yys4, inum, imax_times, mod, buyyan, buyyu):
     fuben = Fuben(log_queue, qq_name)
     try:
-        fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times, mod)
+        fuben.xue_yue(yys1, yys2, yys3, yys4, inum, imax_times, mod,buyyan=buyyan, buyyu=buyyu)
     except Exception as e:
 
         str_log = "Exception:" + traceback.format_exc() + "\r\n"

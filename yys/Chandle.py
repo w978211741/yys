@@ -40,6 +40,11 @@ class SceneKey(Enum):
     XUAN_ZHE_PING_TAI = 34
     YOU_XI_GONG_GAO = 35
 
+    # 日轮之城
+    LUN_HUI_MI_JING = 36    # 轮回秘境界面
+    DA_GUAI_KAI_SHI = 37    # 打怪开始界面
+    XUAN_ZI_YUAN = 38       # 过关后选资源
+
 
 class Handle:
     hwnd = 0

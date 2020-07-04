@@ -99,8 +99,20 @@ class Game:
             elif index == "4":
                 left = int(1050 * xishu)
                 top = int(520 * xishu)
+
             if left != handle.left or top != handle.top:
                 self.window.set_window(handle, left, top, handle.right - handle.left, handle.bottom - handle.top)
+                # self.window.set_window(handle, left, top, 1154, 685)    # 批量逢魔才有
+
+        # 批量逢魔
+        # handle_feng = Handle()
+        # if self.window.get_window(handle_feng, None, "批量逢魔") == -1:
+        #      return -1
+        # else:
+        #      self.window.set_window(handle_feng, handle.right + 20, handle_feng.top,
+        #                            handle_feng.right - handle_feng.left,
+        #                             handle_feng.bottom - handle_feng.top)  # 批量逢魔才有
+        # return codedef.NORMAL_END
 
         target_height = int(520 * xishu)
         dx = handle.bottom - handle.top - target_height
@@ -114,6 +126,37 @@ class Game:
                                        handle.bottom - handle.top - i_depth * temp_i)
                 time.sleep(0.8)
             self.window.set_window(handle, left, top, handle.right - handle.left, target_height)
+        return codedef.NORMAL_END
+
+    # 查找指定windows程序窗口，并设置到指定位置和大小，找不到返回-1，找到返回0
+    def set_window_feng(self, handle, window_name, index, position=True):
+        class_name = None
+        if self.window.get_window(handle, class_name, window_name) == -1:
+            return -1
+        if handle.bottom - handle.top < 100 or handle.top < 0:
+            return -1
+
+        xishu = GetSystemMetrics(0) / 1920
+
+        left = int(10 * xishu)
+        top = int(10 * xishu)
+        if position:
+            left = int(10 * xishu)
+            top = int(10 * xishu)
+
+            if left != handle.left or top != handle.top:
+                self.window.set_window(handle, left, top, handle.right - handle.left, handle.bottom - handle.top)
+                self.window.set_window(handle, left, top, 1154, 685)    # 批量逢魔才有
+
+
+        handle_feng = Handle()
+        if self.window.get_window(handle_feng, None, "批量逢魔") == -1:
+            return -1
+        else:
+            self.window.set_window(handle_feng, handle.right + 20, handle_feng.top,
+                                   handle_feng.right - handle_feng.left,
+                                   handle_feng.bottom - handle_feng.top)  # 批量逢魔才有
+
         return codedef.NORMAL_END
 
     # 更新temp图
@@ -221,34 +264,34 @@ class Game:
         if Game.if_exist(path + "是否邀请继续2.bmp") == 0:
             print("是否邀请继续2")
             return SceneKey.SHI_FOU_YAO_QING_JI_XU
-        # if Game.if_exist(path + "组队选择队友界面.bmp") == 0:
-        #     return SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU
-        # if Game.if_exist(path + "庭院界面.bmp") == 0:
-        #     return SceneKey.TING_YUAN
-        # if Game.if_exist(path + "探索界面.bmp") == 0:
-        #     return SceneKey.TANG_SUO
-        # if Game.if_exist(path + "町中界面.bmp") == 0:
-        #     return SceneKey.DING_ZHONG
-        # if Game.if_exist(path + "结界突破界面.bmp") == 0:
-        #     return SceneKey.JIE_JIE_TU_PO
-        # if Game.if_exist(path + "战斗奖励界面.bmp") == 0:
-        #     return SceneKey.ZHANG_DOU_JIANG_LI
-        # if Game.if_exist(path + "斗技中界面.bmp") == 0:
-        #     return SceneKey.DOU_JI_ZHONG
-        # if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
-        #     return SceneKey.ZHANG_DOU_SHENG_LI
-        # if Game.if_exist(path + "战斗失败界面.bmp") == 0:
-        #     return SceneKey.ZHANG_DOU_SHI_BAI
-        # if Game.if_exist(path + "探索中界面.bmp") == 0:
-        #     return SceneKey.TANG_SUO_ZHONG
-        # if Game.if_exist(path + "协战队伍界面.bmp") == 0:
-        #     return SceneKey.XIE_ZHAN_DUI_WU
-        # if Game.if_exist(path + "斗技界面.bmp") == 0:
-        #     return SceneKey.DOU_JI
-        # if Game.if_exist(path + "战斗中界面.bmp") == 0:
-        #     return SceneKey.ZHANG_DOU_ZHONG
-        # if Game.if_exist(path + "探索章节界面.bmp") == 0:
-        #     return SceneKey.TANG_SUO_ZHANG_JIE
+        if Game.if_exist(path + "组队选择队友界面.bmp") == 0:
+            return SceneKey.ZU_DUI_XUAN_ZE_DUI_YOU
+        if Game.if_exist(path + "庭院界面.bmp") == 0:
+            return SceneKey.TING_YUAN
+        if Game.if_exist(path + "探索界面.bmp") == 0:
+            return SceneKey.TANG_SUO
+        if Game.if_exist(path + "町中界面.bmp") == 0:
+            return SceneKey.DING_ZHONG
+        if Game.if_exist(path + "结界突破界面.bmp") == 0:
+            return SceneKey.JIE_JIE_TU_PO
+        if Game.if_exist(path + "战斗奖励界面.bmp") == 0:
+            return SceneKey.ZHANG_DOU_JIANG_LI
+        if Game.if_exist(path + "斗技中界面.bmp") == 0:
+            return SceneKey.DOU_JI_ZHONG
+        if Game.if_exist(path + "战斗胜利界面.bmp") == 0:
+            return SceneKey.ZHANG_DOU_SHENG_LI
+        if Game.if_exist(path + "战斗失败界面.bmp") == 0:
+            return SceneKey.ZHANG_DOU_SHI_BAI
+        if Game.if_exist(path + "探索中界面.bmp") == 0:
+            return SceneKey.TANG_SUO_ZHONG
+        if Game.if_exist(path + "协战队伍界面.bmp") == 0:
+            return SceneKey.XIE_ZHAN_DUI_WU
+        if Game.if_exist(path + "斗技界面.bmp") == 0:
+            return SceneKey.DOU_JI
+        if Game.if_exist(path + "战斗中界面.bmp") == 0:
+            return SceneKey.ZHANG_DOU_ZHONG
+        if Game.if_exist(path + "探索章节界面.bmp") == 0:
+            return SceneKey.TANG_SUO_ZHANG_JIE
         # if Game.if_exist(path + "超鬼王来袭界面.bmp") == 0:
         #     return SceneKey.CHAO_GUI_WANG_LAI_XI
         # if Game.if_exist(path + "购买茶界面.bmp") == 0:
@@ -284,7 +327,7 @@ class Game:
         window = self.window
 
     def teaming(self, argument, handle):
-        time.sleep(random.randint(0, 5))
+        time.sleep(random.randint(0, 3))
         if self.click_img("yys/开始战斗按钮.bmp", handle, 0.98) == 0:
             print("开始战斗按钮")
             return codedef.FIGHT_BEGIN
@@ -335,6 +378,7 @@ class Game:
         return -1
 
     def yao_qing_dui_you_ji_xu(self, argument, handle):
+        self.mo_ren_yao_qing_dui_you(argument, handle)
         if self.click_img("yys/确定按钮.bmp", handle) == 0:
             print("确定按钮")
             return codedef.NORMAL_END
